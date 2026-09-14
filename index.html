@@ -17,9 +17,24 @@
 
   <!-- 인트로 로더 -->
   <div class="loader" id="loader" aria-hidden="true">
-    <div class="loader__mark"><span>S</span><span>C</span></div>
-    <div class="loader__bar"><i></i></div>
+    <div class="loader__inner">
+      <p class="loader__title">
+        <span class="loader__word loader__word--accent"><i>조</i><i>수</i><i>안</i><i>의</i></span>
+        <span class="loader__word"><i>포</i><i>트</i><i>폴</i><i>리</i><i>오</i></span>
+      </p>
+      <p class="loader__sub">2022 - 2026 PORTFOLIO</p>
+      <div class="loader__bar"><i></i></div>
+    </div>
   </div>
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+  <nav class="dots" id="dots" aria-label="섹션 이동">
+    <a href="#top" data-dot="hero" title="Intro"></a>
+    <a href="#about" data-dot="about" title="About"></a>
+    <a href="#project-1" data-dot="project-1" title="Project 01"></a>
+    <a href="#project-2" data-dot="project-2" title="Project 02"></a>
+    <a href="#project-3" data-dot="project-3" title="Project 03"></a>
+    <a href="#contact" data-dot="contact" title="Contact"></a>
+  </nav>
 
   <!-- 스크롤 진행 바 -->
   <div class="progress" id="progress" aria-hidden="true"></div>
@@ -59,6 +74,14 @@
       </a>
     </section>
 
+    <!-- 마퀴 -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>MARKETING STRATEGY</span><i>✦</i><span>#execution-focused</span><i>✦</i><span>#data-driven</span><i>✦</i><span>#business-impact</span><i>✦</i><span>2022 - 2026 PORTFOLIO</span><i>✦</i><span>조수안 / Suanne Cho</span><i>✦</i>
+        <span>MARKETING STRATEGY</span><i>✦</i><span>#execution-focused</span><i>✦</i><span>#data-driven</span><i>✦</i><span>#business-impact</span><i>✦</i><span>2022 - 2026 PORTFOLIO</span><i>✦</i><span>조수안 / Suanne Cho</span><i>✦</i>
+      </div>
+    </div>
+
     <!-- ===================== ABOUT (p.2) ===================== -->
     <section class="about section" id="about">
       <div class="about__left reveal">
@@ -66,7 +89,7 @@
           <img class="about__avatar" src="assets/img/avatar.webp" alt="조수안 아바타" width="360" height="360">
           <span class="about__ring" aria-hidden="true"></span>
         </div>
-        <h2 class="about__headline">
+        <h2 class="about__headline fx-text">
           보이는 문제가 아닌,<br>
           <strong>진짜 원인</strong>을 <strong>짚는</strong><br>
           조수안입니다
@@ -80,11 +103,11 @@
       <div class="about__right">
         <div class="about__col">
           <div class="about__block reveal">
-            <h3 class="about__name">조수안 / Suanne Cho</h3>
+            <h3 class="about__name fx-text">조수안 / Suanne Cho</h3>
             <p class="about__birth">2003.09.23</p>
           </div>
           <div class="about__block reveal">
-            <h4 class="about__label">Marketing Strategy</h4>
+            <h4 class="about__label fx-text">Marketing Strategy</h4>
             <ul class="about__hashtags">
               <li>#execution-focused</li>
               <li>#data-driven</li>
@@ -92,7 +115,7 @@
             </ul>
           </div>
           <div class="about__block reveal">
-            <h4 class="about__label">EDUCATION</h4>
+            <h4 class="about__label fx-text">EDUCATION</h4>
             <ul class="timeline">
               <li><b>2023</b><span>이화여자대학교 경영학 복수전공</span></li>
               <li><b>2022</b><span>이화여자대학교 국제학부 입학</span></li>
@@ -100,7 +123,7 @@
             </ul>
           </div>
           <div class="about__block reveal">
-            <h4 class="about__label">EXPERIENCE</h4>
+            <h4 class="about__label fx-text">EXPERIENCE</h4>
             <ul class="timeline">
               <li><b>2026</b><span>F&amp;F DX Marketing 인턴</span></li>
               <li><b>2025</b><span>네이버제트 Content Marketing 인턴</span></li>
@@ -112,14 +135,14 @@
 
         <div class="about__col about__col--side">
           <div class="about__block reveal">
-            <h4 class="about__label">CERTIFICATE</h4>
+            <h4 class="about__label fx-text">CERTIFICATE</h4>
             <ul class="plain">
               <li><b>영어</b> TOEFL 117</li>
               <li><b>중국어</b> HSK 5급</li>
             </ul>
           </div>
           <div class="about__block reveal">
-            <h4 class="about__label">GLOBAL EXPERIENCE <span class="about__label-sub">[8년]</span></h4>
+            <h4 class="about__label fx-text">GLOBAL EXPERIENCE <span class="about__label-sub">[8년]</span></h4>
             <ul class="timeline timeline--compact">
               <li><b>2015-2018</b><span>중국 거주</span></li>
               <li><b>2011-2013</b><span>중국 거주</span></li>
@@ -128,7 +151,7 @@
             </ul>
           </div>
           <div class="about__block reveal">
-            <h4 class="about__label">SKILLS</h4>
+            <h4 class="about__label fx-text">SKILLS</h4>
             <ul class="skills">
               <li data-level="3"><span class="skills__name">POWERPOINT</span><span class="skills__lv">상</span><span class="skills__bar"><i></i></span></li>
               <li data-level="3"><span class="skills__name">WORD</span><span class="skills__lv">상</span><span class="skills__bar"><i></i></span></li>
@@ -158,7 +181,7 @@
         <div class="cover__inner">
           <div class="cover__text reveal">
             <p class="cover__eyebrow">PROJECT 1.</p>
-            <h2 class="cover__title">BREADROP<br>소셜벤처 <em>창업</em></h2>
+            <h2 class="cover__title fx-text">BREADROP<br>소셜벤처 <em>창업</em></h2>
             <div class="tags"><span class="tag">#B2B</span><span class="tag">#B2C</span></div>
           </div>
           <div class="cover__num reveal" aria-hidden="true">01</div>
@@ -173,7 +196,7 @@
       <section class="overview section">
         <div class="overview__main">
           <div class="reveal">
-            <h3 class="overview__title">BREADROP</h3>
+            <h3 class="overview__title fx-text">BREADROP</h3>
             <p class="overview__sub">버려지는 빵을 살려내는 우리 동네 빵집 마감할인 플랫폼</p>
           </div>
           <figure class="overview__laptop reveal">
@@ -201,7 +224,7 @@
       <article class="case section" data-type="b2b">
         <div class="case__left">
           <span class="tag tag--sm">#B2B</span>
-          <h3 class="case__title reveal">7개 파트너사,<br>현장에서 설득하다</h3>
+          <h3 class="case__title reveal fx-text">7개 파트너사,<br>현장에서 설득하다</h3>
           <p class="case__desc reveal">현장 기반 페인포인트 분석과 차별화된 가치 제안으로<br>7개 베이커리 파트너사 입점을 설득한 B2B 세일즈</p>
           <div class="phones reveal">
             <img class="phone" src="assets/img/p1-b2b-L.webp" alt="브레드랍 서비스 소개 및 이용 매뉴얼 제안서" width="640" height="1283" data-lightbox>
@@ -210,11 +233,11 @@
         </div>
         <div class="case__right">
           <div class="kv reveal">
-            <span class="kv__k">문제</span>
+            <span class="kv__k fx-text">문제</span>
             <p class="kv__v">경쟁 플랫폼이 이미 존재하는 시장에서, 차별화 없이는 베이커리 입점 설득이 불가능</p>
           </div>
           <div class="reveal">
-            <span class="kv__k">전략</span>
+            <span class="kv__k fx-text">전략</span>
             <div class="steps steps--3">
               <div class="step">
                 <div class="step__head">Step 1. 현장 조사</div>
@@ -231,7 +254,7 @@
             </div>
           </div>
           <div class="reveal">
-            <span class="kv__k">성과</span>
+            <span class="kv__k fx-text">성과</span>
             <div class="results">
               <div class="result">
                 <img class="result__icon" src="assets/img/icon-handshake.webp" alt="" width="200" height="200">
@@ -254,7 +277,7 @@
       <article class="case section" data-type="b2c">
         <div class="case__left">
           <span class="tag tag--sm">#B2C</span>
-          <h3 class="case__title reveal">오프라인 행사,<br>전환율 73%를 만들다</h3>
+          <h3 class="case__title reveal fx-text">오프라인 행사,<br>전환율 73%를 만들다</h3>
           <p class="case__desc reveal">타겟 맞춤형 오프라인 행사를 통해 고객 접점을 확보하고,<br>실구매 전환으로 연결한 마케팅 캠페인</p>
           <div class="phones reveal">
             <img class="phone" src="assets/img/p1-b2c-event-L.webp" alt="에브리타임 게시글 - 203동 지하 2층에서 간식 무료 나눔 중입니다" width="640" height="1283" data-lightbox>
@@ -263,11 +286,11 @@
         </div>
         <div class="case__right">
           <div class="kv reveal">
-            <span class="kv__k">문제</span>
+            <span class="kv__k fx-text">문제</span>
             <p class="kv__v">SNS 팔로워 증가와 구매 전환이 연결되지 않아, 실구매 타겟 접점 확보 필요성 확인</p>
           </div>
           <div class="reveal">
-            <span class="kv__k">전략</span>
+            <span class="kv__k fx-text">전략</span>
             <div class="campaigns">
               <div class="campaign">
                 <div class="campaign__head">캠페인 1. 기숙사 간식 나눔 행사</div>
@@ -288,7 +311,7 @@
             </div>
           </div>
           <div class="reveal">
-            <span class="kv__k">성과</span>
+            <span class="kv__k fx-text">성과</span>
             <div class="results">
               <div class="result">
                 <img class="result__icon" src="assets/img/icon-fire.webp" alt="" width="200" height="200">
@@ -311,7 +334,7 @@
       <article class="case section" data-type="b2c">
         <div class="case__left">
           <span class="tag tag--sm">#B2C</span>
-          <h3 class="case__title reveal">운영 위기, 카피라이팅으로<br>매출 13% 올리다</h3>
+          <h3 class="case__title reveal fx-text">운영 위기, 카피라이팅으로<br>매출 13% 올리다</h3>
           <p class="case__desc reveal">픽업 시간대 변경이라는 제약을 새로운 가치로 재포지셔닝하여,<br>고객 이탈 위기를 매출 증가로 전환한 캠페인</p>
           <div class="phones reveal">
             <img class="phone" src="assets/img/p1-b2c-copy-L.webp" alt="인스타그램 게시물 - 수업 사이, 간단하지만 든든하게" width="640" height="1283" data-lightbox>
@@ -320,11 +343,11 @@
         </div>
         <div class="case__right">
           <div class="kv reveal">
-            <span class="kv__k">문제</span>
+            <span class="kv__k fx-text">문제</span>
             <p class="kv__v">픽업 시간대 변경(저녁 픽업 → 아침 픽업)으로 기존 고객 이탈 리스크 발생</p>
           </div>
           <div class="reveal">
-            <span class="kv__k">전략</span>
+            <span class="kv__k fx-text">전략</span>
             <div class="flows">
               <div class="flow">
                 <div class="flow__head">상황 맞춤형 카피라이팅</div>
@@ -341,7 +364,7 @@
             </div>
           </div>
           <div class="reveal">
-            <span class="kv__k">성과</span>
+            <span class="kv__k fx-text">성과</span>
             <div class="results">
               <div class="result">
                 <img class="result__icon" src="assets/img/icon-flag.webp" alt="" width="200" height="200">
@@ -365,7 +388,7 @@
         <div class="cover__inner">
           <div class="cover__text reveal">
             <p class="cover__eyebrow">PROJECT 2.</p>
-            <h2 class="cover__title">JOSEPH &amp; STACEY<br><em>글로벌 마케팅</em> 인턴</h2>
+            <h2 class="cover__title fx-text">JOSEPH &amp; STACEY<br><em>글로벌 마케팅</em> 인턴</h2>
             <div class="tags"><span class="tag">#B2B</span><span class="tag">#B2C</span></div>
           </div>
           <div class="cover__num reveal" aria-hidden="true">02</div>
@@ -380,7 +403,7 @@
       <article class="case section" data-type="b2b">
         <div class="case__left">
           <span class="tag tag--sm">#B2B</span>
-          <h3 class="case__title reveal">5곳 편집샵,<br>손익구조로 설득하다</h3>
+          <h3 class="case__title reveal fx-text">5곳 편집샵,<br>손익구조로 설득하다</h3>
           <p class="case__desc reveal">중국 편집샵이 이커머스 시대에도 살아남는 이유를 이해하고,<br>손익 언어로 설득해 대량 구매를 이끌어낸 해외 B2B 세일즈</p>
           <div class="phones reveal">
             <img class="phone" src="assets/img/p2-b2b-L.webp" alt="샤오홍슈 게시물 - 상하이 편집샵 방문 후기" width="640" height="1283" data-lightbox>
@@ -389,11 +412,11 @@
         </div>
         <div class="case__right">
           <div class="kv reveal">
-            <span class="kv__k">목표</span>
+            <span class="kv__k fx-text">목표</span>
             <p class="kv__v">타오바오 중심 이커머스가 장악한 중국 시장에서, 도매 거래처가 될 편집샵을 확보</p>
           </div>
           <div class="reveal">
-            <span class="kv__k">전략</span>
+            <span class="kv__k fx-text">전략</span>
             <div class="steps steps--3">
               <div class="step">
                 <div class="step__head">Step 1. 시장 진단</div>
@@ -410,7 +433,7 @@
             </div>
           </div>
           <div class="reveal">
-            <span class="kv__k">성과</span>
+            <span class="kv__k fx-text">성과</span>
             <div class="results results--single">
               <div class="result">
                 <img class="result__icon" src="assets/img/icon-cn.webp" alt="" width="200" height="200">
@@ -429,7 +452,7 @@
       <article class="case section" data-type="b2c">
         <div class="case__left">
           <span class="tag tag--sm">#B2C</span>
-          <h3 class="case__title reveal">인플루언서 마케팅,<br>시장별 설계로 고객을 넓히다</h3>
+          <h3 class="case__title reveal fx-text">인플루언서 마케팅,<br>시장별 설계로 고객을 넓히다</h3>
           <p class="case__desc reveal">시장별 소비 맥락과 브랜드 포지셔닝을 반영한<br>인플루언서 마케팅으로 고객층 확대와 구매 전환율 개선</p>
           <div class="phones reveal">
             <img class="phone" src="assets/img/p2-b2c-L.webp" alt="인스타그램 인플루언서 게시물 (한국) - 럭키 플리츠 니트백 착용" width="640" height="1283" data-lightbox>
@@ -438,14 +461,14 @@
         </div>
         <div class="case__right">
           <div class="kv kv--multi reveal">
-            <span class="kv__k">목표</span>
+            <span class="kv__k fx-text">목표</span>
             <div class="kv__v">
               <p><b class="mint">한국</b> 기존 3-50대 중심 고객층에서 1-20대 젊은 층으로 확장</p>
               <p><b class="mint">일본</b> 일본 내 조셉앤스테이시 브랜드 인지도 상승</p>
             </div>
           </div>
           <div class="reveal">
-            <span class="kv__k">전략</span>
+            <span class="kv__k fx-text">전략</span>
             <div class="vs">
               <div class="vs__col">
                 <div class="vs__head">한국</div>
@@ -459,7 +482,7 @@
             </div>
           </div>
           <div class="reveal">
-            <span class="kv__k">성과</span>
+            <span class="kv__k fx-text">성과</span>
             <div class="results">
               <div class="result">
                 <img class="result__icon" src="assets/img/icon-kr.webp" alt="" width="200" height="200">
@@ -483,7 +506,7 @@
         <div class="cover__inner">
           <div class="cover__text reveal">
             <p class="cover__eyebrow">PROJECT 3.</p>
-            <h2 class="cover__title">NAVER Z<br><em>콘텐츠 마케팅</em> 인턴</h2>
+            <h2 class="cover__title fx-text">NAVER Z<br><em>콘텐츠 마케팅</em> 인턴</h2>
             <div class="tags"><span class="tag">#B2C</span></div>
           </div>
           <div class="cover__num reveal" aria-hidden="true">03</div>
@@ -498,7 +521,7 @@
       <article class="case section" data-type="b2c">
         <div class="case__left">
           <span class="tag tag--sm">#B2C</span>
-          <h3 class="case__title reveal">SNS Story 기능 재정의,<br>링크 클릭 200배를 만들다</h3>
+          <h3 class="case__title reveal fx-text">SNS Story 기능 재정의,<br>링크 클릭 200배를 만들다</h3>
           <p class="case__desc reveal">SNS Story 기능 운영과 CTA 최적화를 통해,<br>노출 채널을 앱 유입 전환 채널로 전환한 데이터 기반 실험</p>
           <div class="phones reveal">
             <img class="phone" src="assets/img/p3-b2c-L.webp" alt="제페토 인스타그램 스토리 - Get Your Porsche CTA" width="640" height="1283" data-lightbox>
@@ -507,11 +530,11 @@
         </div>
         <div class="case__right">
           <div class="kv reveal">
-            <span class="kv__k">문제</span>
+            <span class="kv__k fx-text">문제</span>
             <p class="kv__v">SNS 노출 지표는 높았지만, 실제 앱 유입으로 이어지지 않는 노출-전환 단절 발생</p>
           </div>
           <div class="reveal">
-            <span class="kv__k">전략</span>
+            <span class="kv__k fx-text">전략</span>
             <div class="steps steps--2">
               <div class="step">
                 <div class="step__head">Step 1. 전환 채널 인프라 구축</div>
@@ -528,7 +551,7 @@
             </div>
           </div>
           <div class="reveal">
-            <span class="kv__k">성과</span>
+            <span class="kv__k fx-text">성과</span>
             <div class="results">
               <div class="result">
                 <img class="result__icon" src="assets/img/icon-cursor.webp" alt="" width="200" height="200">
@@ -552,7 +575,7 @@
     <!-- ===================== CONTACT (p.13) ===================== -->
     <section class="contact section" id="contact">
       <div class="contact__inner">
-        <h2 class="contact__title reveal">감사합니다!</h2>
+        <h2 class="contact__title reveal fx-text">감사합니다!</h2>
         <div class="contact__box reveal">
           <span class="contact__label">CONTACT</span>
           <div class="contact__row">
