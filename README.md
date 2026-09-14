@@ -6,6 +6,12 @@
 
 정적 HTML/CSS/JS로 만든 인터랙티브 포트폴리오입니다. 별도 빌드 없이 GitHub Pages로 배포됩니다.
 
+## 배포 설정 (최초 1회)
+
+GitHub 저장소 **Settings → Pages → Build and deployment → Source** 를 **GitHub Actions** 로 선택하면,
+이후 push마다 `.github/workflows/pages.yml` 이 자동으로 배포합니다.
+(처음 한 번은 Actions 탭에서 실패한 워크플로를 **Re-run** 하거나, 아무 커밋이나 push하면 됩니다.)
+
 ## 구조
 
 ```
