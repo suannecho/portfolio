@@ -21,6 +21,7 @@ assets/main.js        # 인터랙션 (스크롤 리빌, 카운터, 필터, 라�
 assets/img/           # 목업·아이콘 이미지 (WebP)
 assets/portfolio.pdf  # 원본 PDF
 .github/workflows/    # GitHub Pages 자동 배포
+DESIGN.md             # 디자인 시스템 문서 (색·타이포·컴포넌트·모션 규칙)
 ```
 
 ## 로컬에서 보기
