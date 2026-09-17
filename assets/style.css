@@ -303,9 +303,10 @@ button { font-family: inherit; cursor: pointer; }
 .phone { cursor: zoom-in; border-radius: 26px; transition: transform 0.5s var(--ease), box-shadow 0.5s; will-change: transform; }
 .phone:hover { box-shadow: 0 30px 60px rgba(0,0,0,0.45); }
 .case__right { display: flex; flex-direction: column; gap: 34px; }
-.kv { display: grid; grid-template-columns: auto 1fr; gap: 10px 22px; align-items: start; }
+.kv { display: grid; grid-template-columns: auto 1fr; gap: 10px 22px; align-items: center; }
 .kv__k { color: var(--mint); font-weight: 800; font-size: clamp(18px, 1.5vw, 26px); letter-spacing: -0.01em; display: block; margin-bottom: 14px; }
-.kv .kv__k { margin-bottom: 0; padding-top: 2px; }
+.kv .kv__k { margin-bottom: 0; line-height: 1.2; }
+.kv .kv__v { line-height: 1.5; }
 .kv__v { font-size: clamp(15px, 1.25vw, 20px); line-height: 1.6; }
 .kv--multi .kv__v p + p { margin-top: 8px; }
 .kv--multi .mint { margin-right: 6px; }
