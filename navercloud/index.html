@@ -1,192 +1,565 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>조수안 포트폴리오 — Marketing Strategy 2022–2026</title>
-<meta name="description" content="보이는 문제가 아닌, 진짜 원인을 짚는 조수안의 마케팅 전략 포트폴리오.">
-<style>
-@font-face { font-family: "Pretendard Variable"; font-weight: 45 920; font-style: normal; font-display: swap; src: url("assets/fonts/pretendard-sub.woff2") format("woff2-variations"), url("assets/fonts/pretendard-sub.woff2") format("woff2"); }
-:root { --s: min(100vw / 1920, 100vh / 1080);
-  --navy:#0B1B4D; --text:#1C2B5A; --mute:#5C6A8F; --blue:#1F5BFF; --sky:#22B8F0; --soft:#DCEBFF; --soft2:#EEF5FF; --line:rgba(11,27,77,.16); --white:#fff;
-  --font: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif; }
-* { box-sizing: border-box; }
-html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
-body { margin: 0; color: var(--text); font-family: var(--font); word-break: keep-all; -webkit-font-smoothing: antialiased; overflow-x: hidden;
-  background: radial-gradient(70% 90% at 0% 40%, #FFF0A6 0%, rgba(255,240,166,0) 60%), radial-gradient(60% 80% at 100% 10%, #9FDDFF 0%, rgba(159,221,255,0) 60%), radial-gradient(55% 70% at 95% 100%, #3C8BFF 0%, rgba(60,139,255,0) 60%), #EAF4FF; background-attachment: fixed; }
-p, h1, h2, h3 { margin: 0; } img { display: block; } a { color: inherit; text-decoration: none; }
-.wrap { position: relative; height: 100vh; height: 100dvh; display: grid; place-items: center; scroll-snap-align: start; scroll-snap-stop: always; overflow: hidden;
-  background: radial-gradient(70% 90% at 0% 40%, #FFF0A6 0%, rgba(255,240,166,0) 60%), radial-gradient(60% 80% at 100% 10%, #9FDDFF 0%, rgba(159,221,255,0) 60%), radial-gradient(55% 70% at 95% 100%, #3C8BFF 0%, rgba(60,139,255,0) 60%), #EAF4FF; }
-.wrap.k-case, .wrap.k-ov, .wrap.k-match { background: radial-gradient(60% 80% at 100% 0%, #B9E6FF 0%, rgba(185,230,255,0) 65%), radial-gradient(55% 70% at 100% 100%, #6EA9FF 0%, rgba(110,169,255,0) 60%), radial-gradient(40% 60% at 0% 100%, #FFF3BE 0%, rgba(255,243,190,0) 60%), #EEF5FF; }
-.slide { position: relative; width: calc(1920 * var(--s)); height: calc(1080 * var(--s)); }
-.wrap > .panel { position: absolute; top: 0; bottom: 0; left: 0; width: calc((100vw - 1920 * var(--s)) / 2 + var(--pw) * var(--s)); background: rgba(255,255,255,.58); border-right: 1px solid rgba(255,255,255,.9); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
-.a { position: absolute; left: calc(var(--x) * var(--s)); top: calc(var(--y) * var(--s)); width: calc(var(--w, 0) * var(--s)); height: calc(var(--h, 0) * var(--s)); }
-.a:not([style*="--w"]) { width: auto; } .a:not([style*="--h"]) { height: auto; }
-.t { font-size: calc(var(--fs) * var(--s)); line-height: calc(var(--lh) * var(--s)); white-space: pre-line; }
-.t b { font-weight: 700; } p.nowrap { white-space: pre; }
-.img { width: 100%; height: auto; } img.ph { border-radius: calc(26 * var(--s)); }
-.tag { display: inline-flex; align-items: center; background: var(--navy); color: #fff; font-weight: 800; white-space: nowrap; border-radius: calc(8 * var(--s)); }
-.tag.big { font-size: calc(72 * var(--s)); height: calc(95 * var(--s)); padding: 0 calc(22 * var(--s)); line-height: 1; border-radius: calc(14 * var(--s)); }
-.tag.sm { font-size: calc(26 * var(--s)); height: calc(40 * var(--s)); padding: 0 calc(14 * var(--s)); line-height: 1; }
-.blue { color: var(--blue); } .navy { color: var(--navy); } .mute { color: var(--mute); } .w { color: #fff; }
-.w400 { font-weight: 400; } .w500 { font-weight: 500; } .w600 { font-weight: 600; } .w700 { font-weight: 700; } .w800 { font-weight: 800; }
-.line { background: var(--navy); } .hline { height: 1px !important; }
-.box { background: #fff; border-radius: calc(15 * var(--s)); border: 1px solid var(--line); box-shadow: 0 calc(10 * var(--s)) calc(30 * var(--s)) rgba(11,27,77,.06); }
-.bd { border: calc(3 * var(--s)) solid; } .bd-soft { border-color: #BFD6FF; } .bd-blue { border-color: var(--blue); } .bd-navy { border-color: var(--navy); }
-.head { display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: calc(28 * var(--s)); line-height: 1; white-space: nowrap; color: #fff; }
-.head.soft { background: var(--soft); color: var(--navy); } .head.blue { background: var(--blue); } .head.navy { background: var(--navy); }
-.head.soft .st { color: var(--blue); }
-.head { font-weight: 600; font-size: calc(30 * var(--s)); }
-.chev { clip-path: polygon(0 0, calc(100% - 50 * var(--s)) 0, 100% 50%, calc(100% - 50 * var(--s)) 100%, 0 100%); }
-.chev.last { clip-path: polygon(0 0, calc(100% - 40 * var(--s)) 0, 100% 50%, calc(100% - 40 * var(--s)) 100%, 0 100%); }
-.rl { border-radius: calc(15 * var(--s)) 0 0 0; } .rr { border-radius: 0 calc(15 * var(--s)) 0 0; } .rt { border-radius: calc(15 * var(--s)) calc(15 * var(--s)) 0 0; } .rall { border-radius: calc(15 * var(--s)); }
-.tri { clip-path: polygon(6.7% 25%, 93.3% 25%, 50% 100%); } .tri.blue { background: linear-gradient(to bottom, var(--blue) 25%, rgba(255,255,255,0)); } .tri.navy { background: linear-gradient(to bottom, var(--navy) 25%, rgba(255,255,255,0)); }
-.kv { display: grid; grid-template-columns: calc(64 * var(--s)) 1fr; gap: calc(12 * var(--s)); align-items: center; font-size: calc(25 * var(--s)); line-height: calc(30 * var(--s)); color: var(--text); }
-.kv .k { font-size: calc(15 * var(--s)); font-weight: 800; letter-spacing: .06em; color: var(--blue); background: var(--soft); border-radius: 999px; padding: calc(6 * var(--s)) 0; text-align: center; }
-.kv.out { background: var(--soft2); border: calc(2 * var(--s)) solid var(--soft); border-radius: calc(12 * var(--s)); padding: calc(10 * var(--s)) calc(14 * var(--s)); font-weight: 700; color: var(--navy); }
-.kv.out .k { background: var(--blue); color: #fff; }
-.kv.out.navy { border-color: #C9D4F0; } .kv.out.navy .k { background: var(--navy); }
-.ba { display: grid; grid-template-columns: 1fr auto 1fr; gap: calc(10 * var(--s)); align-items: center; text-align: center; font-size: calc(22 * var(--s)); line-height: 1.25; white-space: nowrap; }
-.ba span { padding: calc(12 * var(--s)) calc(8 * var(--s)); border-radius: calc(10 * var(--s)); border: calc(2 * var(--s)) dashed #B8C6E6; color: var(--mute); font-weight: 500; }
-.ba span.on { border-style: solid; border-color: var(--blue); color: var(--navy); font-weight: 800; background: #fff; }
-.ba.navy span.on { border-color: var(--navy); }
-.ba i { font-style: normal; font-weight: 800; font-size: calc(28 * var(--s)); color: var(--blue); } .ba.navy i { color: var(--navy); }
-.ul { display: grid; gap: calc(8 * var(--s)); font-size: calc(25 * var(--s)); line-height: calc(30 * var(--s)); color: var(--text); }
-.ul li { list-style: none; padding-left: calc(18 * var(--s)); position: relative; } .ul li::before { content: ""; position: absolute; left: 0; top: calc(11 * var(--s)); width: calc(8 * var(--s)); height: calc(8 * var(--s)); border-radius: 50%; background: var(--blue); }
-.ul.navy li::before { background: var(--navy); }
-.pill { background: #fff; border-radius: 999px; border: 1px solid var(--line); box-shadow: 0 calc(10 * var(--s)) calc(30 * var(--s)) rgba(11,27,77,.06); transition: transform .3s, box-shadow .3s; }
-.pill:hover { transform: translateY(calc(-4 * var(--s))); box-shadow: 0 calc(18 * var(--s)) calc(40 * var(--s)) rgba(11,27,77,.12); }
-.circ { background: var(--soft); border-radius: 50%; display: grid; place-items: center; border: calc(4 * var(--s)) solid #fff; box-shadow: 0 calc(6 * var(--s)) calc(16 * var(--s)) rgba(11,27,77,.1); }
-.circ img { width: var(--iw); height: var(--iw); }
-.ins { background: var(--navy); border-radius: calc(15 * var(--s)); }
-.t u { text-decoration: underline; text-decoration-color: #9FC6FF; text-decoration-thickness: calc(2 * var(--s)); text-underline-offset: calc(3 * var(--s)); }
-.num { color: var(--blue); }
-.role { background: rgba(11,27,77,.86); color: #fff; border-radius: 999px; border: calc(5 * var(--s)) solid rgba(255,255,255,.9); display: grid; place-items: center; font-weight: 700; font-size: calc(30 * var(--s)); line-height: 1.2; text-align: center; }
-/* matching page */
-.mc { position: absolute; background: #fff; border: 1px solid var(--line); border-radius: calc(18 * var(--s)); box-shadow: 0 calc(10 * var(--s)) calc(30 * var(--s)) rgba(11,27,77,.06); display: flex; flex-direction: column; overflow: hidden; }
-.mc .h { background: var(--navy); color: #fff; padding: calc(26 * var(--s)) calc(28 * var(--s)) calc(22 * var(--s)); }
-.mc .h i { display: block; font-style: normal; font-size: calc(16 * var(--s)); font-weight: 800; letter-spacing: .14em; color: #9FC6FF; margin-bottom: calc(8 * var(--s)); }
-.mc .h b { font-size: calc(36 * var(--s)); font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; }
-.mc .h span { display: block; font-size: calc(19 * var(--s)); line-height: 1.4; color: rgba(255,255,255,.75); margin-top: calc(10 * var(--s)); }
-.mc .b { padding: calc(22 * var(--s)); display: grid; gap: calc(14 * var(--s)); align-content: start; flex: 1; }
-.cc { display: grid; grid-template-columns: 1fr auto; gap: calc(6 * var(--s)) calc(12 * var(--s)); align-items: center; padding: calc(18 * var(--s)) calc(18 * var(--s)); border-radius: calc(12 * var(--s)); background: var(--soft2); border: calc(2 * var(--s)) solid transparent; transition: .25s; cursor: pointer; }
-.cc:hover { background: #fff; border-color: var(--blue); transform: translateX(calc(4 * var(--s))); }
-.cc i { grid-column: 1 / -1; justify-self: start; font-style: normal; font-size: calc(14 * var(--s)); font-weight: 800; letter-spacing: .06em; color: #fff; background: var(--blue); border-radius: 999px; padding: calc(5 * var(--s)) calc(10 * var(--s)); white-space: nowrap; }
-.cc b { font-size: calc(23 * var(--s)); font-weight: 700; color: var(--navy); line-height: 1.3; white-space: pre-line; }
-.cc small { font-size: calc(16 * var(--s)); color: var(--mute); display: block; font-weight: 500; margin-top: calc(2 * var(--s)); }
-.cc em { font-style: normal; color: var(--blue); font-weight: 800; font-size: calc(22 * var(--s)); }
-.cc.todo { opacity: .55; } .cc.todo i { background: var(--mute); }
-/* placeholder case */
-.dash { border: calc(3 * var(--s)) dashed #B8C6E6; border-radius: calc(15 * var(--s)); display: grid; place-items: center; color: var(--mute); font-size: calc(24 * var(--s)); font-weight: 600; background: rgba(255,255,255,.4); }
-/* nav / progress / hints */
-.dots { position: fixed; right: 18px; top: 50%; transform: translateY(-50%); display: grid; gap: 9px; z-index: 50; }
-.dots a { position: relative; width: 9px; height: 9px; border-radius: 50%; background: rgba(11,27,77,.22); transition: background .3s, transform .3s; }
-.dots a.on { background: var(--blue); transform: scale(1.45); }
-.dots a::after { content: attr(data-t); position: absolute; right: 18px; top: 50%; transform: translateY(-50%); font-size: 12px; font-weight: 700; color: var(--navy); background: #fff; padding: 4px 9px; border-radius: 6px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .2s; box-shadow: 0 4px 14px rgba(11,27,77,.12); }
-.dots a:hover::after { opacity: 1; }
-.prog { position: fixed; left: 0; top: 0; height: 3px; background: var(--blue); width: 0; z-index: 60; transition: width .25s; }
-.hint { position: absolute; left: 50%; bottom: calc(28 * var(--s)); transform: translateX(-50%); font-size: calc(14 * var(--s)); font-weight: 700; letter-spacing: .16em; color: var(--navy); opacity: .6; animation: bob 1.6s ease-in-out infinite; }
-@keyframes bob { 0%,100% { transform: translate(-50%,0) } 50% { transform: translate(-50%, calc(6 * var(--s))) } }
-.pn { position: absolute; right: calc(40 * var(--s)); bottom: calc(12 * var(--s)); font-size: calc(15 * var(--s)); font-weight: 700; color: var(--navy); opacity: .5; }
-.rv { opacity: 0; transform: translateY(calc(18 * var(--s))); transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); }
-.wrap.on .rv { opacity: 1; transform: none; }
-.wrap.on .rv.d1 { transition-delay: .12s } .wrap.on .rv.d2 { transition-delay: .24s } .wrap.on .rv.d3 { transition-delay: .36s } .wrap.on .rv.d4 { transition-delay: .48s }
-@media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; scroll-snap-type: none; } .hint { animation: none; } }
-/* mobile: scale slides by width and stack */
-@media (max-width: 820px) and (orientation: portrait) {
-  html { scroll-snap-type: none; }
-  :root { --s: calc(100vw / 1920); }
-  body::before { content: "PC 또는 가로 화면에서 보시면 더 잘 보입니다"; display: block; position: sticky; top: 0; z-index: 70; background: var(--navy); color: #fff; font-size: 12px; font-weight: 600; text-align: center; padding: 8px; }
-  .wrap { height: auto; display: block; margin: 8px 0; }
-  .dots, .hint, .prog { display: none; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>조수안 | 2022 - 2026 Portfolio</title>
+  <meta name="description" content="보이는 문제가 아닌, 진짜 원인을 짚는 조수안입니다. Marketing Strategy 포트폴리오 (2022 - 2026)">
+  <meta property="og:title" content="조수안 | 2022 - 2026 Portfolio">
+  <meta property="og:description" content="보이는 문제가 아닌, 진짜 원인을 짚는 조수안입니다.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230B1B4D'/><text x='50' y='68' font-size='52' font-weight='700' text-anchor='middle' fill='%23FFE066' font-family='sans-serif'>S</text></svg>">
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-<div class="prog"></div>
-<nav class="dots" aria-label="slides"><a href="#s-intro" data-t="Intro" aria-label="Intro"></a><a href="#s-match" data-t="역량 매칭" aria-label="역량 매칭"></a><a href="#s-p1" data-t="Project 1" aria-label="Project 1"></a><a href="#s-ov" data-t="Breadrop 개요" aria-label="Breadrop 개요"></a><a href="#s-c1" data-t="Case 1" aria-label="Case 1"></a><a href="#s-c2" data-t="Case 2" aria-label="Case 2"></a><a href="#s-c3" data-t="Case 3" aria-label="Case 3"></a><a href="#s-p2" data-t="Project 2" aria-label="Project 2"></a><a href="#s-c4" data-t="Case 4" aria-label="Case 4"></a><a href="#s-p3" data-t="Project 3" aria-label="Project 3"></a><a href="#s-c5" data-t="Case 5" aria-label="Case 5"></a><a href="#s-p4" data-t="Project 4" aria-label="Project 4"></a><a href="#s-c6" data-t="Case 6" aria-label="Case 6"></a><a href="#s-c7" data-t="Case 7" aria-label="Case 7"></a><a href="#s-c8" data-t="Case 8" aria-label="Case 8"></a><a href="#s-thanks" data-t="Thanks" aria-label="Thanks"></a></nav>
-<main><section class="wrap k-cover" id="s-intro"><div class="slide cover intro"><p class="a t rv nowrap" style="--x:180;--y:204;--w:1500;--fs:110;--lh:131;font-weight:700;color:var(--navy);">보이는 문제가 아닌,
-<span class="blue">진짜 원인</span>을 <span class="blue">짚는</span> 조수안입니다</p><p class="a t rv d1" style="--x:180;--y:561;--w:900;--fs:50;--lh:60;font-weight:400;color:var(--text);">2022 - 2026 PORTFOLIO</p><div class="hint">SCROLL ↓</div><div class="pn">01</div></div></section><section class="wrap k-match" id="s-match"><div class="slide match match"><p class="a t rv" style="--x:150;--y:136;--w:721;--fs:50;--lh:60;font-weight:400;color:var(--text);">COMPETENCY × EXPERIENCE</p><p class="a t rv" style="--x:150;--y:210;--w:1300;--fs:80;--lh:96;font-weight:700;color:var(--navy);">직무 역량 × 나의 경험</p><div class="mc rv d1" style="left:calc(150 * var(--s));top:calc(360 * var(--s));width:calc(390 * var(--s));height:calc(560 * var(--s))"><div class="h"><i>01</i><b>B2B 영업</b></div><div class="b"><div class="cc" data-go="s-c1" role="link" tabindex="0"><i>CASE 1</i><div><b>7개 파트너사,
-현장에서 설득하다</b></div><em>→</em></div><div class="cc" data-go="s-c4" role="link" tabindex="0"><i>CASE 4</i><div><b>5곳 편집샵,
-손익구조로 설득하다</b></div><em>→</em></div></div></div><div class="mc rv d2" style="left:calc(555 * var(--s));top:calc(360 * var(--s));width:calc(390 * var(--s));height:calc(560 * var(--s))"><div class="h"><i>02</i><b>콘텐츠 마케팅</b></div><div class="b"><div class="cc" data-go="s-c3" role="link" tabindex="0"><i>CASE 3</i><div><b>운영 위기, 카피라이팅으로
-매출 13% 올리다</b></div><em>→</em></div><div class="cc todo" data-go="s-c8" role="link" tabindex="0"><i>CASE 8</i><div><b>준비 중</b></div><em>→</em></div></div></div><div class="mc rv d3" style="left:calc(960 * var(--s));top:calc(360 * var(--s));width:calc(390 * var(--s));height:calc(560 * var(--s))"><div class="h"><i>03</i><b>오프라인 행사</b></div><div class="b"><div class="cc" data-go="s-c2" role="link" tabindex="0"><i>CASE 2</i><div><b>오프라인 행사,
-전환율 73%를 만들다</b></div><em>→</em></div><div class="cc" data-go="s-c6" role="link" tabindex="0"><i>CASE 6</i><div><b>러너의 하루에 녹아든,
-디스커버리 RUN & FIT</b></div><em>→</em></div></div></div><div class="mc rv d4" style="left:calc(1365 * var(--s));top:calc(360 * var(--s));width:calc(390 * var(--s));height:calc(560 * var(--s))"><div class="h"><i>04</i><b>데이터 분석</b></div><div class="b"><div class="cc" data-go="s-c5" role="link" tabindex="0"><i>CASE 5</i><div><b>SNS Story 기능 재정의,
-링크 클릭 200배를 만들다</b></div><em>→</em></div><div class="cc todo" data-go="s-c7" role="link" tabindex="0"><i>CASE 7</i><div><b>준비 중</b></div><em>→</em></div></div></div><div class="pn">02</div></div></section><section class="wrap k-cover" id="s-p1"><div class="slide cover p1"><p class="a t rv" style="--x:150;--y:136;--w:721;--fs:50;--lh:60;font-weight:400;color:var(--text);">PROJECT 1.</p><p class="a t rv d1" style="--x:150;--y:233;--w:1453;--fs:100;--lh:119;font-weight:700;color:var(--navy);">BREADROP
-<span class="w600">소셜벤처 <span class="blue">창업</span></span></p><p class="a t num rv d1" style="--x:1161;--y:233;--w:552;--fs:400;--lh:477;font-weight:700;color:var(--navy);text-align:right;" aria-hidden="true">01</p><div class="a line hline rv d2" style="--x:1241;--y:771;--w:500;"></div><p class="a t rv d3" style="--x:1105;--y:821;--w:573;--fs:35;--lh:40;font-weight:500;color:var(--navy);text-align:right;">2024.03 - 2025.03</p><p class="a t rv d3" style="--x:1268;--y:872;--w:406;--fs:27;--lh:40;font-weight:400;color:var(--text);text-align:right;">마감할인 빵 중개 플랫폼
-창업 및 커머스 운영</p><div class="pn">03</div></div></section><section class="wrap k-ov" id="s-ov"><div class="panel" style="--pw:1301"></div><div class="slide ov ov"><p class="a t rv" style="--x:80;--y:80;--w:700;--fs:70;--lh:66;font-weight:700;color:var(--navy);">BREADROP</p><p class="a t rv d1" style="--x:80;--y:159;--w:1100;--fs:30;--lh:36;font-weight:400;color:var(--text);">버려지는 빵을 살려내는 우리 동네 빵집 마감할인 플랫폼</p><div class="a rv d1" style="--x:50;--y:258;--w:1200;--h:727;"><img class="img" src="assets/img/laptop.webp" alt="브레드랍 웹사이트 화면"></div><p class="a t rv d1" style="--x:1383;--y:43;--w:454;--fs:30;--lh:40;font-weight:400;color:var(--text);text-align:center;"><span class="w700 navy" style="font-size:calc(35 * var(--s))">MVP 5차례</span>
-<span class="blue">◆</span> 파트너사 베이커리 <span class="w700 blue">7곳</span>
-<span class="blue">◆</span> 누적 판매건 수 <span class="w700 blue">327건</span>
-<span class="blue">◆</span> 누적 파트너사 추가 매출 <span class="w700 blue">961,380원</span></p><div class="a role rv d2" style="--x:1460;--y:270;--w:300;--h:300;">B2B 마케팅
-&amp; 파트너십</div><div class="a role rv d3" style="--x:1460;--y:498;--w:300;--h:300;background:rgba(31,91,255,.9);">데이터 분석</div><div class="a role rv d4" style="--x:1460;--y:726;--w:300;--h:300;">콘텐츠 마케팅
-&amp; 캠페인 운영</div><div class="pn">04</div></div></section><section class="wrap k-case" id="s-c1"><div class="panel" style="--pw:750"></div><div class="slide case c1"><p class="a t rv" style="--x:48;--y:14;--w:200;--fs:18;--lh:22;font-weight:700;color:var(--mute);letter-spacing:.12em;">CASE 1</p><p class="a t rv" style="--x:48;--y:44;--w:616;--fs:55;--lh:66;font-weight:600;color:var(--navy);">7개 파트너사,
-현장에서 설득하다</p><p class="a t rv d1" style="--x:48;--y:201;--w:640;--fs:27;--lh:32;font-weight:400;color:var(--text);">현장 기반 페인포인트 분석과 차별화된 가치 제안으로
-7개 베이커리 파트너사 입점을 설득한 B2B 세일즈</p><div class="a rv d1" style="--x:48;--y:349;--w:317;--h:650;"><img class="img ph" src="assets/img/p1-b2b-L.webp" alt="브레드랍 서비스 소개 및 이용 매뉴얼 제안서"></div><div class="a rv d2" style="--x:385;--y:349;--w:317;--h:650;"><img class="img ph" src="assets/img/p1-b2b-R.webp" alt="파트너 베이커리 사장님과의 카카오톡 대화"></div><p class="a t rv" style="--x:800;--y:50;--w:78;--fs:33;--lh:39;font-weight:800;color:var(--navy);">문제</p><p class="a t rv" style="--x:888;--y:52;--w:990;--fs:30;--lh:36;font-weight:400;color:var(--text);">경쟁 플랫폼이 이미 존재하는 시장에서, 차별화 없이는 베이커리 입점 설득이 불가능</p><p class="a t rv d1" style="--x:800;--y:149;--w:78;--fs:33;--lh:39;font-weight:800;color:var(--navy);">전략</p><div class="a box bd bd-soft rv d1" style="--x:790;--y:275;--w:330;--h:155;"></div><div class="a box bd bd-blue rv d1" style="--x:1170;--y:206;--w:330;--h:224;"></div><div class="a box bd bd-navy rv d1" style="--x:1550;--y:206;--w:330;--h:224;"></div><div class="a rv d1" style="--x:1836;--y:206;--w:44;--h:90;background:var(--navy);border-radius:0 calc(15 * var(--s)) 0 0;"></div><div class="a head navy chev last rv d1" style="--x:1500;--y:206;--w:380;--h:90;">Step 3. 세일즈 실행</div><div class="a head blue chev rv d1" style="--x:1120;--y:206;--w:430;--h:90;padding-left:calc(50 * var(--s));">Step 2. 가치 제안 설계</div><div class="a head soft chev rl rv d1" style="--x:790;--y:206;--w:380;--h:90;">Step 1. 현장 조사</div><p class="a t rv d2" style="--x:815;--y:323;--w:290;--fs:25;--lh:30;font-weight:400;color:var(--text);">- 경쟁사 분석
 
-- 페인포인트 도출</p><p class="a t rv d2" style="--x:1190;--y:323;--w:290;--fs:25;--lh:30;font-weight:400;color:var(--text);">- 재고 등록 간소화
+  <!-- 인트로 로더 -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <p class="loader__title">
+        <span class="loader__word loader__word--accent"><i>조</i><i>수</i><i>안</i><i>의</i></span>
+        <span class="loader__word"><i>포</i><i>트</i><i>폴</i><i>리</i><i>오</i></span>
+      </p>
+      <p class="loader__sub">2022 - 2026 PORTFOLIO</p>
+      <div class="loader__bar"><i></i></div>
+    </div>
+  </div>
+  <nav class="dots" id="dots" aria-label="섹션 이동">
+    <a href="#top" data-dot="hero" title="Intro"></a>
+    <a href="#about" data-dot="about" title="역량 매칭"></a>
+    <a href="#project-1" data-dot="project-1" title="Project 01"></a>
+    <a href="#project-2" data-dot="project-2" title="Project 02"></a>
+    <a href="#project-3" data-dot="project-3" title="Project 03"></a>
+    <a href="#project-4" data-dot="project-4" title="Project 04"></a>
+    <a href="#contact" data-dot="contact" title="Thanks"></a>
+  </nav>
 
-- 베이커리 마케팅 대행</p><p class="a t rv d2" style="--x:1574;--y:323;--w:290;--fs:25;--lh:30;font-weight:400;color:var(--text);">- B2B 세일즈 파이프라인
+  <!-- 스크롤 진행 바 -->
+  <div class="progress" id="progress" aria-hidden="true"></div>
 
-- CRM 기반 스크립트 개선</p><p class="a t rv d3" style="--x:800;--y:490;--w:58;--fs:33;--lh:39;font-weight:800;color:var(--navy);">성과</p><div class="a pill rv d3" style="--x:895;--y:609;--w:400;--h:150;"></div><div class="a circ rv d3" style="--x:1045;--y:529;--w:100;--h:100;--iw:calc(80 * var(--s));"><img src="assets/img/icon-handshake.webp" alt=""></div><p class="a t rv d3" style="--x:895;--y:648;--w:400;--fs:30;--lh:36;font-weight:500;color:var(--text);text-align:center;"><span class="w800 blue">7개</span> 베이커리
-<span class="w800 blue">파트너십</span> 체결</p><div class="a pill rv d4" style="--x:1375;--y:609;--w:400;--h:150;"></div><div class="a circ rv d4" style="--x:1525;--y:529;--w:100;--h:100;--iw:calc(85 * var(--s));"><img src="assets/img/icon-shield.webp" alt=""></div><p class="a t rv d4" style="--x:1375;--y:648;--w:400;--fs:30;--lh:36;font-weight:500;color:var(--text);text-align:center;"><span class="w800 blue">재계약률 85%</span> 달성
-(6개 파트너사 재계약)</p><div class="a ins rv d4" style="--x:790;--y:819;--w:1090;--h:192;"></div><p class="a t rv d4" style="--x:825;--y:849;--w:1020;--fs:30;--lh:36;font-weight:500;color:#fff;"><span class="w600" style="font-size:calc(25 * var(--s));color:#9FC6FF">Insight</span>
-“<u>B2B 고객</u>은 스펙이 아니라, <u>‘우리 문제를 해결한다’는 확신</u>으로 움직인다.
-그리고 그 확신은 <u>고객의 현장 이해</u>에서 시작된다.”</p><div class="pn">05</div></div></section><section class="wrap k-case" id="s-c2"><div class="panel" style="--pw:750"></div><div class="slide case c2"><p class="a t rv" style="--x:48;--y:14;--w:200;--fs:18;--lh:22;font-weight:700;color:var(--mute);letter-spacing:.12em;">CASE 2</p><p class="a t rv" style="--x:48;--y:44;--w:616;--fs:55;--lh:66;font-weight:600;color:var(--navy);">오프라인 행사,
-전환율 73%를 만들다</p><p class="a t rv d1" style="--x:48;--y:201;--w:640;--fs:27;--lh:32;font-weight:400;color:var(--text);">타겟 맞춤형 오프라인 행사를 통해 고객 접점을 확보하고,
-실구매 전환으로 연결한 마케팅 캠페인</p><div class="a rv d1" style="--x:48;--y:349;--w:317;--h:650;"><img class="img ph" src="assets/img/p1-b2c-event-L.webp" alt="에브리타임 게시글 - 간식 무료 나눔"></div><div class="a rv d2" style="--x:385;--y:349;--w:317;--h:650;"><img class="img ph" src="assets/img/p1-b2c-event-R.webp" alt="에브리타임 게시글 - 초간단 퀴즈 풀고 빵 시식하자"></div><p class="a t rv" style="--x:800;--y:50;--w:78;--fs:33;--lh:39;font-weight:800;color:var(--navy);">문제</p><p class="a t rv" style="--x:888;--y:52;--w:990;--fs:30;--lh:36;font-weight:400;color:var(--text);">SNS 팔로워 증가와 구매 전환이 연결되지 않아, 실구매 타겟 접점 확보 필요성 확인</p><p class="a t rv d1" style="--x:800;--y:149;--w:78;--fs:33;--lh:39;font-weight:800;color:var(--navy);">전략</p><div class="a box bd bd-blue rv d1" style="--x:790;--y:206;--w:535;--h:292;"></div><div class="a head blue rt rv d1" style="--x:790;--y:206;--w:535;--h:90;">캠페인 1. 기숙사 간식 나눔 행사</div><div class="a box bd bd-navy rv d1" style="--x:1345;--y:206;--w:535;--h:292;"></div><div class="a head navy rt rv d1" style="--x:1345;--y:206;--w:535;--h:90;">캠페인 2. 퀴즈 · 시식 부스</div><p class="a t rv d2" style="--x:835;--y:323;--w:470;--fs:25;--lh:30;font-weight:400;color:var(--text);"><span class="w700 blue">기획:</span> 시험기간 맞춤 간식 세트 제작 및 나눔</p><p class="a t rv d2" style="--x:1390;--y:323;--w:470;--fs:25;--lh:30;font-weight:400;color:var(--text);"><span class="w700 navy">기획:</span> 퀴즈와 시식을 통해 구매 관심 유도</p><div class="a tri blue rv d2" style="--x:991;--y:367;--w:134;--h:47;"></div><div class="a tri navy rv d2" style="--x:1546;--y:367;--w:134;--h:47;"></div><div class="a rv d2" style="--x:815;--y:425;--w:485;--h:58;"><div class="kv out"><span class="k">결과</span><span>간식 세트 500개 전량 소진</span></div></div><div class="a rv d2" style="--x:1370;--y:425;--w:485;--h:58;"><div class="kv out navy"><span class="k">결과</span><span>부스 방문 및 참여 인원 300명 달성</span></div></div><p class="a t rv d3" style="--x:800;--y:558;--w:58;--fs:33;--lh:39;font-weight:800;color:var(--navy);">성과</p><div class="a pill rv d3" style="--x:895;--y:677;--w:400;--h:150;"></div><div class="a circ rv d3" style="--x:1045;--y:597;--w:100;--h:100;--iw:calc(90 * var(--s));"><img src="assets/img/icon-fire.webp" alt=""></div><p class="a t rv d3" style="--x:895;--y:716;--w:400;--fs:30;--lh:36;font-weight:500;color:var(--text);text-align:center;">캠페인 시작 5일 만에
-<span class="w800 blue">주문 희망자 131명 유입</span></p><div class="a pill rv d4" style="--x:1375;--y:677;--w:400;--h:150;"></div><div class="a circ rv d4" style="--x:1525;--y:597;--w:100;--h:100;--iw:calc(80 * var(--s));"><img src="assets/img/icon-card.webp" alt=""></div><p class="a t rv d4" style="--x:1375;--y:716;--w:400;--fs:30;--lh:36;font-weight:500;color:var(--text);text-align:center;"><span class="w800 blue">구매 전환율 73%</span> 달성</p><div class="a ins rv d4" style="--x:790;--y:887;--w:1090;--h:135;"></div><p class="a t rv d4" style="--x:825;--y:917;--w:1020;--fs:30;--lh:36;font-weight:500;color:#fff;"><span class="w600" style="font-size:calc(25 * var(--s));color:#9FC6FF">Insight</span>
-“<u>오프라인 행사</u>는 단순 홍보가 아니라, <u>신뢰를 만들고 구매 전환을 이끄는</u> 트리거이다.”</p><div class="pn">06</div></div></section><section class="wrap k-case" id="s-c3"><div class="panel" style="--pw:750"></div><div class="slide case c3"><p class="a t rv" style="--x:48;--y:14;--w:200;--fs:18;--lh:22;font-weight:700;color:var(--mute);letter-spacing:.12em;">CASE 3</p><p class="a t rv" style="--x:48;--y:44;--w:616;--fs:55;--lh:66;font-weight:600;color:var(--navy);">운영 위기, 카피라이팅으로
-매출 13% 올리다</p><p class="a t rv d1" style="--x:48;--y:201;--w:640;--fs:27;--lh:32;font-weight:400;color:var(--text);">픽업 시간대 변경이라는 제약을 새로운 가치로 재포지셔닝하여,
-고객 이탈 위기를 매출 증가로 전환한 캠페인</p><div class="a rv d1" style="--x:48;--y:349;--w:317;--h:650;"><img class="img ph" src="assets/img/p1-b2c-copy-L.webp" alt="인스타그램 게시물 - 수업 사이, 간단하지만 든든하게"></div><div class="a rv d2" style="--x:385;--y:349;--w:317;--h:650;"><img class="img ph" src="assets/img/p1-b2c-copy-R.webp" alt="인스타그램 게시물 - 브레드랍 등교시간 프로모션"></div><p class="a t rv" style="--x:800;--y:50;--w:78;--fs:33;--lh:39;font-weight:800;color:var(--navy);">문제</p><p class="a t rv" style="--x:888;--y:52;--w:990;--fs:30;--lh:36;font-weight:400;color:var(--text);">픽업 시간대 변경(저녁 픽업 → 아침 픽업)으로 기존 고객 이탈 리스크 발생</p><p class="a t rv d1" style="--x:800;--y:149;--w:78;--fs:33;--lh:39;font-weight:800;color:var(--navy);">전략</p><div class="a head blue rall rv d1" style="--x:790;--y:206;--w:535;--h:90;">상황 맞춤형 카피라이팅</div><div class="a head navy rall rv d1" style="--x:1345;--y:206;--w:535;--h:90;">타이밍 맞춤 프로모션 설계</div><div class="a rv d2" style="--x:826;--y:316;--w:464;"><div class="ba"><span>“가격” 중심</span><i>→</i><span class="on">“사용 상황” 중심</span></div></div><div class="a rv d2" style="--x:1365;--y:316;--w:496;"><div class="ba navy"><span class="on">등교 시간대 한정 할인</span><i>+</i><span class="on">묶음 구매 할인</span></div></div><div class="a tri blue rv d2" style="--x:991;--y:386;--w:134;--h:47;"></div><div class="a tri navy rv d2" style="--x:1546;--y:386;--w:134;--h:47;"></div><div class="a rv d2" style="--x:790;--y:439;--w:535;"><div class="kv out"><span class="k">실행</span><span>오전 시간대 실제 이용 장면을 카피로 구체화</span></div></div><div class="a rv d2" style="--x:1345;--y:439;--w:535;"><div class="kv out navy"><span class="k">효과</span><span>구매 유인과 객단가 상승 동시 달성</span></div></div><p class="a t rv d3" style="--x:800;--y:583;--w:58;--fs:33;--lh:39;font-weight:800;color:var(--navy);">성과</p><div class="a pill rv d3" style="--x:895;--y:702;--w:400;--h:150;"></div><div class="a circ rv d3" style="--x:1045;--y:622;--w:100;--h:100;--iw:calc(90 * var(--s));"><img src="assets/img/icon-flag.webp" alt=""></div><p class="a t rv d3" style="--x:895;--y:741;--w:400;--fs:30;--lh:36;font-weight:500;color:var(--text);text-align:center;">매출 기존 대비 <span class="w800 blue">13% 증가</span>
-(이탈 우려와 정반대 결과)</p><div class="a pill rv d4" style="--x:1375;--y:702;--w:400;--h:150;"></div><div class="a circ rv d4" style="--x:1525;--y:622;--w:100;--h:100;--iw:calc(85 * var(--s));"><img src="assets/img/icon-gift.webp" alt=""></div><p class="a t rv d4" style="--x:1375;--y:741;--w:400;--fs:30;--lh:36;font-weight:500;color:var(--text);text-align:center;">단품 대비 <span class="w800 blue">묶음 구매 비율
-2.5배 증가</span></p><div class="a ins rv d4" style="--x:790;--y:887;--w:1090;--h:135;"></div><p class="a t rv d4" style="--x:825;--y:917;--w:1020;--fs:30;--lh:36;font-weight:500;color:#fff;"><span class="w600" style="font-size:calc(25 * var(--s));color:#9FC6FF">Insight</span>
-“불편도 <u>고객의 언어</u>로 <u>프레임을 전환</u>하면 매출 기회가 된다.”</p><div class="pn">07</div></div></section><section class="wrap k-cover" id="s-p2"><div class="slide cover p2"><p class="a t rv" style="--x:150;--y:136;--w:721;--fs:50;--lh:60;font-weight:400;color:var(--text);">PROJECT 2.</p><p class="a t rv d1" style="--x:150;--y:233;--w:1453;--fs:100;--lh:119;font-weight:700;color:var(--navy);">JOSEPH &amp; STACEY
-<span class="w600"><span class="blue">글로벌 마케팅</span> 인턴</span></p><p class="a t num rv d1" style="--x:1161;--y:233;--w:552;--fs:400;--lh:477;font-weight:700;color:var(--navy);text-align:right;" aria-hidden="true">02</p><div class="a line hline rv d2" style="--x:1241;--y:771;--w:500;"></div><p class="a t rv d3" style="--x:1105;--y:821;--w:573;--fs:35;--lh:40;font-weight:500;color:var(--navy);text-align:right;">2022.07 - 2022.08</p><p class="a t rv d3" style="--x:1268;--y:872;--w:406;--fs:27;--lh:40;font-weight:400;color:var(--text);text-align:right;">중국 · 일본 시장을 대상으로
-해외 마케팅 전략 기획 및 실행</p><div class="pn">08</div></div></section><section class="wrap k-case" id="s-c4"><div class="panel" style="--pw:750"></div><div class="slide case c4"><p class="a t rv" style="--x:48;--y:14;--w:200;--fs:18;--lh:22;font-weight:700;color:var(--mute);letter-spacing:.12em;">CASE 4</p><p class="a t rv" style="--x:48;--y:44;--w:616;--fs:55;--lh:66;font-weight:600;color:var(--navy);">5곳 편집샵,
-손익구조로 설득하다</p><p class="a t rv d1" style="--x:48;--y:201;--w:640;--fs:27;--lh:32;font-weight:400;color:var(--text);">중국 편집샵이 이커머스 시대에도 살아남는 이유를 이해하고,
-손익 언어로 설득해 대량 구매를 이끌어낸 해외 B2B 세일즈</p><div class="a rv d1" style="--x:48;--y:349;--w:317;--h:650;"><img class="img ph" src="assets/img/p2-b2b-L.webp" alt="샤오홍슈 게시물 - 편집샵 방문 후기"></div><div class="a rv d2" style="--x:385;--y:349;--w:317;--h:650;"><img class="img ph" src="assets/img/p2-b2b-R.webp" alt="샤오홍슈 게시물 - Lucky Pleats Knit 신상 입고"></div><p class="a t rv" style="--x:800;--y:50;--w:78;--fs:33;--lh:39;font-weight:800;color:var(--navy);">목표</p><p class="a t rv" style="--x:888;--y:52;--w:990;--fs:30;--lh:36;font-weight:400;color:var(--text);">타오바오 중심 이커머스가 장악한 중국 시장에서, 도매 거래처가 될 편집샵을 확보</p><p class="a t rv d1" style="--x:800;--y:149;--w:78;--fs:33;--lh:39;font-weight:800;color:var(--navy);">전략</p><div class="a box bd bd-soft rv d1" style="--x:790;--y:275;--w:330;--h:165;"></div><div class="a box bd bd-blue rv d1" style="--x:1170;--y:206;--w:330;--h:234;"></div><div class="a box bd bd-navy rv d1" style="--x:1550;--y:206;--w:330;--h:234;"></div><div class="a rv d1" style="--x:1836;--y:206;--w:44;--h:90;background:var(--navy);border-radius:0 calc(15 * var(--s)) 0 0;"></div><div class="a head navy chev last rv d1" style="--x:1500;--y:206;--w:380;--h:90;">Step 3. B2B 가치제안</div><div class="a head blue chev rv d1" style="--x:1120;--y:206;--w:430;--h:90;padding-left:calc(50 * var(--s));">Step 2. 우선순위 타겟팅</div><div class="a head soft chev rl rv d1" style="--x:790;--y:206;--w:380;--h:90;">Step 1. 시장 진단</div><p class="a t rv d2" style="--x:790;--y:328;--w:330;--fs:25;--lh:30;font-weight:400;color:var(--text);text-align:center;">타오바오 확산 속에서도
-편집샵이 살아남는 이유 파악</p><p class="a t rv d2" style="--x:1170;--y:334;--w:330;--fs:25;--lh:30;font-weight:400;color:var(--text);text-align:center;">브랜드 타겟과 겹치는 편집샵
-우선순위로 선별</p><p class="a t rv d2" style="--x:1550;--y:323;--w:330;--fs:25;--lh:30;font-weight:400;color:var(--text);text-align:center;">“검증된 브랜드로 방문객과
-객단가를 함께 높인다”는
-<span class="w800 navy">손익 언어</span>로 설득</p><p class="a t rv d3" style="--x:800;--y:500;--w:58;--fs:33;--lh:39;font-weight:800;color:var(--navy);">성과</p><div class="a pill rv d3" style="--x:1135;--y:619;--w:400;--h:150;"></div><div class="a circ rv d3" style="--x:1285;--y:539;--w:100;--h:100;--iw:calc(70 * var(--s));"><img src="assets/img/icon-cn.webp" alt=""></div><p class="a t rv d3" style="--x:1135;--y:658;--w:400;--fs:30;--lh:36;font-weight:500;color:var(--text);text-align:center;">청두·항저우 편집샵 <span class="w800 blue">5곳</span>
-<span class="w800 blue">대량 구매</span> 달성</p><div class="a ins rv d4" style="--x:790;--y:829;--w:1090;--h:135;"></div><p class="a t rv d4" style="--x:825;--y:859;--w:1020;--fs:30;--lh:36;font-weight:500;color:#fff;"><span class="w600" style="font-size:calc(25 * var(--s));color:#9FC6FF">Insight</span>
-“<u>설득</u>은 스펙이 아니라, <u>상대의 손익 언어</u>로 다시 말할 때 시작된다.”</p><div class="pn">09</div></div></section><section class="wrap k-cover" id="s-p3"><div class="slide cover p3"><p class="a t rv" style="--x:150;--y:136;--w:721;--fs:50;--lh:60;font-weight:400;color:var(--text);">PROJECT 3.</p><p class="a t rv d1" style="--x:150;--y:233;--w:1453;--fs:100;--lh:119;font-weight:700;color:var(--navy);">NAVER Z
-<span class="w600"><span class="blue">콘텐츠 마케팅</span> 인턴</span></p><p class="a t num rv d1" style="--x:1161;--y:233;--w:552;--fs:400;--lh:477;font-weight:700;color:var(--navy);text-align:right;" aria-hidden="true">03</p><div class="a line hline rv d2" style="--x:1241;--y:771;--w:500;"></div><p class="a t rv d3" style="--x:1105;--y:821;--w:573;--fs:35;--lh:40;font-weight:500;color:var(--navy);text-align:right;">2025.04 - 2025.10</p><p class="a t rv d3" style="--x:1268;--y:872;--w:406;--fs:27;--lh:40;font-weight:400;color:var(--text);text-align:right;">글로벌 SNS 채널 운영 및
-프로모션 · 콘텐츠 기획 지원</p><div class="pn">10</div></div></section><section class="wrap k-case" id="s-c5"><div class="panel" style="--pw:750"></div><div class="slide case c5"><p class="a t rv" style="--x:48;--y:14;--w:200;--fs:18;--lh:22;font-weight:700;color:var(--mute);letter-spacing:.12em;">CASE 5</p><p class="a t rv" style="--x:48;--y:44;--w:616;--fs:55;--lh:66;font-weight:600;color:var(--navy);">SNS Story 기능 재정의,
-링크 클릭 200배를 만들다</p><p class="a t rv d1" style="--x:48;--y:201;--w:640;--fs:27;--lh:32;font-weight:400;color:var(--text);">SNS Story 기능 운영과 CTA 최적화를 통해,
-노출 채널을 앱 유입 전환 채널로 전환한 데이터 기반 실험</p><div class="a rv d1" style="--x:48;--y:349;--w:317;--h:650;"><img class="img ph" src="assets/img/p3-b2c-L.webp" alt="제페토 인스타그램 스토리 - Get Your Porsche CTA"></div><div class="a rv d2" style="--x:385;--y:349;--w:317;--h:650;"><img class="img ph" src="assets/img/p3-b2c-R.webp" alt="제페토 인스타그램 스토리 - FREE Lucky Box CTA"></div><p class="a t rv" style="--x:800;--y:50;--w:78;--fs:33;--lh:39;font-weight:800;color:var(--navy);">문제</p><p class="a t rv" style="--x:888;--y:52;--w:990;--fs:30;--lh:36;font-weight:400;color:var(--text);">SNS 노출 지표는 높았지만, 실제 앱 유입으로 이어지지 않는 노출-전환 단절 발생</p><p class="a t rv d1" style="--x:800;--y:149;--w:78;--fs:33;--lh:39;font-weight:800;color:var(--navy);">전략</p><div class="a box bd bd-blue rv d1" style="--x:790;--y:206;--w:545;--h:292;border-radius:calc(15 * var(--s)) 0 0 calc(15 * var(--s));"></div><div class="a box bd bd-navy rv d1" style="--x:1335;--y:206;--w:545;--h:292;border-radius:0 calc(15 * var(--s)) calc(15 * var(--s)) 0;"></div><div class="a head navy rr rv d1" style="--x:1335;--y:206;--w:545;--h:90;">Step 2. 메시지 최적화 · 표준화</div><div class="a head blue chev rl rv d1" style="--x:790;--y:206;--w:595;--h:90;padding-right:calc(50 * var(--s));">Step 1. 전환 채널 인프라 구축</div><p class="a t rv d2" style="--x:835;--y:323;--w:400;--fs:25;--lh:30;font-weight:400;color:var(--text);">- 업로드 빈도 확대
+  <!-- 네비게이션 -->
+  <header class="nav" id="nav">
+    <a class="nav__logo" href="#top">조수안 <span>/ Suanne Cho</span></a>
+    <nav class="nav__links" id="navLinks">
+      <a href="#about" data-nav="about">역량 매칭</a>
+      <a href="#project-1" data-nav="project-1">01 Breadrop</a>
+      <a href="#project-2" data-nav="project-2">02 Joseph &amp; Stacey</a>
+      <a href="#project-3" data-nav="project-3">03 Naver Z</a>
+      <a href="#project-4" data-nav="project-4">04 F&amp;F</a>
+    </nav>
+    <button class="nav__burger" id="burger" aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span><span></span></button>
+  </header>
 
-- CTR 추적 체계 구축
+  <main id="top">
 
-- 공식 라이브 연결로 진입장벽 최소화</p><p class="a t rv d2" style="--x:1335;--y:323;--w:545;--fs:25;--lh:30;font-weight:400;color:var(--text);text-align:center;">A/B 테스트로 고성과 CTA 발굴</p><div class="a tri navy rv d2" style="--x:1541;--y:367;--w:134;--h:47;"></div><div class="a rv d2" style="--x:1360;--y:425;--w:495;"><div class="kv out navy"><span class="k">적용</span><span>보상형 CTA 전면 적용, 성과 DB 문서화</span></div></div><p class="a t rv d3" style="--x:800;--y:558;--w:58;--fs:33;--lh:39;font-weight:800;color:var(--navy);">성과</p><div class="a pill rv d3" style="--x:895;--y:677;--w:400;--h:150;"></div><div class="a circ rv d3" style="--x:1045;--y:597;--w:100;--h:100;--iw:calc(85 * var(--s));"><img src="assets/img/icon-cursor.webp" alt=""></div><p class="a t rv d3" style="--x:895;--y:716;--w:400;--fs:30;--lh:36;font-weight:500;color:var(--text);text-align:center;">월평균 <span class="w800 blue">링크 클릭 수
-2,000+ 건</span></p><div class="a pill rv d4" style="--x:1375;--y:677;--w:400;--h:150;"></div><div class="a circ rv d4" style="--x:1525;--y:597;--w:100;--h:100;--iw:calc(85 * var(--s));"><img src="assets/img/icon-mic.webp" alt=""></div><p class="a t rv d4" style="--x:1375;--y:716;--w:400;--fs:30;--lh:36;font-weight:500;color:var(--text);text-align:center;">공식 라이브 <span class="w800 blue">시청자
-30-40% 증가</span></p><div class="a ins rv d4" style="--x:790;--y:887;--w:1090;--h:135;"></div><p class="a t rv d4" style="--x:825;--y:917;--w:1020;--fs:30;--lh:36;font-weight:500;color:#fff;"><span class="w600" style="font-size:calc(25 * var(--s));color:#9FC6FF">Insight</span>
-“<u>콘텐츠 마케팅</u>의 성과는 노출이 아니라, <u>전환을 추적하고 설계</u>할 때 만들어진다.”</p><div class="pn">11</div></div></section><section class="wrap k-cover" id="s-p4"><div class="slide cover p4"><p class="a t rv" style="--x:150;--y:136;--w:721;--fs:50;--lh:60;font-weight:400;color:var(--text);">PROJECT 4.</p><p class="a t rv d1" style="--x:150;--y:233;--w:1453;--fs:100;--lh:119;font-weight:700;color:var(--navy);">F&amp;F
-<span class="w600"><span class="blue">DX 마케팅</span> 인턴</span></p><p class="a t num rv d1" style="--x:1161;--y:233;--w:552;--fs:400;--lh:477;font-weight:700;color:var(--navy);text-align:right;" aria-hidden="true">04</p><div class="a line hline rv d2" style="--x:1241;--y:771;--w:500;"></div><p class="a t rv d3" style="--x:1105;--y:821;--w:573;--fs:35;--lh:40;font-weight:500;color:var(--navy);text-align:right;">2026</p><p class="a t rv d3" style="--x:1268;--y:872;--w:406;--fs:27;--lh:40;font-weight:400;color:var(--text);text-align:right;">디스커버리 익스페디션
-브랜드 마케팅 · 오프라인 행사 운영</p><div class="pn">12</div></div></section><section class="wrap k-case" id="s-c6"><div class="panel" style="--pw:750"></div><div class="slide case c6"><p class="a t rv" style="--x:48;--y:14;--w:200;--fs:18;--lh:22;font-weight:700;color:var(--mute);letter-spacing:.12em;">CASE 6</p><p class="a t rv" style="--x:48;--y:44;--w:616;--fs:55;--lh:66;font-weight:600;color:var(--navy);">러너의 하루에 녹아든,
-디스커버리 RUN &amp; FIT</p><p class="a t rv d1" style="--x:48;--y:201;--w:640;--fs:27;--lh:32;font-weight:400;color:var(--text);">2만 명 규모 마라톤 스폰서십을 팀원들과 기획하며,
-행사의 모든 요소를 참가자의 라이프스타일에 맞춰 설계</p><div class="a rv d1" style="--x:48;--y:349;--w:317;--h:650;"><img class="img ph" src="assets/img/fnf-run-L.webp" alt="시포레 RUN &amp; FIT 출발선"></div><div class="a rv d2" style="--x:385;--y:349;--w:317;--h:650;"><img class="img ph" src="assets/img/fnf-run-R.webp" alt="FINISHER 포토존"></div><p class="a t rv" style="--x:800;--y:50;--w:78;--fs:33;--lh:39;font-weight:800;color:var(--navy);">문제</p><p class="a t rv" style="--x:888;--y:52;--w:990;--fs:30;--lh:36;font-weight:400;color:var(--text);">스폰서 부스는 흔히 “브랜드가 끼어드는 자리”가 되어, 러너의 하루와 따로 놀기 쉬움</p><p class="a t rv d1" style="--x:800;--y:149;--w:78;--fs:33;--lh:39;font-weight:800;color:var(--navy);">전략</p><div class="a box bd bd-soft rv d1" style="--x:790;--y:275;--w:330;--h:165;"></div><div class="a box bd bd-blue rv d1" style="--x:1170;--y:206;--w:330;--h:234;"></div><div class="a box bd bd-navy rv d1" style="--x:1550;--y:206;--w:330;--h:234;"></div><div class="a rv d1" style="--x:1836;--y:206;--w:44;--h:90;background:var(--navy);border-radius:0 calc(15 * var(--s)) 0 0;"></div><div class="a head navy chev last rv d1" style="--x:1500;--y:206;--w:380;--h:90;">Step 3. 디테일 설계</div><div class="a head blue chev rv d1" style="--x:1120;--y:206;--w:430;--h:90;padding-left:calc(50 * var(--s));">Step 2. 동선 설계</div><div class="a head soft chev rl rv d1" style="--x:790;--y:206;--w:380;--h:90;">Step 1. 러너 관찰</div><p class="a t rv d2" style="--x:790;--y:328;--w:330;--fs:25;--lh:30;font-weight:400;color:var(--text);text-align:center;">“어떻게 보여줄까”가 아니라
-러너가 즐기는 방식에서 출발</p><p class="a t rv d2" style="--x:1170;--y:334;--w:330;--fs:25;--lh:30;font-weight:400;color:var(--text);text-align:center;">달리기 전후 움직임을 따라
-체험존·브랜드존·이벤트존 배치</p><p class="a t rv d2" style="--x:1550;--y:323;--w:330;--fs:25;--lh:30;font-weight:400;color:var(--text);text-align:center;">부스·사은품·색과 연출까지
-러너의 일상에 쓰이는 것으로</p><p class="a t rv d3" style="--x:800;--y:500;--w:58;--fs:33;--lh:39;font-weight:800;color:var(--navy);">성과</p><div class="a pill rv d3" style="--x:895;--y:619;--w:400;--h:150;"></div><div class="a circ rv d3" style="--x:1045;--y:539;--w:100;--h:100;--iw:calc(90 * var(--s));"><img src="assets/img/icon-flag.webp" alt=""></div><p class="a t rv d3" style="--x:895;--y:658;--w:400;--fs:30;--lh:36;font-weight:500;color:var(--text);text-align:center;">브랜드 부스 체험 <span class="w800 blue">4,542명</span>
-자사몰 신규 가입 <span class="w800 blue">3.4배</span></p><div class="a pill rv d4" style="--x:1375;--y:619;--w:400;--h:150;"></div><div class="a circ rv d4" style="--x:1525;--y:539;--w:100;--h:100;--iw:calc(80 * var(--s));"><img src="assets/img/icon-card.webp" alt=""></div><p class="a t rv d4" style="--x:1375;--y:658;--w:400;--fs:30;--lh:36;font-weight:500;color:var(--text);text-align:center;">컬렉션 자켓 매출 <span class="w800 blue">+23.5%</span>
-SNS 누적 도달 <span class="w800 blue">447만</span></p><div class="a ins rv d4" style="--x:790;--y:829;--w:1090;--h:135;"></div><p class="a t rv d4" style="--x:825;--y:859;--w:1020;--fs:30;--lh:36;font-weight:500;color:#fff;"><span class="w600" style="font-size:calc(25 * var(--s));color:#9FC6FF">Insight</span>
-“브랜드가 <u>끼어드는</u> 행사가 아니라, 참가자가 즐기던 하루 안에 브랜드가 <u>녹아드는</u> 행사를 만든다.”</p><div class="pn">13</div></div></section><section class="wrap k-case" id="s-c7"><div class="panel" style="--pw:750"></div><div class="slide case c7"><p class="a t rv" style="--x:48;--y:14;--w:200;--fs:18;--lh:22;font-weight:700;color:var(--mute);letter-spacing:.12em;">CASE 7</p><p class="a t rv" style="--x:48;--y:44;--w:616;--fs:55;--lh:66;font-weight:600;color:var(--navy);">데이터 분석
-(준비 중)</p><p class="a t rv d1" style="--x:48;--y:201;--w:640;--fs:27;--lh:32;font-weight:400;color:var(--mute);">내용이 확정되면 추가될 예정입니다.</p><div class="a dash rv d1" style="--x:48;--y:349;--w:317;--h:650;">목업</div><div class="a dash rv d2" style="--x:385;--y:349;--w:317;--h:650;">목업</div><p class="a t rv" style="--x:800;--y:50;--w:78;--fs:33;--lh:39;font-weight:800;color:var(--navy);">문제</p><div class="a dash rv" style="--x:888;--y:44;--w:990;--h:52;"></div><p class="a t rv d1" style="--x:800;--y:149;--w:78;--fs:33;--lh:39;font-weight:800;color:var(--navy);">전략</p><div class="a dash rv d1" style="--x:790;--y:206;--w:1090;--h:300;">전략 시각화</div><p class="a t rv d3" style="--x:800;--y:558;--w:58;--fs:33;--lh:39;font-weight:800;color:var(--navy);">성과</p><div class="a dash rv d3" style="--x:895;--y:597;--w:400;--h:230;">성과 1</div><div class="a dash rv d3" style="--x:1375;--y:597;--w:400;--h:230;">성과 2</div><div class="a dash rv d4" style="--x:790;--y:887;--w:1090;--h:135;">Insight</div><div class="pn">14</div></div></section><section class="wrap k-case" id="s-c8"><div class="panel" style="--pw:750"></div><div class="slide case c8"><p class="a t rv" style="--x:48;--y:14;--w:200;--fs:18;--lh:22;font-weight:700;color:var(--mute);letter-spacing:.12em;">CASE 8</p><p class="a t rv" style="--x:48;--y:44;--w:616;--fs:55;--lh:66;font-weight:600;color:var(--navy);">콘텐츠 마케팅
-(준비 중)</p><p class="a t rv d1" style="--x:48;--y:201;--w:640;--fs:27;--lh:32;font-weight:400;color:var(--mute);">내용이 확정되면 추가될 예정입니다.</p><div class="a dash rv d1" style="--x:48;--y:349;--w:317;--h:650;">목업</div><div class="a dash rv d2" style="--x:385;--y:349;--w:317;--h:650;">목업</div><p class="a t rv" style="--x:800;--y:50;--w:78;--fs:33;--lh:39;font-weight:800;color:var(--navy);">문제</p><div class="a dash rv" style="--x:888;--y:44;--w:990;--h:52;"></div><p class="a t rv d1" style="--x:800;--y:149;--w:78;--fs:33;--lh:39;font-weight:800;color:var(--navy);">전략</p><div class="a dash rv d1" style="--x:790;--y:206;--w:1090;--h:300;">전략 시각화</div><p class="a t rv d3" style="--x:800;--y:558;--w:58;--fs:33;--lh:39;font-weight:800;color:var(--navy);">성과</p><div class="a dash rv d3" style="--x:895;--y:597;--w:400;--h:230;">성과 1</div><div class="a dash rv d3" style="--x:1375;--y:597;--w:400;--h:230;">성과 2</div><div class="a dash rv d4" style="--x:790;--y:887;--w:1090;--h:135;">Insight</div><div class="pn">15</div></div></section><section class="wrap k-cover" id="s-thanks"><div class="slide cover thanks"><p class="a t rv" style="--x:180;--y:362;--w:1453;--fs:120;--lh:143;font-weight:600;color:var(--navy);">감사합니다!</p><div class="pn">16</div></div></section></main>
-<script>
-(function(){
-  var wraps=[].slice.call(document.querySelectorAll('.wrap')), dots=[].slice.call(document.querySelectorAll('.dots a')), prog=document.querySelector('.prog');
-  function setCur(i){ dots.forEach(function(d,j){d.classList.toggle('on',j===i)}); if(prog) prog.style.width=((i+1)/wraps.length*100)+'%'; }
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('on'); setCur(wraps.indexOf(e.target)); } });},{threshold:.4});
-    wraps.forEach(function(w){io.observe(w)});
-  } else { wraps.forEach(function(w){w.classList.add('on')}); }
-  function cur(){ var c=0,best=1e9; wraps.forEach(function(w,i){var t=Math.abs(w.getBoundingClientRect().top); if(t<best){best=t;c=i}}); return c; }
-  function go(d){ var n=Math.max(0,Math.min(wraps.length-1,cur()+d)); wraps[n].scrollIntoView({behavior:'smooth'}); }
-  document.addEventListener('keydown',function(e){ if(['ArrowDown','PageDown','ArrowRight',' '].indexOf(e.key)>-1){e.preventDefault();go(1)} if(['ArrowUp','PageUp','ArrowLeft'].indexOf(e.key)>-1){e.preventDefault();go(-1)} if(e.key==='Home'){e.preventDefault();wraps[0].scrollIntoView({behavior:'smooth'})} if(e.key==='End'){e.preventDefault();wraps[wraps.length-1].scrollIntoView({behavior:'smooth'})} });
-  document.querySelectorAll('[data-go]').forEach(function(el){ el.addEventListener('click',function(){ var t=document.getElementById(el.getAttribute('data-go')); if(t) t.scrollIntoView({behavior:'smooth'}); }); });
-})();
-</script>
+    <!-- ===================== HERO (p.1) ===================== -->
+    <section class="hero" id="hero">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="hero__inner">
+        <h1 class="hero__title">
+          <span class="line"><span class="word">보이는</span> <span class="word">문제가</span> <span class="word">아닌,</span></span>
+          <span class="line"><span class="word accent">진짜</span> <span class="word accent">원인을</span> <span class="word accent">짚는</span> <span class="word">조수안입니다</span></span>
+        </h1>
+        <p class="hero__sub"><span class="hero__sub-text">2022 - 2026 PORTFOLIO</span></p>
+      </div>
+      <a class="hero__scroll" href="#about" aria-label="아래로 스크롤">
+        <span class="hero__scroll-label">SCROLL</span>
+        <span class="hero__scroll-line"></span>
+      </a>
+    </section>
+
+    <!-- 마퀴 -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>MARKETING STRATEGY</span><i>✦</i><span>#execution-focused</span><i>✦</i><span>#data-driven</span><i>✦</i><span>#business-impact</span><i>✦</i><span>2022 - 2026 PORTFOLIO</span><i>✦</i><span>조수안 / Suanne Cho</span><i>✦</i>
+        <span>MARKETING STRATEGY</span><i>✦</i><span>#execution-focused</span><i>✦</i><span>#data-driven</span><i>✦</i><span>#business-impact</span><i>✦</i><span>2022 - 2026 PORTFOLIO</span><i>✦</i><span>조수안 / Suanne Cho</span><i>✦</i>
+      </div>
+    </div>
+
+    <!-- ===================== ABOUT (p.2) ===================== -->
+    <section class="match section" id="about">
+      <div class="match__inner">
+        <div class="reveal">
+          <p class="cover__eyebrow">COMPETENCY × EXPERIENCE</p>
+          <h2 class="match__title fx-text">직무 역량 × 나의 경험</h2>
+        </div>
+        <div class="match__grid">
+        <div class="mc reveal">
+          <div class="mc__head"><i>01</i><b>B2B 영업</b></div>
+          <div class="mc__body">
+            <a class="cc" href="#case-1"><i>CASE 1</i><b>7개 파트너사,<br>현장에서 설득하다</b><em>→</em></a>
+            <a class="cc" href="#case-4"><i>CASE 4</i><b>5곳 편집샵,<br>손익구조로 설득하다</b><em>→</em></a>
+          </div>
+        </div>
+        <div class="mc reveal">
+          <div class="mc__head"><i>02</i><b>콘텐츠 마케팅</b></div>
+          <div class="mc__body">
+            <a class="cc" href="#case-3"><i>CASE 3</i><b>운영 위기, 카피라이팅으로<br>매출 13% 올리다</b><em>→</em></a>
+            <a class="cc cc--todo" href="#case-8"><i>CASE 8</i><b>준비 중</b><em>→</em></a>
+          </div>
+        </div>
+        <div class="mc reveal">
+          <div class="mc__head"><i>03</i><b>오프라인 행사</b></div>
+          <div class="mc__body">
+            <a class="cc" href="#case-2"><i>CASE 2</i><b>오프라인 행사,<br>전환율 73%를 만들다</b><em>→</em></a>
+            <a class="cc" href="#case-6"><i>CASE 6</i><b>러너의 하루에 녹아든,<br>디스커버리 RUN &amp; FIT</b><em>→</em></a>
+          </div>
+        </div>
+        <div class="mc reveal">
+          <div class="mc__head"><i>04</i><b>데이터 분석</b></div>
+          <div class="mc__body">
+            <a class="cc" href="#case-5"><i>CASE 5</i><b>SNS Story 기능 재정의,<br>링크 클릭 200배를 만들다</b><em>→</em></a>
+            <a class="cc cc--todo" href="#case-7"><i>CASE 7</i><b>준비 중</b><em>→</em></a>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROJECTS ===================== -->
+    <div class="projects" id="projects">
+
+      <!-- ---------- PROJECT 1 (p.3) ---------- -->
+      <section class="cover section" id="project-1">
+        <div class="cover__inner">
+          <div class="cover__text reveal">
+            <p class="cover__eyebrow">PROJECT 1.</p>
+            <h2 class="cover__title fx-text">BREADROP<br>소셜벤처 <em>창업</em></h2>
+          </div>
+          <div class="cover__num reveal" aria-hidden="true">01</div>
+          <div class="cover__meta reveal">
+            <p class="cover__date">2024.03 - 2025.03</p>
+            <p class="cover__desc">마감할인 빵 중개 플랫폼<br>창업 및 커머스 운영</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- p.4 개요 -->
+      <section class="overview section">
+        <div class="overview__main">
+          <div class="reveal">
+            <h3 class="overview__title fx-text">BREADROP</h3>
+            <p class="overview__sub">버려지는 빵을 살려내는 우리 동네 빵집 마감할인 플랫폼</p>
+          </div>
+          <figure class="overview__laptop reveal">
+            <img src="assets/img/laptop.webp" alt="브레드랍 웹사이트 화면 - 동네 속 정감가는 빵집, 위블레 / 오늘의 마감할인빵" width="1600" height="970" data-lightbox>
+          </figure>
+        </div>
+        <aside class="overview__side">
+          <div class="overview__mvp reveal">
+            <h4>MVP 5차례</h4>
+            <ul>
+              <li>파트너사 베이커리 <b>7곳</b></li>
+              <li>누적 판매건 수 <b>327건</b></li>
+              <li>누적 파트너사 추가 매출 <b>961,380원</b></li>
+            </ul>
+          </div>
+          <div class="overview__roles">
+            <div class="role reveal"><span>B2B 마케팅<br>&amp; 파트너십</span></div>
+            <div class="role reveal"><span>데이터 분석</span></div>
+            <div class="role reveal"><span>콘텐츠 마케팅<br>&amp; 캠페인 운영</span></div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- case 1 -->
+      <article class="case section" id="case-1">
+        <div class="case__left">
+          <h3 class="case__title reveal fx-text">7개 파트너사,<br>현장에서 설득하다</h3>
+          <p class="case__desc reveal">현장 기반 페인포인트 분석과 차별화된 가치 제안으로<br>7개 베이커리 파트너사 입점을 설득한 B2B 세일즈</p>
+          <div class="phones reveal">
+            <img class="phone" src="assets/img/p1-b2b-L.webp" alt="브레드랍 서비스 소개 및 이용 매뉴얼 제안서" width="640" height="1283" data-lightbox>
+            <img class="phone" src="assets/img/p1-b2b-R.webp" alt="파트너 베이커리 사장님과의 카카오톡 대화 - 3차 시범운영 종료 감사 인사" width="640" height="1283" data-lightbox>
+          </div>
+        </div>
+        <div class="case__right">
+          <div class="kv reveal">
+            <span class="kv__k fx-text">문제</span>
+            <p class="kv__v">경쟁 플랫폼이 이미 존재하는 시장에서, 차별화 없이는 베이커리 입점 설득이 불가능</p>
+          </div>
+          <div class="reveal">
+            <span class="kv__k fx-text">전략</span>
+            <div class="steps steps--3">
+              <div class="step">
+                <div class="step__head">Step 1. 현장 조사</div>
+                <ul class="step__body"><li>경쟁사 분석</li><li>페인포인트 도출</li></ul>
+              </div>
+              <div class="step">
+                <div class="step__head">Step 2. 가치 제안 설계</div>
+                <ul class="step__body"><li>재고 등록 간소화</li><li>베이커리 마케팅 대행</li></ul>
+              </div>
+              <div class="step">
+                <div class="step__head">Step 3. 세일즈 실행</div>
+                <ul class="step__body"><li>B2B 세일즈 파이프라인</li><li>CRM 기반 스크립트 개선</li></ul>
+              </div>
+            </div>
+          </div>
+          <div class="reveal">
+            <span class="kv__k fx-text">성과</span>
+            <div class="results">
+              <div class="result">
+                <img class="result__icon" src="assets/img/icon-handshake.webp" alt="" width="200" height="200">
+                <p><b>7개</b> 베이커리<br><b>파트너십</b> 체결</p>
+              </div>
+              <div class="result">
+                <img class="result__icon" src="assets/img/icon-shield.webp" alt="" width="200" height="200">
+                <p><b>재계약률 85%</b> 달성<br><small>(6개 파트너사 재계약)</small></p>
+              </div>
+            </div>
+          </div>
+          <blockquote class="insight reveal">
+            <span class="insight__label">Insight</span>
+            <p>“B2B 고객은 스펙이 아니라, <u>‘우리 문제를 해결한다’는 확신</u>으로 움직인다.<br>그리고 그 확신은 <u>고객의 현장 이해</u>에서 시작된다.”</p>
+          </blockquote>
+        </div>
+      </article>
+
+      <!-- case 2 -->
+      <article class="case section" id="case-2">
+        <div class="case__left">
+          <h3 class="case__title reveal fx-text">오프라인 행사,<br>전환율 73%를 만들다</h3>
+          <p class="case__desc reveal">타겟 맞춤형 오프라인 행사를 통해 고객 접점을 확보하고,<br>실구매 전환으로 연결한 마케팅 캠페인</p>
+          <div class="phones reveal">
+            <img class="phone" src="assets/img/p1-b2c-event-L.webp" alt="에브리타임 게시글 - 203동 지하 2층에서 간식 무료 나눔 중입니다" width="640" height="1283" data-lightbox>
+            <img class="phone" src="assets/img/p1-b2c-event-R.webp" alt="에브리타임 게시글 - 헐 학문관 앞에서 공짜로 빵 준다, 초간단 퀴즈 풀고 빵 시식하자" width="640" height="1283" data-lightbox>
+          </div>
+        </div>
+        <div class="case__right">
+          <div class="kv reveal">
+            <span class="kv__k fx-text">문제</span>
+            <p class="kv__v">SNS 팔로워 증가와 구매 전환이 연결되지 않아, 실구매 타겟 접점 확보 필요성 확인</p>
+          </div>
+          <div class="reveal">
+            <span class="kv__k fx-text">전략</span>
+            <div class="campaigns">
+              <div class="campaign">
+                <div class="campaign__head">캠페인 1. 기숙사 간식 나눔 행사</div>
+                <div class="campaign__body">
+                  <p><b>기획:</b> 시험기간 맞춤 간식 세트 제작 및 나눔</p>
+                  <span class="arrow-down" aria-hidden="true"></span>
+                  <p><b>결과:</b> 간식 세트 500개 전량 소진</p>
+                </div>
+              </div>
+              <div class="campaign campaign--deep">
+                <div class="campaign__head">캠페인 2. 퀴즈 · 시식 부스</div>
+                <div class="campaign__body">
+                  <p><b>기획:</b> 퀴즈와 시식을 통해 구매 관심 유도</p>
+                  <span class="arrow-down" aria-hidden="true"></span>
+                  <p><b>결과:</b> 부스 방문 및 참여 인원 300명 달성</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="reveal">
+            <span class="kv__k fx-text">성과</span>
+            <div class="results">
+              <div class="result">
+                <img class="result__icon" src="assets/img/icon-fire.webp" alt="" width="200" height="200">
+                <p>캠페인 시작 5일 만에<br><b>주문 희망자 131명 유입</b></p>
+              </div>
+              <div class="result">
+                <img class="result__icon" src="assets/img/icon-card.webp" alt="" width="200" height="200">
+                <p><b>구매 전환율</b><br><b>73%</b> 달성</p>
+              </div>
+            </div>
+          </div>
+          <blockquote class="insight reveal">
+            <span class="insight__label">Insight</span>
+            <p>“<u>오프라인 행사</u>는 단순 홍보가 아니라, <u>신뢰를 만들고 구매 전환을 이끄는</u> 트리거이다.”</p>
+          </blockquote>
+        </div>
+      </article>
+
+      <!-- case 3 -->
+      <article class="case section" id="case-3">
+        <div class="case__left">
+          <h3 class="case__title reveal fx-text">운영 위기, 카피라이팅으로<br>매출 13% 올리다</h3>
+          <p class="case__desc reveal">픽업 시간대 변경이라는 제약을 새로운 가치로 재포지셔닝하여,<br>고객 이탈 위기를 매출 증가로 전환한 캠페인</p>
+          <div class="phones reveal">
+            <img class="phone" src="assets/img/p1-b2c-copy-L.webp" alt="인스타그램 게시물 - 수업 사이, 간단하지만 든든하게" width="640" height="1283" data-lightbox>
+            <img class="phone" src="assets/img/p1-b2c-copy-R.webp" alt="인스타그램 게시물 - 브레드랍 등교시간 프로모션, 오전 8-10시 묶음 구매시 10% 추가 할인" width="640" height="1283" data-lightbox>
+          </div>
+        </div>
+        <div class="case__right">
+          <div class="kv reveal">
+            <span class="kv__k fx-text">문제</span>
+            <p class="kv__v">픽업 시간대 변경(저녁 픽업 → 아침 픽업)으로 기존 고객 이탈 리스크 발생</p>
+          </div>
+          <div class="reveal">
+            <span class="kv__k fx-text">전략</span>
+            <div class="flows">
+              <div class="flow">
+                <div class="flow__head">상황 맞춤형 카피라이팅</div>
+                <p class="flow__mid">“가격” 중심 → <b>“사용 상황”</b> 중심 메시지로 전환</p>
+                <span class="arrow-down" aria-hidden="true"></span>
+                <div class="flow__foot">오전 시간대 실제 이용 장면을 카피로 구체화</div>
+              </div>
+              <div class="flow flow--deep">
+                <div class="flow__head">타이밍 맞춤 프로모션 설계</div>
+                <p class="flow__mid">등교 시간대 한정 할인 + 묶음 구매 할인</p>
+                <span class="arrow-down" aria-hidden="true"></span>
+                <div class="flow__foot">구매 유인과 객단가 상승 동시 달성</div>
+              </div>
+            </div>
+          </div>
+          <div class="reveal">
+            <span class="kv__k fx-text">성과</span>
+            <div class="results">
+              <div class="result">
+                <img class="result__icon" src="assets/img/icon-flag.webp" alt="" width="200" height="200">
+                <p>매출 기존 대비 <b>13% 증가</b><br><small>(이탈 우려와 정반대 결과)</small></p>
+              </div>
+              <div class="result">
+                <img class="result__icon" src="assets/img/icon-gift.webp" alt="" width="200" height="200">
+                <p>단품 대비 <b>묶음 구매 비율</b><br><b>2.5배 증가</b></p>
+              </div>
+            </div>
+          </div>
+          <blockquote class="insight reveal">
+            <span class="insight__label">Insight</span>
+            <p>“불편도 <u>고객의 언어</u>로 <u>프레임을 전환</u>하면 매출 기회가 된다.”</p>
+          </blockquote>
+        </div>
+      </article>
+
+      <!-- ---------- PROJECT 2 (p.8) ---------- -->
+      <section class="cover section" id="project-2">
+        <div class="cover__inner">
+          <div class="cover__text reveal">
+            <p class="cover__eyebrow">PROJECT 2.</p>
+            <h2 class="cover__title fx-text">JOSEPH &amp; STACEY<br><em>글로벌 마케팅</em> 인턴</h2>
+          </div>
+          <div class="cover__num reveal" aria-hidden="true">02</div>
+          <div class="cover__meta reveal">
+            <p class="cover__date">2022.07 - 2022.08</p>
+            <p class="cover__desc">중국 · 일본 시장을 대상으로<br>해외 마케팅 전략 기획 및 실행</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- case 4 -->
+      <article class="case section" id="case-4">
+        <div class="case__left">
+          <h3 class="case__title reveal fx-text">5곳 편집샵,<br>손익구조로 설득하다</h3>
+          <p class="case__desc reveal">중국 편집샵이 이커머스 시대에도 살아남는 이유를 이해하고,<br>손익 언어로 설득해 대량 구매를 이끌어낸 해외 B2B 세일즈</p>
+          <div class="phones reveal">
+            <img class="phone" src="assets/img/p2-b2b-L.webp" alt="샤오홍슈 게시물 - 상하이 편집샵 방문 후기" width="640" height="1283" data-lightbox>
+            <img class="phone" src="assets/img/p2-b2b-R.webp" alt="샤오홍슈 게시물 - Lucky Pleats Knit 신상 입고" width="640" height="1283" data-lightbox>
+          </div>
+        </div>
+        <div class="case__right">
+          <div class="kv reveal">
+            <span class="kv__k fx-text">목표</span>
+            <p class="kv__v">타오바오 중심 이커머스가 장악한 중국 시장에서, 도매 거래처가 될 편집샵을 확보</p>
+          </div>
+          <div class="reveal">
+            <span class="kv__k fx-text">전략</span>
+            <div class="steps steps--3">
+              <div class="step">
+                <div class="step__head">Step 1. 시장 진단</div>
+                <p class="step__body step__body--center">타오바오 확산 속에서도<br>편집샵이 살아남는 이유 파악</p>
+              </div>
+              <div class="step">
+                <div class="step__head">Step 2. 우선순위 타겟팅</div>
+                <p class="step__body step__body--center">브랜드 타겟과 겹치는 편집샵<br>우선순위로 선별</p>
+              </div>
+              <div class="step">
+                <div class="step__head">Step 3. B2B 가치제안</div>
+                <p class="step__body step__body--center">"검증된 브랜드로 방문객과<br>객단가를 함께 높인다"는<br><b>손익 언어</b>로 설득</p>
+              </div>
+            </div>
+          </div>
+          <div class="reveal">
+            <span class="kv__k fx-text">성과</span>
+            <div class="results results--single">
+              <div class="result">
+                <img class="result__icon" src="assets/img/icon-cn.webp" alt="" width="200" height="200">
+                <p>청두·항저우 편집샵 <b>5곳</b><br><b>대량 구매</b> 달성</p>
+              </div>
+            </div>
+          </div>
+          <blockquote class="insight reveal">
+            <span class="insight__label">Insight</span>
+            <p>“<u>설득</u>은 스펙이 아니라, <u>상대의 손익 언어</u>로 다시 말할 때 시작된다.”</p>
+          </blockquote>
+        </div>
+      </article>
+
+      <!-- ---------- PROJECT 3 (p.11) ---------- -->
+      <section class="cover section" id="project-3">
+        <div class="cover__inner">
+          <div class="cover__text reveal">
+            <p class="cover__eyebrow">PROJECT 3.</p>
+            <h2 class="cover__title fx-text">NAVER Z<br><em>콘텐츠 마케팅</em> 인턴</h2>
+          </div>
+          <div class="cover__num reveal" aria-hidden="true">03</div>
+          <div class="cover__meta reveal">
+            <p class="cover__date">2025.04 - 2025.10</p>
+            <p class="cover__desc">글로벌 SNS 채널 운영 및<br>프로모션 · 콘텐츠 기획 지원</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- case 5 -->
+      <article class="case section" id="case-5">
+        <div class="case__left">
+          <h3 class="case__title reveal fx-text">SNS Story 기능 재정의,<br>링크 클릭 200배를 만들다</h3>
+          <p class="case__desc reveal">SNS Story 기능 운영과 CTA 최적화를 통해,<br>노출 채널을 앱 유입 전환 채널로 전환한 데이터 기반 실험</p>
+          <div class="phones reveal">
+            <img class="phone" src="assets/img/p3-b2c-L.webp" alt="제페토 인스타그램 스토리 - Get Your Porsche CTA" width="640" height="1283" data-lightbox>
+            <img class="phone" src="assets/img/p3-b2c-R.webp" alt="제페토 인스타그램 스토리 - FREE Lucky Box CTA, Dirty Work comeback" width="640" height="1283" data-lightbox>
+          </div>
+        </div>
+        <div class="case__right">
+          <div class="kv reveal">
+            <span class="kv__k fx-text">문제</span>
+            <p class="kv__v">SNS 노출 지표는 높았지만, 실제 앱 유입으로 이어지지 않는 노출-전환 단절 발생</p>
+          </div>
+          <div class="reveal">
+            <span class="kv__k fx-text">전략</span>
+            <div class="steps steps--2">
+              <div class="step">
+                <div class="step__head">Step 1. 전환 채널 인프라 구축</div>
+                <ul class="step__body"><li>업로드 빈도 확대</li><li>CTR 추적 체계 구축</li><li>공식 라이브 연결로 진입장벽 최소화</li></ul>
+              </div>
+              <div class="step">
+                <div class="step__head">Step 2. 메시지 최적화·표준화</div>
+                <div class="step__body step__body--center">
+                  <p>A/B 테스트로 고성과 CTA 발굴</p>
+                  <span class="arrow-down" aria-hidden="true"></span>
+                  <p><b>보상형 CTA 전면 적용, 성과 DB 문서화</b></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="reveal">
+            <span class="kv__k fx-text">성과</span>
+            <div class="results">
+              <div class="result">
+                <img class="result__icon" src="assets/img/icon-cursor.webp" alt="" width="200" height="200">
+                <p>월평균 <b>링크 클릭 수</b><br><b>2,000+ 건</b></p>
+              </div>
+              <div class="result">
+                <img class="result__icon" src="assets/img/icon-mic.webp" alt="" width="200" height="200">
+                <p>공식 라이브 <b>시청자</b><br><b>30-40% 증가</b></p>
+              </div>
+            </div>
+          </div>
+          <blockquote class="insight reveal">
+            <span class="insight__label">Insight</span>
+            <p>“<u>콘텐츠 마케팅</u>의 성과는 노출이 아니라, <u>전환을 추적하고 설계</u>할 때 만들어진다.”</p>
+          </blockquote>
+        </div>
+      </article>
+
+    <!-- ---------- PROJECT 4 ---------- -->
+      <section class="cover section" id="project-4">
+        <div class="cover__inner">
+          <div class="cover__text reveal">
+            <p class="cover__eyebrow">PROJECT 4.</p>
+            <h2 class="cover__title fx-text">F&amp;F<br><em>DX 마케팅</em> 인턴</h2>
+          </div>
+          <div class="cover__num reveal" aria-hidden="true">04</div>
+          <div class="cover__meta reveal">
+            <p class="cover__date">2026</p>
+            <p class="cover__desc">디스커버리 익스페디션<br>브랜드 마케팅 · 오프라인 행사 운영</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- case 6 -->
+      <article class="case section" id="case-6">
+        <div class="case__left">
+          <h3 class="case__title reveal fx-text">러너의 하루에 녹아든,<br>디스커버리 RUN &amp; FIT</h3>
+          <p class="case__desc reveal">2만 명 규모 마라톤 스폰서십을 팀원들과 기획하며,<br>행사의 모든 요소를 참가자의 라이프스타일에 맞춰 설계</p>
+          <div class="phones reveal">
+            <img class="phone" src="assets/img/fnf-run-L.webp" alt="시포레 RUN & FIT 출발선" width="640" height="1283" data-lightbox>
+            <img class="phone" src="assets/img/fnf-run-R.webp" alt="FINISHER 포토존" width="640" height="1283" data-lightbox>
+          </div>
+        </div>
+        <div class="case__right">
+          <div class="kv reveal">
+            <span class="kv__k fx-text">문제</span>
+            <p class="kv__v">스폰서 부스는 흔히 “브랜드가 끼어드는 자리”가 되어, 러너의 하루와 따로 놀기 쉬움</p>
+          </div>
+          <div class="reveal">
+            <span class="kv__k fx-text">전략</span>
+            <div class="steps steps--3">
+              <div class="step"><div class="step__head">Step 1. 러너 관찰</div><p class="step__body step__body--center">“어떻게 보여줄까”가 아니라<br>러너가 즐기는 방식에서 출발</p></div>
+              <div class="step"><div class="step__head">Step 2. 동선 설계</div><p class="step__body step__body--center">달리기 전후 움직임을 따라<br>체험존·브랜드존·이벤트존 배치</p></div>
+              <div class="step"><div class="step__head">Step 3. 디테일 설계</div><p class="step__body step__body--center">부스·사은품·색과 연출까지<br>러너의 일상에 쓰이는 것으로</p></div>
+            </div>
+          </div>
+          <div class="reveal">
+            <span class="kv__k fx-text">성과</span>
+            <div class="results">
+              <div class="result"><img class="result__icon" src="assets/img/icon-flag.webp" alt="" width="200" height="200"><p>브랜드 부스 체험 <b>4,542명</b><br>자사몰 신규 가입 <b>3.4배</b></p></div>
+              <div class="result"><img class="result__icon" src="assets/img/icon-card.webp" alt="" width="200" height="200"><p>컬렉션 자켓 매출 <b>+23.5%</b><br>SNS 누적 도달 <b>447만</b></p></div>
+            </div>
+          </div>
+          <blockquote class="insight reveal">
+            <span class="insight__label">Insight</span>
+            <p>“브랜드가 <u>끼어드는</u> 행사가 아니라, 참가자가 즐기던 하루 안에 브랜드가 <u>녹아드는</u> 행사를 만든다.”</p>
+          </blockquote>
+        </div>
+      </article>
+
+      <!-- case 7 (placeholder) -->
+      <article class="case section case--todo" id="case-7">
+        <div class="case__left">
+          <h3 class="case__title reveal fx-text">데이터 분석<br>(준비 중)</h3>
+          <p class="case__desc reveal">내용이 확정되면 추가될 예정입니다.</p>
+          <div class="phones reveal"><div class="phone phone--todo"></div><div class="phone phone--todo"></div></div>
+        </div>
+        <div class="case__right">
+          <div class="kv reveal"><span class="kv__k fx-text">문제</span><p class="kv__v todo"></p></div>
+          <div class="reveal"><span class="kv__k fx-text">전략</span><div class="todo todo--tall"></div></div>
+          <div class="reveal"><span class="kv__k fx-text">성과</span><div class="results"><div class="todo"></div><div class="todo"></div></div></div>
+          <blockquote class="insight reveal"><span class="insight__label">Insight</span><p class="todo"></p></blockquote>
+        </div>
+      </article>
+
+      <!-- case 8 (placeholder) -->
+      <article class="case section case--todo" id="case-8">
+        <div class="case__left">
+          <h3 class="case__title reveal fx-text">콘텐츠 마케팅<br>(준비 중)</h3>
+          <p class="case__desc reveal">내용이 확정되면 추가될 예정입니다.</p>
+          <div class="phones reveal"><div class="phone phone--todo"></div><div class="phone phone--todo"></div></div>
+        </div>
+        <div class="case__right">
+          <div class="kv reveal"><span class="kv__k fx-text">문제</span><p class="kv__v todo"></p></div>
+          <div class="reveal"><span class="kv__k fx-text">전략</span><div class="todo todo--tall"></div></div>
+          <div class="reveal"><span class="kv__k fx-text">성과</span><div class="results"><div class="todo"></div><div class="todo"></div></div></div>
+          <blockquote class="insight reveal"><span class="insight__label">Insight</span><p class="todo"></p></blockquote>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- ===================== CONTACT (p.13) ===================== -->
+    <section class="contact section" id="contact">
+      <div class="contact__inner">
+        <h2 class="contact__title reveal fx-text">감사합니다!</h2>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span>© 2026 Suanne Cho. 2022 - 2026 PORTFOLIO</span>
+  </footer>
+
+  <button class="totop" id="totop" aria-label="맨 위로">↑</button>
+
+  <!-- 라이트박스 -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox__close" id="lightboxClose" aria-label="닫기">×</button>
+    <img class="lightbox__img" id="lightboxImg" src="" alt="">
+    <p class="lightbox__cap" id="lightboxCap"></p>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/main.js"></script>
 </body>
 </html>
