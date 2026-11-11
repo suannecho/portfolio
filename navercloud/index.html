@@ -67,13 +67,15 @@ h1,h2,h3,h4,h5,p,ul { margin: 0; } ul { padding: 0; list-style: none; } img { di
 .row div b { font-weight: 800; }
 /* pair cards with gradient header */
 .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.pair.trio { grid-template-columns: 1fr 1fr 1fr; gap: 0 8px; --tip: 22px; }
-.pair.trio .pc { overflow: visible; border-radius: 0 0 var(--r) var(--r); background: transparent; box-shadow: none; }
-.pair.trio .pc h5 { position: relative; padding: 12px calc(var(--tip) + 10px) 12px calc(var(--tip) + 6px); clip-path: polygon(0 0, calc(100% - var(--tip)) 0, 100% 50%, calc(100% - var(--tip)) 100%, 0 100%, var(--tip) 50%); white-space: nowrap; }
+.pair.trio { grid-template-columns: 1fr 1fr 1fr; gap: 0 0; --tip: 22px; }
+.pair.trio .pc { overflow: visible; border-radius: 0; background: transparent; box-shadow: none; display: grid; grid-template-rows: auto 1fr; }
+.pair.trio .pc h5 { position: relative; padding: 12px calc(var(--tip) + 12px) 12px calc(var(--tip) + 10px); clip-path: polygon(0 0, calc(100% - var(--tip)) 0, 100% 50%, calc(100% - var(--tip)) 100%, 0 100%, var(--tip) 50%); white-space: nowrap; margin-right: -2px; }
 .pair.trio .pc:first-child h5 { clip-path: polygon(0 0, calc(100% - var(--tip)) 0, 100% 50%, calc(100% - var(--tip)) 100%, 0 100%); border-radius: var(--r) 0 0 0; padding-left: 18px; }
-.pair.trio .pc:last-child h5 { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, var(--tip) 50%); border-radius: 0 var(--r) 0 0; }
-.pair.trio .pc .b { background: #fff; border-radius: 0 0 var(--r) var(--r); box-shadow: var(--sh); position: relative; min-height: 96px; }
-.pair.trio .pc + .pc .b::before { content: "›"; position: absolute; left: -11px; top: 50%; transform: translateY(-50%); color: var(--blue); font-size: 26px; font-weight: 800; line-height: 1; }
+.pair.trio .pc:last-child h5 { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, var(--tip) 50%); border-radius: 0 var(--r) 0 0; padding-right: 18px; margin-right: 0; }
+.pair.trio .pc .b { background: #fff; box-shadow: var(--sh); position: relative; min-height: 96px; margin: 10px 10px 0 var(--tip); border-radius: 0 0 var(--r) var(--r); }
+.pair.trio .pc:first-child .b { margin-left: 0; border-radius: 0 0 var(--r) var(--r); }
+.pair.trio .pc:last-child .b { margin-right: 0; }
+.pair.trio .pc + .pc .b::before { content: "›"; position: absolute; left: calc(var(--tip) * -1 - 2px); top: 50%; transform: translateY(-50%); color: var(--blue); font-size: 24px; font-weight: 800; line-height: 1; width: var(--tip); text-align: center; }
 .pair.trio .pc:nth-child(1) h5 { background: linear-gradient(90deg,#6FA6FF,#4D8CFF); } .pair.trio .pc:nth-child(2) h5 { background: var(--acc); } .pair.trio .pc:nth-child(3) h5 { background: var(--navy); }
 .pc h5 i { font-style: normal; font-size: 12px; font-weight: 800; letter-spacing: .08em; opacity: .8; margin-right: 10px; }
 .pair.trio .pc h5 i { background: rgba(255,255,255,.22); border-radius: 999px; padding: 3px 8px; }
