@@ -31,18 +31,15 @@
   /* ---------- Scroll progress + nav state + to-top ---------- */
   const progress = $('#progress');
   const nav = $('#nav');
-  const totop = $('#totop');
   function onScroll() {
     const h = document.documentElement;
     const max = h.scrollHeight - h.clientHeight;
     const y = h.scrollTop || document.body.scrollTop;
     progress.style.width = (max > 0 ? (y / max) * 100 : 0) + '%';
     nav.classList.toggle('is-scrolled', y > 20);
-    totop.classList.toggle('is-show', y > 600);
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
-  totop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' }));
 
   /* ---------- Mobile menu ---------- */
   const burger = $('#burger');
@@ -199,27 +196,26 @@
   lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('is-open')) closeLb(); });
 
-  /* ---------- Fit each page to the viewport (scale down when taller than the screen) ---------- */
-  const fitTargets = $$('.cover, .overview, .case, .match, .contact');
+  /* ---------- Fit each page to the viewport: shrink the content (not the backgrounds) until it fits ---------- */
+  const fitSecs = $$('.cover, .overview, .case, .match, .contact');
   function fitAll() {
-    const vh = window.innerHeight, navH = nav.offsetHeight;
-    fitTargets.forEach(sec => {
-      sec.style.zoom = ''; sec.style.minHeight = '';
+    const navH = nav.offsetHeight, avail = window.innerHeight - navH;
+    fitSecs.forEach(sec => {
+      const kids = Array.from(sec.children);
+      kids.forEach(k => { k.style.zoom = ''; });
       if (window.innerWidth <= 1100) return;
-      const natural = sec.scrollHeight;
-      const avail = vh - navH;
+      const cs = getComputedStyle(sec);
+      const pad = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+      const natural = Math.max(...kids.map(k => k.offsetHeight)) + pad;
       if (natural > avail) {
-        const z = Math.max(0.6, avail / natural);
-        sec.style.zoom = z.toFixed(3);
-        sec.style.minHeight = (avail / z) + 'px';
-      } else {
-        sec.style.minHeight = avail + 'px';
+        const z = Math.max(0.55, (avail - pad) / (natural - pad));
+        kids.forEach(k => { k.style.zoom = z.toFixed(3); });
       }
     });
   }
   let fitTimer;
   window.addEventListener('resize', () => { clearTimeout(fitTimer); fitTimer = setTimeout(fitAll, 120); });
-  window.addEventListener('load', fitAll);
+  window.addEventListener('load', () => setTimeout(fitAll, 50));
   fitAll();
 
   /* ---------- Smooth anchor offset for fixed nav ---------- */
