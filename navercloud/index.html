@@ -67,6 +67,10 @@ h1,h2,h3,h4,h5,p,ul { margin: 0; } ul { padding: 0; list-style: none; } img { di
 .row div b { font-weight: 800; }
 /* pair cards with gradient header */
 .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.pair.trio { grid-template-columns: 1fr 1fr 1fr; }
+.pc h5 i { font-style: normal; font-size: 12px; font-weight: 800; letter-spacing: .08em; opacity: .8; margin-right: 10px; }
+.pc .b p { margin: 0; color: var(--body); }
+.pc .b p strong { color: var(--ink); }
 .pc { overflow: hidden; }
 .pc h5 { background: var(--acc); color: #fff; font-size: 16px; font-weight: 800; padding: 12px 18px; }
 .pc.n h5 { background: var(--navy); }
@@ -146,7 +150,7 @@ h1,h2,h3,h4,h5,p,ul { margin: 0; } ul { padding: 0; list-style: none; } img { di
 @media (min-width: 961px) and (min-height: 700px) { html { scroll-snap-type: y proximity; } }
 @media (max-width: 960px) {
   .sec { min-height: 0; padding: 80px 0 40px; display: block; }
-  .two, .cover .in, .hero .in, .about .in, .ov .in, .grid2, .pair, .vs, .ov .stats3 { grid-template-columns: 1fr; }
+  .two, .cover .in, .hero .in, .about .in, .ov .in, .grid2, .pair, .pair.trio, .vs, .ov .stats3 { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr !important; gap: 36px; } .step + .step::before { display: none; }
   .res2 { grid-template-columns: 1fr !important; }
   .phones { margin-top: 20px; } .phones img { max-height: none; }
@@ -185,7 +189,7 @@ h1,h2,h3,h4,h5,p,ul { margin: 0; } ul { padding: 0; list-style: none; } img { di
     <div class="phones"><img src="assets/img/p1-b2b-L.webp" alt="브레드랍 서비스 소개 제안서"><img src="assets/img/p1-b2b-R.webp" alt="파트너 베이커리 사장님과의 카카오톡 대화"></div></div>
   <div class="right">
     <div class="dark rv"><h5>문제</h5><p>경쟁 플랫폼이 이미 존재하는 시장에서, <b>차별화 없이는 베이커리 입점 설득이 불가능</b></p></div>
-    <div class="rv"><div class="lbl">전략</div><div class="steps" style="--n:3"><div class="card step"><i>1</i><b>현장 조사</b><span>경쟁사 분석<br>페인포인트 도출</span></div><div class="card step on"><i>2</i><b>가치 제안 설계</b><span>재고 등록 간소화<br>베이커리 마케팅 대행</span></div><div class="card step"><i>3</i><b>세일즈 실행</b><span>B2B 세일즈 파이프라인<br>CRM 기반 스크립트 개선</span></div></div></div>
+    <div class="rv"><div class="lbl">전략</div><div class="pair trio"><div class="card pc "><h5><i>STEP 1</i>현장 조사</h5><div class="b"><ul class="bul"><li>경쟁사 분석</li><li>페인포인트 도출</li></ul></div></div><div class="card pc "><h5><i>STEP 2</i>가치 제안 설계</h5><div class="b"><ul class="bul"><li>재고 등록 간소화</li><li>베이커리 마케팅 대행</li></ul></div></div><div class="card pc n"><h5><i>STEP 3</i>세일즈 실행</h5><div class="b"><ul class="bul"><li>B2B 세일즈 파이프라인</li><li>CRM 기반 스크립트 개선</li></ul></div></div></div></div>
     <div class="rv"><div class="lbl">성과</div><div class="res2" style="--n:2"><div class="card stat"><div class="bar"><i style="--w:100%"></i></div><b>7<small>곳</small></b><span>베이커리 파트너십 체결</span><img src="assets/img/icon-handshake.webp" alt=""></div><div class="card stat"><div class="bar"><i style="--w:85%"></i></div><b>85<small>%</small></b><span>재계약률 달성 · 6개 파트너사 재계약</span><img src="assets/img/icon-shield.webp" alt=""></div></div></div>
     <div class="band rv"><b>Insight</b><span><u>B2B 고객</u>은 스펙이 아니라 <u>‘우리 문제를 해결한다’는 확신</u>으로 움직인다. 그 확신은 <u>고객의 현장 이해</u>에서 시작된다.</span></div>
   </div></div></div><div class="pn">05</div></section><section class="sec case" id="c2"><div class="in"><div class="two">
@@ -213,7 +217,7 @@ h1,h2,h3,h4,h5,p,ul { margin: 0; } ul { padding: 0; list-style: none; } img { di
     <div class="phones"><img src="assets/img/p2-b2b-L.webp" alt="샤오홍슈 게시물 - 편집샵 방문 후기"><img src="assets/img/p2-b2b-R.webp" alt="샤오홍슈 게시물 - 신상 입고"></div></div>
   <div class="right">
     <div class="dark rv"><h5>목표</h5><p>타오바오 중심 이커머스가 장악한 중국 시장에서, <b>도매 거래처가 될 편집샵을 확보</b></p></div>
-    <div class="rv"><div class="lbl">전략</div><div class="steps" style="--n:3"><div class="card step"><i>1</i><b>시장 진단</b><span>타오바오 확산 속에서도 편집샵이 살아남는 이유 파악</span></div><div class="card step"><i>2</i><b>우선순위 타겟팅</b><span>브랜드 타겟과 겹치는 편집샵 우선순위로 선별</span></div><div class="card step on"><i>3</i><b>B2B 가치제안</b><span>“검증된 브랜드로 방문객과 객단가를 함께 높인다”는 <strong>손익 언어</strong>로 설득</span></div></div></div>
+    <div class="rv"><div class="lbl">전략</div><div class="pair trio"><div class="card pc "><h5><i>STEP 1</i>시장 진단</h5><div class="b"><p>타오바오 확산 속에서도 편집샵이 살아남는 이유 파악</p></div></div><div class="card pc "><h5><i>STEP 2</i>우선순위 타겟팅</h5><div class="b"><p>브랜드 타겟과 겹치는 편집샵 우선순위로 선별</p></div></div><div class="card pc n"><h5><i>STEP 3</i>B2B 가치제안</h5><div class="b"><p>“검증된 브랜드로 방문객과 객단가를 함께 높인다”는 <strong>손익 언어</strong>로 설득</p></div></div></div></div>
     <div class="rv"><div class="lbl">성과</div><div class="res2" style="--n:1"><div class="card stat"><div class="bar"><i style="--w:100%"></i></div><b>5<small>곳</small></b><span>청두·항저우 편집샵 대량 구매 달성</span><img src="assets/img/icon-cn.webp" alt=""></div></div></div>
     <div class="band rv"><b>Insight</b><span><u>설득</u>은 스펙이 아니라, <u>상대의 손익 언어</u>로 다시 말할 때 시작된다.</span></div>
   </div></div></div><div class="pn">09</div></section><section class="sec case" id="c5"><div class="in"><div class="two">
@@ -245,7 +249,7 @@ h1,h2,h3,h4,h5,p,ul { margin: 0; } ul { padding: 0; list-style: none; } img { di
     <div class="phones"><img src="assets/img/fnf-run-L.webp" alt="시포레 RUN & FIT 출발선"><img src="assets/img/fnf-run-R.webp" alt="FINISHER 포토존"></div></div>
   <div class="right">
     <div class="dark rv"><h5>문제</h5><p>스폰서 부스는 흔히 “브랜드가 끼어드는 자리”가 되어, <b>러너의 하루와 따로 놀기 쉬움</b></p></div>
-    <div class="rv"><div class="lbl">전략</div><div class="steps" style="--n:3"><div class="card step"><i>1</i><b>러너 관찰</b><span>“어떻게 보여줄까”가 아니라 러너가 러닝·웰니스를 즐기는 방식에서 출발</span></div><div class="card step on"><i>2</i><b>동선 설계</b><span>달리기 전후 참가자의 움직임을 따라 체험존 · 브랜드존 · 이벤트존 배치</span></div><div class="card step"><i>3</i><b>디테일 설계</b><span>부스 구성 · 사은품 · 공간의 색과 연출까지 러너의 일상에 쓰이는 것으로</span></div></div></div>
+    <div class="rv"><div class="lbl">전략</div><div class="pair trio"><div class="card pc "><h5><i>STEP 1</i>러너 관찰</h5><div class="b"><p>“어떻게 보여줄까”가 아니라 러너가 러닝·웰니스를 즐기는 방식에서 출발</p></div></div><div class="card pc "><h5><i>STEP 2</i>동선 설계</h5><div class="b"><p>달리기 전후 참가자의 움직임을 따라 체험존 · 브랜드존 · 이벤트존 배치</p></div></div><div class="card pc n"><h5><i>STEP 3</i>디테일 설계</h5><div class="b"><p>부스 구성 · 사은품 · 공간의 색과 연출까지 러너의 일상에 쓰이는 것으로</p></div></div></div></div>
     <div class="rv"><div class="lbl">성과</div><div class="res2" style="--n:2"><div class="card stat"><div class="bar"><i style="--w:45%"></i></div><b>4,542<small>명</small></b><span>브랜드 부스 체험 · 자사몰 신규 가입 3.4배</span><img src="assets/img/icon-flag.webp" alt=""></div><div class="card stat"><div class="bar"><i style="--w:60%"></i></div><b>+23.5<small>%</small></b><span>컬렉션 자켓 매출 · SNS 누적 도달 447만</span><img src="assets/img/icon-card.webp" alt=""></div></div></div>
     <div class="band rv"><b>Insight</b><span>브랜드가 <u>끼어드는</u> 행사가 아니라, 참가자가 즐기던 하루 안에 브랜드가 <u>녹아드는</u> 행사를 만든다.</span></div>
   </div></div></div><div class="pn">14</div></section><section class="sec case" id="c8"><div class="in"><div class="two">
@@ -253,7 +257,7 @@ h1,h2,h3,h4,h5,p,ul { margin: 0; } ul { padding: 0; list-style: none; } img { di
     <div class="phones"><img src="assets/img/fnf-bc-L.webp" alt="앰배서더 변우석 — 쇼케이스 현장"><img src="assets/img/fnf-bc-R.webp" alt="팬·취재진이 모인 포토월"></div></div>
   <div class="right">
     <div class="dark rv"><h5>목표</h5><p>화보로만 보던 AIRWELL 다운을 직접 체감하게 해, <b>올겨울 대표 패딩으로 포지셔닝</b></p></div>
-    <div class="rv"><div class="lbl">전략</div><div class="steps" style="--n:3"><div class="card step"><i>1</i><b>공간 설계</b><span>쇼케이스 → 쇼룸 → 포토존, 6개 존 동선으로 다운 착용 유도</span></div><div class="card step on"><i>2</i><b>앰배서더 현장</b><span>변우석이 다운을 입고 방문, “가볍고, 따뜻하다” 후기 촬영</span></div><div class="card step"><i>3</i><b>미디어 확산</b><span>미디어 · 인플루언서 초청 응대, 본사 운영 인력 15명 현장 배치</span></div></div></div>
+    <div class="rv"><div class="lbl">전략</div><div class="pair trio"><div class="card pc "><h5><i>STEP 1</i>공간 설계</h5><div class="b"><p>쇼케이스 → 쇼룸 → 포토존, 6개 존 동선으로 다운 착용 유도</p></div></div><div class="card pc "><h5><i>STEP 2</i>앰배서더 현장</h5><div class="b"><p>변우석이 다운을 입고 방문, “가볍고, 따뜻하다” 후기 촬영</p></div></div><div class="card pc n"><h5><i>STEP 3</i>미디어 확산</h5><div class="b"><p>미디어 · 인플루언서 초청 응대, 본사 운영 인력 15명 현장 배치</p></div></div></div></div>
     <div class="rv"><div class="lbl">성과</div><div class="res2" style="--n:2"><div class="card stat"><div class="bar"><i style="--w:95%"></i></div><b>474<small>만</small></b><span>현장 콘텐츠 누적 조회</span><img src="assets/img/icon-cursor.webp" alt=""></div><div class="card stat"><div class="bar"><i style="--w:100%"></i></div><b>+119.3<small>%</small></b><span>다운 전체 매출 · 행사 기간, 직전 주 대비</span><img src="assets/img/icon-gift.webp" alt=""></div></div></div>
     <div class="band rv"><b>Insight</b><span>앰배서더 화제성은 <u>직접 입어 보는 공간</u>과 만날 때, 조회수를 넘어 <u>매출 2.2배</u>의 구매 전환으로 이어진다.</span></div>
   </div></div></div><div class="pn">15</div></section><section class="sec thanks" id="thanks"><div class="in rv"><div class="eyebrow">Thank you</div><h2 class="title">감사합니다!</h2><p class="lead">끝까지 봐주셔서 감사합니다.<br>연락처는 지원서를 참고해 주세요.</p></div>
