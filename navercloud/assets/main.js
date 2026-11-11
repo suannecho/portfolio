@@ -196,26 +196,29 @@
   lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('is-open')) closeLb(); });
 
-  /* ---------- Fit each page to the viewport: shrink the content (not the backgrounds) until it fits ---------- */
+  /* ---------- Fit each page to the viewport: scale the content (not the backgrounds) until it fits ---------- */
   const fitSecs = $$('.cover, .overview, .case, .match, .contact');
   function fitAll() {
     const navH = nav.offsetHeight, avail = window.innerHeight - navH;
     fitSecs.forEach(sec => {
-      const kids = Array.from(sec.children);
-      kids.forEach(k => { k.style.zoom = ''; });
-      if (window.innerWidth <= 1100) return;
+      const kids = Array.from(sec.children).filter(k => getComputedStyle(k).position !== 'absolute');
+      if (window.innerWidth <= 1100) { kids.forEach(k => { k.style.transform = ''; }); return; }
       const cs = getComputedStyle(sec);
-      const pad = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
-      const natural = Math.max(...kids.map(k => k.offsetHeight)) + pad;
-      if (natural > avail) {
-        const z = Math.max(0.55, (avail - pad) / (natural - pad));
-        kids.forEach(k => { k.style.zoom = z.toFixed(3); });
-      }
+      const box = avail - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+      const natural = Math.max(...kids.map(k => k.offsetHeight));
+      const z = Math.min(1, box / natural);
+      kids.forEach(k => { const dy = (box - k.offsetHeight * z) / 2; k.style.transform = `translateY(${dy.toFixed(1)}px) scale(${z.toFixed(4)})`; });
     });
   }
   let fitTimer;
-  window.addEventListener('resize', () => { clearTimeout(fitTimer); fitTimer = setTimeout(fitAll, 120); });
-  window.addEventListener('load', () => setTimeout(fitAll, 50));
+  const scheduleFit = () => { clearTimeout(fitTimer); fitTimer = setTimeout(fitAll, 60); };
+  window.addEventListener('resize', scheduleFit);
+  window.addEventListener('load', scheduleFit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleFit);
+  if ('ResizeObserver' in window) {
+    const ro = new ResizeObserver(scheduleFit);
+    fitSecs.forEach(sec => Array.from(sec.children).forEach(k => ro.observe(k)));
+  }
   fitAll();
 
   /* ---------- Smooth anchor offset for fixed nav ---------- */
