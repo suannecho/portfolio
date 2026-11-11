@@ -67,8 +67,16 @@ h1,h2,h3,h4,h5,p,ul { margin: 0; } ul { padding: 0; list-style: none; } img { di
 .row div b { font-weight: 800; }
 /* pair cards with gradient header */
 .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.pair.trio { grid-template-columns: 1fr 1fr 1fr; }
+.pair.trio { grid-template-columns: 1fr 1fr 1fr; gap: 0 8px; --tip: 22px; }
+.pair.trio .pc { overflow: visible; border-radius: 0 0 var(--r) var(--r); background: transparent; box-shadow: none; }
+.pair.trio .pc h5 { position: relative; padding: 12px calc(var(--tip) + 10px) 12px calc(var(--tip) + 6px); clip-path: polygon(0 0, calc(100% - var(--tip)) 0, 100% 50%, calc(100% - var(--tip)) 100%, 0 100%, var(--tip) 50%); white-space: nowrap; }
+.pair.trio .pc:first-child h5 { clip-path: polygon(0 0, calc(100% - var(--tip)) 0, 100% 50%, calc(100% - var(--tip)) 100%, 0 100%); border-radius: var(--r) 0 0 0; padding-left: 18px; }
+.pair.trio .pc:last-child h5 { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, var(--tip) 50%); border-radius: 0 var(--r) 0 0; }
+.pair.trio .pc .b { background: #fff; border-radius: 0 0 var(--r) var(--r); box-shadow: var(--sh); position: relative; min-height: 96px; }
+.pair.trio .pc + .pc .b::before { content: "›"; position: absolute; left: -11px; top: 50%; transform: translateY(-50%); color: var(--blue); font-size: 26px; font-weight: 800; line-height: 1; }
+.pair.trio .pc:nth-child(1) h5 { background: linear-gradient(90deg,#6FA6FF,#4D8CFF); } .pair.trio .pc:nth-child(2) h5 { background: var(--acc); } .pair.trio .pc:nth-child(3) h5 { background: var(--navy); }
 .pc h5 i { font-style: normal; font-size: 12px; font-weight: 800; letter-spacing: .08em; opacity: .8; margin-right: 10px; }
+.pair.trio .pc h5 i { background: rgba(255,255,255,.22); border-radius: 999px; padding: 3px 8px; }
 .pc .b p { margin: 0; color: var(--body); }
 .pc .b p strong { color: var(--ink); }
 .pc { overflow: hidden; }
@@ -151,7 +159,7 @@ h1,h2,h3,h4,h5,p,ul { margin: 0; } ul { padding: 0; list-style: none; } img { di
 @media (max-width: 960px) {
   .sec { min-height: 0; padding: 80px 0 40px; display: block; }
   .two, .cover .in, .hero .in, .about .in, .ov .in, .grid2, .pair, .pair.trio, .vs, .ov .stats3 { grid-template-columns: 1fr; }
-  .steps { grid-template-columns: 1fr !important; gap: 36px; } .step + .step::before { display: none; }
+  .pair.trio { gap: 12px; } .pair.trio .pc h5, .pair.trio .pc:first-child h5, .pair.trio .pc:last-child h5 { clip-path: none !important; border-radius: var(--r) var(--r) 0 0; padding: 12px 18px; white-space: normal; } .pair.trio .pc + .pc .b::before { display: none; }
   .res2 { grid-template-columns: 1fr !important; }
   .phones { margin-top: 20px; } .phones img { max-height: none; }
   .vs .mid { height: 44px; }
@@ -260,7 +268,7 @@ h1,h2,h3,h4,h5,p,ul { margin: 0; } ul { padding: 0; list-style: none; } img { di
     <div class="rv"><div class="lbl">전략</div><div class="pair trio"><div class="card pc "><h5><i>STEP 1</i>공간 설계</h5><div class="b"><p>쇼케이스 → 쇼룸 → 포토존, 6개 존 동선으로 다운 착용 유도</p></div></div><div class="card pc "><h5><i>STEP 2</i>앰배서더 현장</h5><div class="b"><p>변우석이 다운을 입고 방문, “가볍고, 따뜻하다” 후기 촬영</p></div></div><div class="card pc n"><h5><i>STEP 3</i>미디어 확산</h5><div class="b"><p>미디어 · 인플루언서 초청 응대, 본사 운영 인력 15명 현장 배치</p></div></div></div></div>
     <div class="rv"><div class="lbl">성과</div><div class="res2" style="--n:2"><div class="card stat"><div class="bar"><i style="--w:95%"></i></div><b>474<small>만</small></b><span>현장 콘텐츠 누적 조회</span><img src="assets/img/icon-cursor.webp" alt=""></div><div class="card stat"><div class="bar"><i style="--w:100%"></i></div><b>+119.3<small>%</small></b><span>다운 전체 매출 · 행사 기간, 직전 주 대비</span><img src="assets/img/icon-gift.webp" alt=""></div></div></div>
     <div class="band rv"><b>Insight</b><span>앰배서더 화제성은 <u>직접 입어 보는 공간</u>과 만날 때, 조회수를 넘어 <u>매출 2.2배</u>의 구매 전환으로 이어진다.</span></div>
-  </div></div></div><div class="pn">15</div></section><section class="sec thanks" id="thanks"><div class="in rv"><div class="eyebrow">Thank you</div><h2 class="title">감사합니다!</h2><p class="lead">끝까지 봐주셔서 감사합니다.<br>연락처는 지원서를 참고해 주세요.</p></div>
+  </div></div></div><div class="pn">15</div></section><section class="sec thanks" id="thanks"><div class="in rv"><div class="eyebrow">Thank you</div><h2 class="title">감사합니다!</h2><p class="lead">끝까지 봐주셔서 감사합니다.</p></div>
 <div class="foot"><div class="in"><span>© 2026 SUANNE CHO</span><span>2022 — 2026 MARKETING STRATEGY PORTFOLIO · 16</span></div></div></section>
 <script>
 (function(){
