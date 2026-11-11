@@ -8,12 +8,12 @@
 <style>
 @font-face { font-family: "Pretendard Variable"; font-weight: 45 920; font-style: normal; font-display: swap; src: url("assets/fonts/pretendard-sub.woff2") format("woff2-variations"), url("assets/fonts/pretendard-sub.woff2") format("woff2"); }
 :root { --ink:#141414; --body:#4A4A4A; --mute:#8E8E8E; --navy:#0F2554; --blue:#2456F5; --sky:#22B8F0; --green:#03C75A; --soft:#E8F1FF; --soft2:#F3F7FF;
-  --acc:linear-gradient(90deg,#2456F5 0%,#22B8F0 100%); --sh:0 8px 24px rgba(15,37,84,.08), 0 1px 3px rgba(15,37,84,.05); --r:14px;
+  --acc:#2456F5; --sh:0 8px 24px rgba(15,37,84,.08), 0 1px 3px rgba(15,37,84,.05); --r:14px;
   --font:"Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { margin: 0; color: var(--ink); font-family: var(--font); font-size: 16px; line-height: 1.5; word-break: keep-all; -webkit-font-smoothing: antialiased; overflow-x: hidden;
-  background: radial-gradient(60% 70% at 0% 0%, #FFF4B8 0%, rgba(255,244,184,0) 60%), radial-gradient(55% 70% at 100% 20%, #BFE3FF 0%, rgba(191,227,255,0) 60%), radial-gradient(45% 55% at 95% 100%, #9CC8FF 0%, rgba(156,200,255,0) 60%), linear-gradient(120deg, #FFFCF0 0%, #F4F9FF 55%, #E9F2FF 100%); background-attachment: fixed; }
+  background: radial-gradient(50% 60% at 0% 0%, #FFF6C8 0%, rgba(255,246,200,0) 60%), radial-gradient(50% 60% at 100% 100%, #CFE4FF 0%, rgba(207,228,255,0) 60%), #F7FAFF; background-attachment: fixed; }
 h1,h2,h3,h4,h5,p,ul { margin: 0; } ul { padding: 0; list-style: none; } img { display: block; max-width: 100%; height: auto; } a { color: inherit; text-decoration: none; }
 .in { width: min(1400px, 100% - 2 * clamp(20px, 3.6vw, 64px)); margin: 0 auto; position: relative; }
 /* top bar */
@@ -35,19 +35,19 @@ h1,h2,h3,h4,h5,p,ul { margin: 0; } ul { padding: 0; list-style: none; } img { di
 .tag.g { background: var(--green); }
 /* cards */
 .card { background: #fff; border-radius: var(--r); box-shadow: var(--sh); }
-.stat { padding: 20px 22px; display: grid; gap: 8px; align-content: start; }
+.stat { padding: 22px 24px; display: grid; gap: 6px; align-content: center; padding-right: 70px; }
 .stat .bar { height: 10px; border-radius: 999px; background: var(--soft); position: relative; overflow: hidden; }
 .stat .bar i { position: absolute; inset: 0; width: var(--w); background: var(--acc); border-radius: 999px; }
 .stat b { font-size: clamp(30px, 2.6vw, 38px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
 .stat b small { font-size: .55em; font-weight: 700; margin-left: 2px; }
 .stat span { font-size: 15px; line-height: 1.5; color: var(--body); }
-.stat img { width: 36px; height: 36px; position: absolute; right: 18px; top: 18px; }
+.stat img { width: 40px; height: 40px; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
 .stat { position: relative; }
 .dark { background: var(--navy); color: #fff; border-radius: var(--r); padding: 22px 26px; box-shadow: var(--sh); }
 .dark h5 { font-size: 14px; font-weight: 600; opacity: .8; margin-bottom: 8px; }
 .dark p { font-size: 17.5px; line-height: 1.55; font-weight: 500; }
 .dark p b { font-weight: 800; }
-.band { background: var(--acc); color: #fff; border-radius: 999px; padding: 16px 28px; font-size: 17px; font-weight: 500; line-height: 1.45; display: flex; gap: 14px; align-items: center; box-shadow: var(--sh); }
+.band { background: var(--blue); color: #fff; border-radius: 999px; padding: 16px 28px; font-size: 17px; font-weight: 500; line-height: 1.45; display: flex; gap: 14px; align-items: center; box-shadow: var(--sh); }
 .band b { font-weight: 800; white-space: nowrap; }
 .band u { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1.5px; }
 /* numbered steps (deck p7) */
@@ -76,7 +76,7 @@ h1,h2,h3,h4,h5,p,ul { margin: 0; } ul { padding: 0; list-style: none; } img { di
 .pair.trio .pc:first-child .b { margin-left: 0; border-radius: 0 0 var(--r) var(--r); }
 .pair.trio .pc:last-child .b { margin-right: 0; }
 .pair.trio .pc + .pc .b::before { content: "›"; position: absolute; left: calc(var(--tip) * -1 - 2px); top: 50%; transform: translateY(-50%); color: var(--blue); font-size: 24px; font-weight: 800; line-height: 1; width: var(--tip); text-align: center; }
-.pair.trio .pc:nth-child(1) h5 { background: linear-gradient(90deg,#6FA6FF,#4D8CFF); } .pair.trio .pc:nth-child(2) h5 { background: var(--acc); } .pair.trio .pc:nth-child(3) h5 { background: var(--navy); }
+.pair.trio .pc:nth-child(1) h5 { background: #5B8DEF; } .pair.trio .pc:nth-child(2) h5 { background: var(--acc); } .pair.trio .pc:nth-child(3) h5 { background: var(--navy); }
 .pc h5 i { font-style: normal; font-size: 12px; font-weight: 800; letter-spacing: .08em; opacity: .8; margin-right: 10px; }
 .pair.trio .pc h5 i { background: rgba(255,255,255,.22); border-radius: 999px; padding: 3px 8px; }
 .pc .b p { margin: 0; color: var(--body); }
@@ -111,7 +111,7 @@ h1,h2,h3,h4,h5,p,ul { margin: 0; } ul { padding: 0; list-style: none; } img { di
 /* cover */
 .cover { align-items: center; }
 .cover .in { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 40px; }
-.cover .num { font-size: clamp(160px, 18vw, 300px); font-weight: 800; line-height: .8; letter-spacing: -0.06em; background: var(--acc); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.cover .num { font-size: clamp(160px, 18vw, 300px); font-weight: 800; line-height: .8; letter-spacing: -0.06em; color: var(--navy); }
 .cover .title { font-size: clamp(48px, 5.2vw, 84px); line-height: 1.02; letter-spacing: -0.045em; }
 .cover .title small { display: block; font-size: .5em; font-weight: 600; color: var(--body); margin-top: 12px; letter-spacing: -0.02em; }
 .cover .meta { margin-top: 26px; display: grid; gap: 10px; font-size: 17px; color: var(--body); }
@@ -192,7 +192,7 @@ h1,h2,h3,h4,h5,p,ul { margin: 0; } ul { padding: 0; list-style: none; } img { di
   <div class="num rv">01</div></div><div class="pn">03</div></section><section class="sec ov" id="ov"><div class="in">
   <div class="rv"><div class="eyebrow">Breadrop · Overview</div><h2 class="title">버려지는 빵을 살려내는<br>우리 동네 빵집 마감할인 플랫폼</h2><div class="card laptop" style="margin-top:22px"><img src="assets/img/laptop.webp" alt="브레드랍 웹사이트 화면"></div></div>
   <div class="side rv"><div class="dark"><h5>MVP 5차례</h5><p>버려지는 빵을 살려내는 우리 동네 빵집 마감할인 플랫폼을 5차례 MVP로 고도화</p></div>
-    <div class="stats3"><div class="card stat"><div class="bar"><i style="--w:100%"></i></div><b>7<small>곳</small></b><span>파트너사 베이커리</span><img src="assets/img/icon-handshake.webp" alt=""></div><div class="card stat"><div class="bar"><i style="--w:70%"></i></div><b>327<small>건</small></b><span>누적 판매건 수</span><img src="assets/img/icon-card.webp" alt=""></div><div class="card stat"><div class="bar"><i style="--w:85%"></i></div><b>961,380<small>원</small></b><span>누적 파트너사 추가 매출</span><img src="assets/img/icon-gift.webp" alt=""></div></div>
+    <div class="stats3"><div class="card stat"><b>7<small>곳</small></b><span>파트너사 베이커리</span><img src="assets/img/icon-handshake.webp" alt=""></div><div class="card stat"><b>327<small>건</small></b><span>누적 판매건 수</span><img src="assets/img/icon-card.webp" alt=""></div><div class="card stat"><b>961,380<small>원</small></b><span>누적 파트너사 추가 매출</span><img src="assets/img/icon-gift.webp" alt=""></div></div>
     <ul class="roles"><li><i>1</i>B2B 마케팅 &amp; 파트너십</li><li><i>2</i>데이터 분석</li><li><i>3</i>콘텐츠 마케팅 &amp; 캠페인 운영</li></ul></div>
 </div><div class="pn">04</div></section><section class="sec case" id="c1"><div class="in"><div class="two">
   <div class="left rv"><div class="tagr"><span class="tag g">#B2B</span><span class="eyebrow" style="margin:0">Case 1</span></div><h2 class="title">7개 파트너사,<br>현장에서 설득하다</h2><p class="lead">현장 기반 페인포인트 분석과 차별화된 가치 제안으로 7개 베이커리 파트너사 입점을 설득한 B2B 세일즈</p>
@@ -200,7 +200,7 @@ h1,h2,h3,h4,h5,p,ul { margin: 0; } ul { padding: 0; list-style: none; } img { di
   <div class="right">
     <div class="dark rv"><h5>문제</h5><p>경쟁 플랫폼이 이미 존재하는 시장에서, <b>차별화 없이는 베이커리 입점 설득이 불가능</b></p></div>
     <div class="rv"><div class="lbl">전략</div><div class="pair trio"><div class="card pc "><h5><i>STEP 1</i>현장 조사</h5><div class="b"><ul class="bul"><li>경쟁사 분석</li><li>페인포인트 도출</li></ul></div></div><div class="card pc "><h5><i>STEP 2</i>가치 제안 설계</h5><div class="b"><ul class="bul"><li>재고 등록 간소화</li><li>베이커리 마케팅 대행</li></ul></div></div><div class="card pc n"><h5><i>STEP 3</i>세일즈 실행</h5><div class="b"><ul class="bul"><li>B2B 세일즈 파이프라인</li><li>CRM 기반 스크립트 개선</li></ul></div></div></div></div>
-    <div class="rv"><div class="lbl">성과</div><div class="res2" style="--n:2"><div class="card stat"><div class="bar"><i style="--w:100%"></i></div><b>7<small>곳</small></b><span>베이커리 파트너십 체결</span><img src="assets/img/icon-handshake.webp" alt=""></div><div class="card stat"><div class="bar"><i style="--w:85%"></i></div><b>85<small>%</small></b><span>재계약률 달성 · 6개 파트너사 재계약</span><img src="assets/img/icon-shield.webp" alt=""></div></div></div>
+    <div class="rv"><div class="lbl">성과</div><div class="res2" style="--n:2"><div class="card stat"><b>7<small>곳</small></b><span>베이커리 파트너십 체결</span><img src="assets/img/icon-handshake.webp" alt=""></div><div class="card stat"><b>85<small>%</small></b><span>재계약률 달성 · 6개 파트너사 재계약</span><img src="assets/img/icon-shield.webp" alt=""></div></div></div>
     <div class="band rv"><b>Insight</b><span><u>B2B 고객</u>은 스펙이 아니라 <u>‘우리 문제를 해결한다’는 확신</u>으로 움직인다. 그 확신은 <u>고객의 현장 이해</u>에서 시작된다.</span></div>
   </div></div></div><div class="pn">05</div></section><section class="sec case" id="c2"><div class="in"><div class="two">
   <div class="left rv"><div class="tagr"><span class="tag g">#B2C</span><span class="eyebrow" style="margin:0">Case 2</span></div><h2 class="title">오프라인 행사,<br>전환율 73%를 만들다</h2><p class="lead">타겟 맞춤형 오프라인 행사를 통해 고객 접점을 확보하고, 실구매 전환으로 연결한 마케팅 캠페인</p>
@@ -208,7 +208,7 @@ h1,h2,h3,h4,h5,p,ul { margin: 0; } ul { padding: 0; list-style: none; } img { di
   <div class="right">
     <div class="dark rv"><h5>문제</h5><p>SNS 팔로워 증가와 구매 전환이 연결되지 않아, <b>실구매 타겟 접점 확보</b> 필요성 확인</p></div>
     <div class="rv"><div class="lbl">전략</div><div class="pair"><div class="card pc "><h5>캠페인 1. 기숙사 간식 나눔 행사</h5><div class="b"><div class="kv"><b>기획</b><span>시험기간 맞춤 간식 세트 제작 및 나눔</span></div><div class="arrow">▼</div><div class="kv out"><b>결과</b><span>간식 세트 500개 전량 소진</span></div></div></div><div class="card pc n"><h5>캠페인 2. 퀴즈 · 시식 부스</h5><div class="b"><div class="kv"><b>기획</b><span>퀴즈와 시식을 통해 구매 관심 유도</span></div><div class="arrow">▼</div><div class="kv out"><b>결과</b><span>부스 방문 및 참여 인원 300명 달성</span></div></div></div></div></div>
-    <div class="rv"><div class="lbl">성과</div><div class="res2" style="--n:2"><div class="card stat"><div class="bar"><i style="--w:65%"></i></div><b>131<small>명</small></b><span>캠페인 시작 5일 만에 주문 희망자 유입</span><img src="assets/img/icon-fire.webp" alt=""></div><div class="card stat"><div class="bar"><i style="--w:73%"></i></div><b>73<small>%</small></b><span>구매 전환율 달성</span><img src="assets/img/icon-card.webp" alt=""></div></div></div>
+    <div class="rv"><div class="lbl">성과</div><div class="res2" style="--n:2"><div class="card stat"><b>131<small>명</small></b><span>캠페인 시작 5일 만에 주문 희망자 유입</span><img src="assets/img/icon-fire.webp" alt=""></div><div class="card stat"><b>73<small>%</small></b><span>구매 전환율 달성</span><img src="assets/img/icon-card.webp" alt=""></div></div></div>
     <div class="band rv"><b>Insight</b><span><u>오프라인 행사</u>는 단순 홍보가 아니라, <u>신뢰를 만들고 구매 전환을 이끄는</u> 트리거이다.</span></div>
   </div></div></div><div class="pn">06</div></section><section class="sec case" id="c3"><div class="in"><div class="two">
   <div class="left rv"><div class="tagr"><span class="tag g">#B2C</span><span class="eyebrow" style="margin:0">Case 3</span></div><h2 class="title">운영 위기, 카피라이팅으로<br>매출 13% 올리다</h2><p class="lead">픽업 시간대 변경이라는 제약을 새로운 가치로 재포지셔닝하여, 고객 이탈 위기를 매출 증가로 전환한 캠페인</p>
@@ -216,7 +216,7 @@ h1,h2,h3,h4,h5,p,ul { margin: 0; } ul { padding: 0; list-style: none; } img { di
   <div class="right">
     <div class="dark rv"><h5>문제</h5><p>픽업 시간대 변경(저녁 픽업 → 아침 픽업)으로 <b>기존 고객 이탈 리스크</b> 발생</p></div>
     <div class="rv"><div class="lbl">전략</div><div class="pair"><div class="card pc "><h5>상황 맞춤형 카피라이팅</h5><div class="b"><div class="ba"><span>“가격” 중심</span><i>→</i><span class="on">“사용 상황” 중심</span></div><div class="arrow">▼</div><div class="kv out"><b>실행</b><span>오전 시간대 실제 이용 장면을 카피로 구체화</span></div></div></div><div class="card pc n"><h5>타이밍 맞춤 프로모션 설계</h5><div class="b"><div class="ba"><span class="on">등교 시간대 한정 할인</span><i>+</i><span class="on">묶음 구매 할인</span></div><div class="arrow">▼</div><div class="kv out"><b>효과</b><span>구매 유인과 객단가 상승 동시 달성</span></div></div></div></div></div>
-    <div class="rv"><div class="lbl">성과</div><div class="res2" style="--n:2"><div class="card stat"><div class="bar"><i style="--w:55%"></i></div><b>+13<small>%</small></b><span>매출 기존 대비 증가 · 이탈 우려와 정반대 결과</span><img src="assets/img/icon-flag.webp" alt=""></div><div class="card stat"><div class="bar"><i style="--w:80%"></i></div><b>2.5<small>배</small></b><span>단품 대비 묶음 구매 비율 증가</span><img src="assets/img/icon-gift.webp" alt=""></div></div></div>
+    <div class="rv"><div class="lbl">성과</div><div class="res2" style="--n:2"><div class="card stat"><b>+13<small>%</small></b><span>매출 기존 대비 증가 · 이탈 우려와 정반대 결과</span><img src="assets/img/icon-flag.webp" alt=""></div><div class="card stat"><b>2.5<small>배</small></b><span>단품 대비 묶음 구매 비율 증가</span><img src="assets/img/icon-gift.webp" alt=""></div></div></div>
     <div class="band rv"><b>Insight</b><span>불편도 <u>고객의 언어</u>로 <u>프레임을 전환</u>하면 매출 기회가 된다.</span></div>
   </div></div></div><div class="pn">07</div></section><section class="sec cover" id="p2"><div class="in">
   <div class="rv"><div class="eyebrow">Project 2</div><h2 class="title">JOSEPH &amp; STACEY<small>글로벌 마케팅 인턴</small></h2>
@@ -228,7 +228,7 @@ h1,h2,h3,h4,h5,p,ul { margin: 0; } ul { padding: 0; list-style: none; } img { di
   <div class="right">
     <div class="dark rv"><h5>목표</h5><p>타오바오 중심 이커머스가 장악한 중국 시장에서, <b>도매 거래처가 될 편집샵을 확보</b></p></div>
     <div class="rv"><div class="lbl">전략</div><div class="pair trio"><div class="card pc "><h5><i>STEP 1</i>시장 진단</h5><div class="b"><p>타오바오 확산 속에서도 편집샵이 살아남는 이유 파악</p></div></div><div class="card pc "><h5><i>STEP 2</i>우선순위 타겟팅</h5><div class="b"><p>브랜드 타겟과 겹치는 편집샵 우선순위로 선별</p></div></div><div class="card pc n"><h5><i>STEP 3</i>B2B 가치제안</h5><div class="b"><p>“검증된 브랜드로 방문객과 객단가를 함께 높인다”는 <strong>손익 언어</strong>로 설득</p></div></div></div></div>
-    <div class="rv"><div class="lbl">성과</div><div class="res2" style="--n:1"><div class="card stat"><div class="bar"><i style="--w:100%"></i></div><b>5<small>곳</small></b><span>청두·항저우 편집샵 대량 구매 달성</span><img src="assets/img/icon-cn.webp" alt=""></div></div></div>
+    <div class="rv"><div class="lbl">성과</div><div class="res2" style="--n:1"><div class="card stat"><b>5<small>곳</small></b><span>청두·항저우 편집샵 대량 구매 달성</span><img src="assets/img/icon-cn.webp" alt=""></div></div></div>
     <div class="band rv"><b>Insight</b><span><u>설득</u>은 스펙이 아니라, <u>상대의 손익 언어</u>로 다시 말할 때 시작된다.</span></div>
   </div></div></div><div class="pn">09</div></section><section class="sec case" id="c5"><div class="in"><div class="two">
   <div class="left rv"><div class="tagr"><span class="tag g">#B2C</span><span class="eyebrow" style="margin:0">Case 5</span></div><h2 class="title">인플루언서 마케팅,<br>시장별 설계로 고객을 넓히다</h2><p class="lead">시장별 소비 맥락과 브랜드 포지셔닝을 반영한 인플루언서 마케팅으로 고객층 확대와 구매 전환율 개선</p>
@@ -236,7 +236,7 @@ h1,h2,h3,h4,h5,p,ul { margin: 0; } ul { padding: 0; list-style: none; } img { di
   <div class="right">
     <div class="dark rv"><h5>목표</h5><p><b>한국</b> 기존 3-50대 중심 고객층에서 1-20대 젊은 층으로 확장<br><b>일본</b> 일본 내 조셉앤스테이시 브랜드 인지도 상승</p></div>
     <div class="rv"><div class="lbl">전략</div><div class="vs"><div class="card pc "><h5><img src="assets/img/icon-kr.webp" alt="">한국</h5><div class="b"><ul class="bul"><li>Z세대가 선망하는 인플루언서 섭외</li><li>신제품을 여름맞이 아이템으로 포지셔닝</li></ul></div></div><div class="mid">VS</div><div class="card pc n"><h5><img src="assets/img/icon-jp.webp" alt="">일본</h5><div class="b"><ul class="bul"><li>연령 구분 없이 다양한 인플루언서 활용</li><li>일상에서 자연스럽게 브랜드 노출</li></ul></div></div></div></div>
-    <div class="rv"><div class="lbl">성과</div><div class="res2" style="--n:2"><div class="card stat"><div class="bar"><i style="--w:42%"></i></div><b>+42<small>%</small></b><span>한국 10–20대 신규 고객 유입 증가</span><img src="assets/img/icon-kr.webp" alt=""></div><div class="card stat"><div class="bar"><i style="--w:28%"></i></div><b>+28<small>%</small></b><span>일본 신규 고객 유입 증가</span><img src="assets/img/icon-jp.webp" alt=""></div></div></div>
+    <div class="rv"><div class="lbl">성과</div><div class="res2" style="--n:2"><div class="card stat"><b>+42<small>%</small></b><span>한국 10–20대 신규 고객 유입 증가</span><img src="assets/img/icon-kr.webp" alt=""></div><div class="card stat"><b>+28<small>%</small></b><span>일본 신규 고객 유입 증가</span><img src="assets/img/icon-jp.webp" alt=""></div></div></div>
     <div class="band rv"><b>Insight</b><span>같은 마케팅 수단도, <u>시장의 맥락</u>과 <u>브랜드 포지셔닝</u>에 맞는 설계가 성과를 결정한다.</span></div>
   </div></div></div><div class="pn">10</div></section><section class="sec cover" id="p3"><div class="in">
   <div class="rv"><div class="eyebrow">Project 3</div><h2 class="title">NAVER Z<small>콘텐츠 마케팅 인턴</small></h2>
@@ -248,7 +248,7 @@ h1,h2,h3,h4,h5,p,ul { margin: 0; } ul { padding: 0; list-style: none; } img { di
   <div class="right">
     <div class="dark rv"><h5>문제</h5><p>SNS 노출 지표는 높았지만, 실제 앱 유입으로 이어지지 않는 <b>노출-전환 단절</b> 발생</p></div>
     <div class="rv"><div class="lbl">전략</div><div class="pair"><div class="card pc "><h5>Step 1. 전환 채널 인프라 구축</h5><div class="b"><ul class="bul"><li>업로드 빈도 확대</li><li>CTR 추적 체계 구축</li><li>공식 라이브 연결로 진입장벽 최소화</li></ul></div></div><div class="card pc n"><h5>Step 2. 메시지 최적화 · 표준화</h5><div class="b"><div class="kv"><b>실험</b><span>A/B 테스트로 고성과 CTA 발굴</span></div><div class="arrow">▼</div><div class="kv out"><b>적용</b><span>보상형 CTA 전면 적용, 성과 DB 문서화</span></div></div></div></div></div>
-    <div class="rv"><div class="lbl">성과</div><div class="res2" style="--n:2"><div class="card stat"><div class="bar"><i style="--w:100%"></i></div><b>2,000<small>+ 건</small></b><span>월평균 링크 클릭 수</span><img src="assets/img/icon-cursor.webp" alt=""></div><div class="card stat"><div class="bar"><i style="--w:40%"></i></div><b>30–40<small>%</small></b><span>공식 라이브 시청자 증가</span><img src="assets/img/icon-mic.webp" alt=""></div></div></div>
+    <div class="rv"><div class="lbl">성과</div><div class="res2" style="--n:2"><div class="card stat"><b>2,000<small>+ 건</small></b><span>월평균 링크 클릭 수</span><img src="assets/img/icon-cursor.webp" alt=""></div><div class="card stat"><b>30–40<small>%</small></b><span>공식 라이브 시청자 증가</span><img src="assets/img/icon-mic.webp" alt=""></div></div></div>
     <div class="band rv"><b>Insight</b><span><u>콘텐츠 마케팅</u>의 성과는 노출이 아니라, <u>전환을 추적하고 설계</u>할 때 만들어진다.</span></div>
   </div></div></div><div class="pn">12</div></section><section class="sec cover" id="p4"><div class="in">
   <div class="rv"><div class="eyebrow">Project 4</div><h2 class="title">F&amp;F<small>DX 마케팅 인턴</small></h2>
@@ -260,7 +260,7 @@ h1,h2,h3,h4,h5,p,ul { margin: 0; } ul { padding: 0; list-style: none; } img { di
   <div class="right">
     <div class="dark rv"><h5>문제</h5><p>스폰서 부스는 흔히 “브랜드가 끼어드는 자리”가 되어, <b>러너의 하루와 따로 놀기 쉬움</b></p></div>
     <div class="rv"><div class="lbl">전략</div><div class="pair trio"><div class="card pc "><h5><i>STEP 1</i>러너 관찰</h5><div class="b"><p>“어떻게 보여줄까”가 아니라 러너가 러닝·웰니스를 즐기는 방식에서 출발</p></div></div><div class="card pc "><h5><i>STEP 2</i>동선 설계</h5><div class="b"><p>달리기 전후 참가자의 움직임을 따라 체험존 · 브랜드존 · 이벤트존 배치</p></div></div><div class="card pc n"><h5><i>STEP 3</i>디테일 설계</h5><div class="b"><p>부스 구성 · 사은품 · 공간의 색과 연출까지 러너의 일상에 쓰이는 것으로</p></div></div></div></div>
-    <div class="rv"><div class="lbl">성과</div><div class="res2" style="--n:2"><div class="card stat"><div class="bar"><i style="--w:45%"></i></div><b>4,542<small>명</small></b><span>브랜드 부스 체험 · 자사몰 신규 가입 3.4배</span><img src="assets/img/icon-flag.webp" alt=""></div><div class="card stat"><div class="bar"><i style="--w:60%"></i></div><b>+23.5<small>%</small></b><span>컬렉션 자켓 매출 · SNS 누적 도달 447만</span><img src="assets/img/icon-card.webp" alt=""></div></div></div>
+    <div class="rv"><div class="lbl">성과</div><div class="res2" style="--n:2"><div class="card stat"><b>4,542<small>명</small></b><span>브랜드 부스 체험 · 자사몰 신규 가입 3.4배</span><img src="assets/img/icon-flag.webp" alt=""></div><div class="card stat"><b>+23.5<small>%</small></b><span>컬렉션 자켓 매출 · SNS 누적 도달 447만</span><img src="assets/img/icon-card.webp" alt=""></div></div></div>
     <div class="band rv"><b>Insight</b><span>브랜드가 <u>끼어드는</u> 행사가 아니라, 참가자가 즐기던 하루 안에 브랜드가 <u>녹아드는</u> 행사를 만든다.</span></div>
   </div></div></div><div class="pn">14</div></section><section class="sec case" id="c8"><div class="in"><div class="two">
   <div class="left rv"><div class="tagr"><span class="tag g">#B2C</span><span class="eyebrow" style="margin:0">Case 8</span></div><h2 class="title">474만 조회로 이어진,<br>WINTER BASECAMP</h2><p class="lead">AIRWELL 다운을 직접 입어 보는 도심 속 베이스캠프를 성수에서 2일간 운영, 앰배서더 변우석과 미디어·인플루언서를 초청한 브랜드 체험 행사</p>
@@ -268,7 +268,7 @@ h1,h2,h3,h4,h5,p,ul { margin: 0; } ul { padding: 0; list-style: none; } img { di
   <div class="right">
     <div class="dark rv"><h5>목표</h5><p>화보로만 보던 AIRWELL 다운을 직접 체감하게 해, <b>올겨울 대표 패딩으로 포지셔닝</b></p></div>
     <div class="rv"><div class="lbl">전략</div><div class="pair trio"><div class="card pc "><h5><i>STEP 1</i>공간 설계</h5><div class="b"><p>쇼케이스 → 쇼룸 → 포토존, 6개 존 동선으로 다운 착용 유도</p></div></div><div class="card pc "><h5><i>STEP 2</i>앰배서더 현장</h5><div class="b"><p>변우석이 다운을 입고 방문, “가볍고, 따뜻하다” 후기 촬영</p></div></div><div class="card pc n"><h5><i>STEP 3</i>미디어 확산</h5><div class="b"><p>미디어 · 인플루언서 초청 응대, 본사 운영 인력 15명 현장 배치</p></div></div></div></div>
-    <div class="rv"><div class="lbl">성과</div><div class="res2" style="--n:2"><div class="card stat"><div class="bar"><i style="--w:95%"></i></div><b>474<small>만</small></b><span>현장 콘텐츠 누적 조회</span><img src="assets/img/icon-cursor.webp" alt=""></div><div class="card stat"><div class="bar"><i style="--w:100%"></i></div><b>+119.3<small>%</small></b><span>다운 전체 매출 · 행사 기간, 직전 주 대비</span><img src="assets/img/icon-gift.webp" alt=""></div></div></div>
+    <div class="rv"><div class="lbl">성과</div><div class="res2" style="--n:2"><div class="card stat"><b>474<small>만</small></b><span>현장 콘텐츠 누적 조회</span><img src="assets/img/icon-cursor.webp" alt=""></div><div class="card stat"><b>+119.3<small>%</small></b><span>다운 전체 매출 · 행사 기간, 직전 주 대비</span><img src="assets/img/icon-gift.webp" alt=""></div></div></div>
     <div class="band rv"><b>Insight</b><span>앰배서더 화제성은 <u>직접 입어 보는 공간</u>과 만날 때, 조회수를 넘어 <u>매출 2.2배</u>의 구매 전환으로 이어진다.</span></div>
   </div></div></div><div class="pn">15</div></section><section class="sec thanks" id="thanks"><div class="in rv"><div class="eyebrow">Thank you</div><h2 class="title">감사합니다!</h2><p class="lead">끝까지 봐주셔서 감사합니다.</p></div>
 <div class="foot"><div class="in"><span>© 2026 SUANNE CHO</span><span>2022 — 2026 MARKETING STRATEGY PORTFOLIO · 16</span></div></div></section>
