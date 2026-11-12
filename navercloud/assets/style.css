@@ -329,7 +329,8 @@ button { font-family: inherit; cursor: pointer; }
   font-size: clamp(14px, 1.15vw, 19px); padding: 16px 14px; letter-spacing: -0.01em; white-space: nowrap;
   background: var(--mint-soft); color: var(--text); display: flex; align-items: center; justify-content: center;
 }
-.step:nth-child(2) .step__head { background: var(--mint); color: #fff; }
+.step:nth-child(1) .step__head { z-index: 3; }
+.step:nth-child(2) .step__head { background: var(--mint); color: #fff; z-index: 2; }
 .step:nth-child(3) .step__head { background: var(--green); color: #fff; }
 .steps--2 .step:nth-child(2) .step__head { background: var(--green); color: #fff; }
 .step:not(:first-child) .step__head { padding-left: calc(var(--tip) + 6px); }
