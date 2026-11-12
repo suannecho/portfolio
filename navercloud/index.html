@@ -10,7 +10,7 @@
   <meta property="og:type" content="website">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230B1B4D'/><text x='50' y='68' font-size='52' font-weight='700' text-anchor='middle' fill='%23FFE066' font-family='sans-serif'>S</text></svg>">
   <script>if("scrollRestoration" in history){history.scrollRestoration="manual";}</script>
-  <link rel="stylesheet" href="assets/style.css?v=202611120130">
+  <link rel="stylesheet" href="assets/style.css?v=202611120134">
 </head>
 <body>
 
@@ -106,7 +106,7 @@
           <div class="mc__head"><i>04</i><b>데이터 분석</b></div>
           <div class="mc__body">
             <a class="cc" href="#case-5"><i>CASE 5</i><b>SNS Story 기능 재정의,<br>링크 클릭 200배를 만들다</b><em>→</em></a>
-            <a class="cc cc--todo" href="#case-7"><i>CASE 7</i><b>준비 중</b><em>→</em></a>
+            <a class="cc" href="#case-7"><i>CASE 7</i><b>시즌이 끝나기 전에<br>성패를 알 수 있는 대시보드</b><em>→</em></a>
           </div>
         </div>
         </div>
@@ -501,18 +501,62 @@
         </div>
       </article>
 
-      <!-- case 7 (placeholder) -->
-      <article class="case section case--todo" id="case-7">
+      <!-- case 7: 대시보드 -->
+      <article class="case section case--dash" id="case-7">
         <div class="case__left">
-          <h3 class="case__title reveal fx-text">데이터 분석<br>(준비 중)</h3>
-          <p class="case__desc reveal">내용이 확정되면 추가될 예정입니다.</p>
-          <div class="phones reveal"><div class="phone phone--todo"></div><div class="phone phone--todo"></div></div>
+          <h3 class="case__title reveal fx-text">시즌이 끝나기 전에<br>성패를 알 수 있는 대시보드</h3>
+          <p class="case__desc reveal">사내 지식그래프와 검색·날씨·인스타그램 데이터를 매일 자동으로 모아,<br>선제 마케팅의 성패를 시즌 도중에 판정하는 대시보드를 직접 설계·구축</p>
+          <div class="dash reveal" aria-label="대시보드 구조도">
+            <p class="dash__label">데이터</p>
+            <div class="dash__chips">
+              <span class="dash__chip">네이버 검색</span><span class="dash__chip">사내 데이터</span>
+              <span class="dash__chip">날씨</span><span class="dash__chip">인스타그램</span>
+            </div>
+            <span class="dash__chip dash__chip--add">+ 사람이 입력</span>
+            <i class="dash__arrow" aria-hidden="true"></i>
+            <div class="dash__core"><b>매일 자동 갱신</b><span>서버 · DB 없이</span></div>
+            <i class="dash__arrow" aria-hidden="true"></i>
+            <p class="dash__label">팀이 보는 한 화면</p>
+            <div class="dash__out">
+              <span class="dash__chip dash__chip--hi">판정</span><span class="dash__chip">원인</span><span class="dash__chip">다음 조정</span>
+            </div>
+            <p class="dash__note">구조도 · 실제 화면·수치 아님</p>
+          </div>
         </div>
         <div class="case__right">
-          <div class="kv reveal"><span class="kv__k fx-text">문제</span><p class="kv__v todo"></p></div>
-          <div class="reveal"><span class="kv__k fx-text">전략</span><div class="todo todo--tall"></div></div>
-          <div class="reveal"><span class="kv__k fx-text">성과</span><div class="results"><div class="todo"></div><div class="todo"></div></div></div>
-          <blockquote class="insight reveal"><span class="insight__label">Insight</span><p class="todo"></p></blockquote>
+          <div class="kv reveal">
+            <span class="kv__k fx-text">문제</span>
+            <p class="kv__v">선제 마케팅의 성패는 <b>시즌이 끝나야 알 수 있어서</b>, 알았을 땐 이미 비용을 다 쓴 뒤</p>
+          </div>
+          <div class="reveal">
+            <span class="kv__k fx-text">전략</span>
+            <div class="steps steps--3">
+              <div class="step">
+                <div class="step__head">Step 1. 무엇을 잴까</div>
+                <div class="step__body"><p class="step__t">브랜드 관심도</p><p class="step__s">매출 대신</p></div>
+              </div>
+              <div class="step">
+                <div class="step__head">Step 2. 무엇과 비교할까</div>
+                <div class="step__body"><p class="step__t">작년의 같은 출발선</p><p class="step__s">두 달 일찍 시작한 만큼 보정</p></div>
+              </div>
+              <div class="step">
+                <div class="step__head">Step 3. 어떻게 판정할까</div>
+                <div class="step__body"><p class="step__t">결과 보기 전에 확정</p><p class="step__s">밀리면 “경고”가 나오게</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="reveal">
+            <span class="kv__k fx-text">성과</span>
+            <div class="shift">
+              <div class="shift__row"><span class="shift__k">판단 근거</span><span class="shift__before">감과 경험</span><i class="shift__arrow" aria-hidden="true">→</i><span class="shift__after">수요 신호 데이터</span></div>
+              <div class="shift__row"><span class="shift__k">확인 시점</span><span class="shift__before">시즌이 끝나야</span><i class="shift__arrow" aria-hidden="true">→</i><span class="shift__after">시즌 도중</span></div>
+              <div class="shift__row"><span class="shift__k">데이터 확인</span><span class="shift__before">일일이 찾아봄</span><i class="shift__arrow" aria-hidden="true">→</i><span class="shift__after">한 화면, 매일 자동</span></div>
+            </div>
+          </div>
+          <blockquote class="insight reveal">
+            <span class="insight__label">Insight</span>
+            <p>“맞았는지 끝나고 <u>확인</u>하는 게 아니라, <u>틀릴 수 있는 기준</u>을 먼저 정해 시즌 도중에 고친다.”</p>
+          </blockquote>
         </div>
       </article>
 
@@ -537,14 +581,14 @@
           <h3 class="case__title reveal fx-text">일단 매거진<br><span class="mag__handle">@1dan.mag</span></h3>
           <p class="case__desc reveal">F&amp;B, 패션, 뷰티, 라이프스타일, 트렌드 등 호기심에서 출발한 주제를 가벼운 형태로 다루는 매거진</p>
           <div class="mag__row phones reveal">
-            <img class="phone" src="assets/img/mag-1.webp" alt="일단 매거진 게시물 - 샤넬은 예쁜 여자를 좋아한다" width="281" height="605" data-lightbox>
-            <img class="phone" src="assets/img/mag-2.webp" alt="일단 매거진 게시물 - 악토버 베이커리" width="281" height="605" data-lightbox>
-            <img class="phone" src="assets/img/mag-3.webp" alt="일단 매거진 게시물 - goodvibespeople.mp3 플레이리스트" width="281" height="605" data-lightbox>
-            <img class="phone" src="assets/img/mag-4.webp" alt="일단 매거진 릴스 - 갖고 다니는 립 제품" width="281" height="605" data-lightbox>
+            <img class="phone" src="assets/img/mag-1.webp" alt="일단 매거진 게시물 - 샤넬은 예쁜 여자를 좋아한다" width="584" height="1200" data-lightbox>
+            <img class="phone" src="assets/img/mag-2.webp" alt="일단 매거진 게시물 - 악토버 베이커리" width="584" height="1200" data-lightbox>
+            <img class="phone" src="assets/img/mag-3.webp" alt="일단 매거진 게시물 - goodvibespeople.mp3 플레이리스트" width="584" height="1200" data-lightbox>
+            <img class="phone" src="assets/img/mag-4.webp" alt="일단 매거진 릴스 - 갖고 다니는 립 제품" width="584" height="1200" data-lightbox>
           </div>
         </div>
         <div class="mag__side reveal">
-          <img class="phone mag__profile" src="assets/img/mag-profile.webp" alt="일단 매거진 인스타그램 프로필 - 게시물 22, 팔로워 701, 최근 30일 조회 58.6만" width="466" height="1006" data-lightbox>
+          <img class="phone mag__profile" src="assets/img/mag-profile.webp" alt="일단 매거진 인스타그램 프로필 - 게시물 22, 팔로워 701, 최근 30일 조회 58.6만" width="974" height="2000" data-lightbox>
         </div>
       </article>
 
@@ -572,6 +616,6 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="assets/main.js?v=202611120130"></script>
+  <script src="assets/main.js?v=202611120134"></script>
 </body>
 </html>
