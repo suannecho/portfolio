@@ -221,12 +221,25 @@
   }
   fitAll();
   [300, 1200, 3000].forEach(ms => setTimeout(fitAll, ms));
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (!location.hash) { window.scrollTo(0, 0); window.addEventListener('load', () => { if (!location.hash) window.scrollTo(0, 0); }); }
+  setInterval(() => { void nav.getBoundingClientRect(); void document.body.offsetHeight; }, 500);
   // keep layout flushed while scrolling (cheap, and avoids stale paints of the fixed nav in some builds)
   let flushQueued = false;
   window.addEventListener('scroll', () => {
     if (flushQueued) return; flushQueued = true;
     requestAnimationFrame(() => { flushQueued = false; void nav.getBoundingClientRect(); void document.body.offsetHeight; });
   }, { passive: true });
+
+  /* ---------- Reel in the phone: play only while its page is on screen ---------- */
+  $$('.phone--video video').forEach(v => {
+    v.muted = true;
+    const tryPlay = () => { const p = v.play(); if (p && p.catch) p.catch(() => {}); };
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => entries.forEach(en => { en.isIntersecting ? tryPlay() : v.pause(); }), { threshold: 0.35 }).observe(v);
+    } else { tryPlay(); }
+    document.addEventListener('visibilitychange', () => { if (document.hidden) v.pause(); });
+  });
 
   /* ---------- ?debug=1 : on-screen diagnostics ---------- */
   if (location.search.indexOf('debug') > -1) {
@@ -246,7 +259,7 @@
         navigator.userAgent
       ].join(String.fromCharCode(10));
     };
-    upd(); setInterval(upd, 500);
+    if (location.search.indexOf('debug=2') > -1) { setTimeout(upd, 4000); let st; window.addEventListener('scroll', () => { clearTimeout(st); st = setTimeout(upd, 800); }, { passive: true }); } else { upd(); setInterval(upd, 500); }
   }
 
   /* ---------- Smooth anchor offset for fixed nav ---------- */
