@@ -118,7 +118,7 @@ button { font-family: inherit; cursor: pointer; }
   border-bottom: 1px solid transparent;
   transition: background 0.4s, border-color 0.4s, backdrop-filter 0.4s;
 }
-.nav.is-scrolled { background: rgba(243, 248, 255, 0.85); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom-color: var(--line); }
+.nav.is-scrolled { background: rgba(243, 248, 255, 0.96); border-bottom-color: var(--line); }
 .nav__logo { font-weight: 800; font-size: 17px; letter-spacing: -0.02em; }
 .nav__logo span { color: var(--mint); font-weight: 600; }
 .nav__links { display: flex; gap: 6px; }
@@ -566,4 +566,4 @@ button { font-family: inherit; cursor: pointer; }
 .phone--todo:hover { box-shadow: none; }
 
 /* ---------- One page per screen (desktop) ---------- */
-@media (min-width: 1101px) { html { scroll-snap-type: y mandatory; scroll-padding-top: var(--nav-h); } .hero, .match, .cover, .overview, .case, .contact { scroll-snap-align: start; scroll-snap-stop: always; } .match, .cover, .overview, .case, .contact { height: calc(100svh - var(--nav-h)); min-height: 0; overflow: clip; } .match, .cover, .overview, .case, .contact { align-items: flex-start; } .match > *, .cover > *, .overview > *, .case > *, .contact > * { transform-origin: 50% 0; } }
+@media (min-width: 1101px) { html { scroll-snap-type: y mandatory; scroll-padding-top: var(--nav-h); } .hero, .match, .cover, .overview, .case, .contact { scroll-snap-align: start; scroll-snap-stop: always; } .match, .cover, .overview, .case, .contact { height: calc(100svh - var(--nav-h)); min-height: 0; overflow: clip; align-items: flex-start; } .match > *, .cover > *, .overview > *, .case > *, .contact > * { transform-origin: 50% 0; } }

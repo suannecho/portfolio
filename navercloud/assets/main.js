@@ -220,6 +220,13 @@
     fitSecs.forEach(sec => Array.from(sec.children).forEach(k => ro.observe(k)));
   }
   fitAll();
+  [300, 1200, 3000].forEach(ms => setTimeout(fitAll, ms));
+  // keep layout flushed while scrolling (cheap, and avoids stale paints of the fixed nav in some builds)
+  let flushQueued = false;
+  window.addEventListener('scroll', () => {
+    if (flushQueued) return; flushQueued = true;
+    requestAnimationFrame(() => { flushQueued = false; void nav.getBoundingClientRect(); void document.body.offsetHeight; });
+  }, { passive: true });
 
   /* ---------- ?debug=1 : on-screen diagnostics ---------- */
   if (location.search.indexOf('debug') > -1) {
