@@ -222,6 +222,10 @@
   fitAll();
   [300, 1200, 3000].forEach(ms => setTimeout(fitAll, ms));
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  // block trackpad pinch-zoom on desktop: it zooms the visual viewport, sticks to the tab across reloads,
+  // and leaves the fixed nav, dots and page snapping offset from the screen
+  window.addEventListener('wheel', e => { if (e.ctrlKey && window.innerWidth > 1100) e.preventDefault(); }, { passive: false });
+  ['gesturestart', 'gesturechange'].forEach(ev => document.addEventListener(ev, e => { if (window.innerWidth > 1100) e.preventDefault(); }));
   if (!location.hash) { window.scrollTo(0, 0); window.addEventListener('load', () => { if (!location.hash) window.scrollTo(0, 0); }); }
   setInterval(() => { void nav.getBoundingClientRect(); void document.body.offsetHeight; }, 500);
   // keep layout flushed while scrolling (cheap, and avoids stale paints of the fixed nav in some builds)
