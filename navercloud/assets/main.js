@@ -221,6 +221,27 @@
   }
   fitAll();
 
+  /* ---------- ?debug=1 : on-screen diagnostics ---------- */
+  if (location.search.indexOf('debug') > -1) {
+    const box = document.createElement('pre');
+    box.style.cssText = 'position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:9999;background:rgba(11,27,77,.92);color:#fff;font:12px/1.5 monospace;padding:14px 18px;border-radius:12px;max-width:90vw;white-space:pre-wrap;pointer-events:none';
+    document.body.appendChild(box);
+    const rect = s => { const e = document.querySelector(s); if (!e) return s + ': none'; const r = e.getBoundingClientRect(); return `${s}: L${Math.round(r.left)} R${Math.round(innerWidth - r.right)} T${Math.round(r.top)} B${Math.round(r.bottom)} W${Math.round(r.width)} H${Math.round(r.height)}`; };
+    const upd = () => {
+      const vv = window.visualViewport;
+      box.textContent = [
+        `inner ${innerWidth}x${innerHeight}  client ${document.documentElement.clientWidth}x${document.documentElement.clientHeight}  outer ${outerWidth}x${outerHeight}  dpr ${devicePixelRatio}`,
+        vv ? `visualViewport ${Math.round(vv.width)}x${Math.round(vv.height)} scale ${vv.scale.toFixed(3)} offset ${Math.round(vv.offsetLeft)},${Math.round(vv.offsetTop)} page ${Math.round(vv.pageLeft)},${Math.round(vv.pageTop)}` : 'no visualViewport',
+        `scroll ${Math.round(scrollX)},${Math.round(scrollY)}  docW ${document.documentElement.scrollWidth}  snap ${getComputedStyle(document.documentElement).scrollSnapType}`,
+        rect('.nav'), rect('.dots'), rect('.match'), rect('.match__inner'), rect('#project-1'), rect('.cover__inner'), rect('#case-1'), rect('#case-1 .case__left'), rect('#case-1 .case__right'),
+        `match__inner transform: ${document.querySelector('.match__inner').style.transform || '-'}  origin: ${getComputedStyle(document.querySelector('.match__inner')).transformOrigin}`,
+        `fit-pad ${getComputedStyle(document.documentElement).getPropertyValue('--fit-pad')}  nav-h ${getComputedStyle(document.documentElement).getPropertyValue('--nav-h')}`,
+        navigator.userAgent
+      ].join(String.fromCharCode(10));
+    };
+    upd(); setInterval(upd, 500);
+  }
+
   /* ---------- Smooth anchor offset for fixed nav ---------- */
   $$('a[href^="#"]').forEach(a => a.addEventListener('click', (e) => {
     const id = a.getAttribute('href').slice(1);
