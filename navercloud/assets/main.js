@@ -207,7 +207,7 @@
       const box = avail - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
       const natural = Math.max(...kids.map(k => k.offsetHeight));
       const z = Math.min(1, box / natural);
-      kids.forEach(k => { const dy = (box - k.offsetHeight * z) / 2; k.style.transform = `translateY(${dy.toFixed(1)}px) scale(${z.toFixed(4)})`; });
+      kids.forEach(k => { const dy = (k.classList.contains('case__left') || k.classList.contains('mag__main')) ? 0 : (box - k.offsetHeight * z) / 2; k.style.transform = `translateY(${dy.toFixed(1)}px) scale(${z.toFixed(4)})`; });
     });
   }
   let fitTimer;
