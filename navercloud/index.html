@@ -10,7 +10,7 @@
   <meta property="og:type" content="website">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230B1B4D'/><text x='50' y='68' font-size='52' font-weight='700' text-anchor='middle' fill='%23FFE066' font-family='sans-serif'>S</text></svg>">
   <script>if("scrollRestoration" in history){history.scrollRestoration="manual";}</script>
-  <link rel="stylesheet" href="assets/style.css?v=202611120144">
+  <link rel="stylesheet" href="assets/style.css?v=202611120150">
 </head>
 <body>
 
@@ -480,26 +480,36 @@
       </article>
 
       <!-- case 7: 대시보드 -->
-      <article class="case section case--dash" id="case-7">
+      <article class="case section" id="case-7">
         <span class="case__cat"><b>데이터 분석</b><i>CASE 7</i></span>
         <div class="case__left">
           <h3 class="case__title reveal fx-text">시즌이 끝나기 전에<br>성패를 알 수 있는 대시보드</h3>
           <p class="case__desc reveal">사내 지식그래프와 검색·날씨·인스타그램 데이터를 매일 자동으로 모아,<br>선제 마케팅의 성패를 시즌 도중에 판정하는 대시보드를 직접 설계·구축</p>
-          <div class="dash reveal" aria-label="대시보드 구조도">
-            <p class="dash__label">데이터</p>
-            <div class="dash__chips">
-              <span class="dash__chip">네이버 검색</span><span class="dash__chip">사내 데이터</span>
-              <span class="dash__chip">날씨</span><span class="dash__chip">인스타그램</span>
+          <div class="laptop reveal" aria-label="대시보드 화면 구성 (구조도)">
+            <div class="laptop__screen">
+              <div class="ui">
+                <div class="ui__bar"><b>선제 마케팅 대시보드</b><span>매일 06:00 자동 갱신 · 서버·DB 없이</span></div>
+                <div class="ui__tiles">
+                  <div class="ui__tile ui__tile--warn"><i>판정</i><b>경고</b><s>기준선 하회 · 조정 필요</s></div>
+                  <div class="ui__tile"><i>원인</i><b>브랜드 관심도</b><s>작년 같은 출발선 대비</s></div>
+                  <div class="ui__tile"><i>다음 조정</i><b>채널 비중 재배분</b><s>이번 주 안에</s></div>
+                </div>
+                <div class="ui__chart">
+                  <div class="ui__legend"><em>올해</em><em class="ui__legend--last">작년 (두 달 보정)</em><em class="ui__legend--band">경고 구간</em></div>
+                  <svg viewBox="0 0 400 120" preserveAspectRatio="none" aria-hidden="true">
+                    <rect x="0" y="78" width="400" height="42" fill="rgba(255,96,96,.10)"/>
+                    <line x1="0" y1="78" x2="400" y2="78" stroke="rgba(255,96,96,.55)" stroke-width="1.5" stroke-dasharray="4 4"/>
+                    <path d="M0 70 C 60 62, 90 48, 140 44 S 240 30, 300 28 S 370 22, 400 20" fill="none" stroke="#6B7690" stroke-width="2" stroke-dasharray="5 4"/>
+                    <path d="M0 72 C 50 66, 80 60, 120 58 S 200 60, 250 68 S 330 86, 400 92" fill="none" stroke="#1F5BFF" stroke-width="2.5"/>
+                    <circle cx="400" cy="92" r="4" fill="#1F5BFF"/>
+                  </svg>
+                  <div class="ui__axis"><span>시즌 시작</span><span>오늘</span></div>
+                </div>
+                <div class="ui__src"><i>데이터</i><span>네이버 검색</span><span>사내 데이터</span><span>날씨</span><span>인스타그램</span><span class="ui__src--add">+ 사람이 입력</span></div>
+              </div>
             </div>
-            <span class="dash__chip dash__chip--add">+ 사람이 입력</span>
-            <i class="dash__arrow" aria-hidden="true"></i>
-            <div class="dash__core"><b>매일 자동 갱신</b><span>서버 · DB 없이</span></div>
-            <i class="dash__arrow" aria-hidden="true"></i>
-            <p class="dash__label">팀이 보는 한 화면</p>
-            <div class="dash__out">
-              <span class="dash__chip dash__chip--hi">판정</span><span class="dash__chip">원인</span><span class="dash__chip">다음 조정</span>
-            </div>
-            <p class="dash__note">구조도 · 실제 화면·수치 아님</p>
+            <img class="laptop__frame" src="assets/img/laptop-frame.webp" alt="" width="1600" height="969">
+            <p class="laptop__note">구조도 · 실제 화면·수치 아님</p>
           </div>
         </div>
         <div class="case__right">
@@ -526,10 +536,9 @@
           </div>
           <div class="reveal">
             <span class="kv__k fx-text">성과</span>
-            <div class="shift">
-              <div class="shift__row"><span class="shift__k">판단 근거</span><span class="shift__before">감과 경험</span><i class="shift__arrow" aria-hidden="true">→</i><span class="shift__after">수요 신호 데이터</span></div>
-              <div class="shift__row"><span class="shift__k">확인 시점</span><span class="shift__before">시즌이 끝나야</span><i class="shift__arrow" aria-hidden="true">→</i><span class="shift__after">시즌 도중</span></div>
-              <div class="shift__row"><span class="shift__k">데이터 확인</span><span class="shift__before">일일이 찾아봄</span><i class="shift__arrow" aria-hidden="true">→</i><span class="shift__after">한 화면, 매일 자동</span></div>
+            <div class="results">
+              <div class="result"><img class="result__icon" src="assets/img/icon-flag.webp" alt="" width="180" height="180"><p>판정 시점 시즌 종료 후 → <b>시즌 도중</b><br>판단 근거 감과 경험 → <b>수요 신호 데이터</b></p></div>
+              <div class="result"><img class="result__icon" src="assets/img/icon-location.webp" alt="" width="180" height="180"><p>팀이 보는 <b>한 화면</b><br>서버·DB 없이 <b>매일 자동 갱신</b></p></div>
             </div>
           </div>
           <blockquote class="insight reveal">
@@ -596,6 +605,6 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="assets/main.js?v=202611120144"></script>
+  <script src="assets/main.js?v=202611120150"></script>
 </body>
 </html>
