@@ -58,7 +58,7 @@
   $$('[data-nav]').forEach(a => { navMap[a.dataset.nav] = a; });
   const dotMap = {};
   $$('[data-dot]').forEach(a => { dotMap[a.dataset.dot] = a; });
-  const sections = ['about', 'project-1', 'project-2', 'project-3', 'project-4', 'contact'].map(id => $('#' + id)).filter(Boolean);
+  const sections = ['about', 'project-1', 'project-2', 'project-3', 'project-4', 'project-5', 'contact'].map(id => $('#' + id)).filter(Boolean);
   function updateActive() {
     const y = window.scrollY + window.innerHeight * 0.35;
     let current = null;
