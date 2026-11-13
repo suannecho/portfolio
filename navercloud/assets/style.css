@@ -563,7 +563,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .laptop__frame { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-.laptop__screen { position: absolute; left: 10.1%; top: 3.44%; width: 79.8%; height: 85.57%; background: #EEF3FC; overflow: hidden; border-radius: 4px; container-type: inline-size; }
+.laptop__screen { position: absolute; left: 10.1%; top: 3.44%; width: 79.8%; height: 85.57%; background: #0B1B4D; overflow: hidden; container-type: inline-size; }
 .laptop__note { position: absolute; left: 0; right: 0; bottom: -30px; text-align: center; font-size: 14px; font-weight: 600; color: var(--text-dim); }
 .ui { position: absolute; inset: 0; display: grid; grid-template-columns: 5.6cqw 1fr; font-size: 2.1cqw; color: var(--text); line-height: 1.35; background: #F4F7FD; }
 .ui__side { background: var(--bg-card); display: flex; flex-direction: column; align-items: center; gap: 2.2cqw; padding-top: 2.2cqw; }
