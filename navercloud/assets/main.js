@@ -235,6 +235,19 @@
     requestAnimationFrame(() => { flushQueued = false; void nav.getBoundingClientRect(); void document.body.offsetHeight; });
   }, { passive: true });
 
+  /* ---------- Magazine carousels: auto-advance while on screen ---------- */
+  $$('.phone--car').forEach(ph => {
+    const track = $('.car__track', ph), dots = $$('.car__dots i', ph), n = +ph.dataset.n;
+    let i = 0, timer = null;
+    const show = () => { track.style.transform = `translateX(${-i * 100}%)`; dots.forEach((d, k) => d.classList.toggle('is-on', k === Math.min(i, dots.length - 1))); };
+    const start = () => { if (timer || reduceMotion) return; timer = setInterval(() => { i = (i + 1) % n; show(); }, 2800); };
+    const stop = () => { clearInterval(timer); timer = null; };
+    show();
+    if ('IntersectionObserver' in window) new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? start() : stop()), { threshold: 0.3 }).observe(ph);
+    else start();
+    document.addEventListener('visibilitychange', () => { document.hidden ? stop() : null; });
+  });
+
   /* ---------- Reel in the phone: play only while its page is on screen ---------- */
   $$('.phone--video video').forEach(v => {
     v.muted = true;
