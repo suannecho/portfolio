@@ -235,17 +235,45 @@
     requestAnimationFrame(() => { flushQueued = false; void nav.getBoundingClientRect(); void document.body.offsetHeight; });
   }, { passive: true });
 
-  /* ---------- Magazine carousels: auto-advance while on screen ---------- */
+  /* ---------- Magazine carousels: base screen + slides (clipped to the post block) + frame, drawn in one canvas ---------- */
   $$('.phone--car').forEach(ph => {
-    const track = $('.car__track', ph), dots = $$('.car__dots i', ph), n = +ph.dataset.n;
-    let i = 0, timer = null;
-    const show = () => { track.style.transform = `translateX(${-i * 100}%)`; dots.forEach((d, k) => d.classList.toggle('is-on', k === i)); };
-    const start = () => { if (timer || reduceMotion) return; timer = setInterval(() => { i = (i + 1) % n; show(); }, 2800); };
+    const cv = $('.car__cv', ph), ctx = cv.getContext('2d'), dots = $$('.car__dots i', ph), n = +ph.dataset.n, key = ph.dataset.key;
+    const BLOCK = { x: 24, y: 244, w: 533, h: 666 };              // post photo block in the 584x1200 frame
+    const load = src => new Promise(res => { const im = new Image(); im.onload = () => res(im); im.onerror = () => res(null); im.src = src; });
+    let base = null, frame = null, slides = [], i = 0, prog = 0, animFrom = 0, animStart = 0, timer = null, ready = false;
+    const dpr = Math.min(window.devicePixelRatio || 1, 3);
+    function size() {
+      const w = ph.clientWidth, h = ph.clientHeight; if (!w) return;
+      if (cv.width !== Math.round(w * dpr)) { cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); }
+    }
+    function draw() {
+      if (!ready) return; size();
+      const sx = cv.width / 584, sy = cv.height / 1200;
+      ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height);
+      ctx.drawImage(base, 0, 0, cv.width, cv.height);
+      ctx.save(); ctx.beginPath(); ctx.rect(Math.round(BLOCK.x * sx), Math.round(BLOCK.y * sy), Math.round(BLOCK.w * sx), Math.round(BLOCK.h * sy)); ctx.clip();
+      const bw = BLOCK.w * sx, bx = BLOCK.x * sx, by = BLOCK.y * sy, bh = BLOCK.h * sy;
+      const cur = slides[i], nxt = slides[(i + 1) % n];
+      if (prog > 0 && nxt) { ctx.drawImage(cur, bx - bw * prog, by, bw, bh); ctx.drawImage(nxt, bx + bw * (1 - prog), by, bw, bh); }
+      else if (cur) ctx.drawImage(cur, bx, by, bw, bh);
+      ctx.restore();
+      ctx.drawImage(frame, 0, 0, cv.width, cv.height);
+      dots.forEach((d, k) => d.classList.toggle('is-on', k === i));
+    }
+    function step(now) {
+      const k = Math.min(1, (now - animStart) / 550); prog = 1 - Math.pow(1 - k, 3); draw();
+      if (k < 1) requestAnimationFrame(step); else { prog = 0; i = (i + 1) % n; draw(); }
+    }
+    const next = () => { if (prog === 0) { animStart = performance.now(); prog = 0.0001; requestAnimationFrame(step); } };
+    const start = () => { if (timer || reduceMotion) return; timer = setInterval(next, 2800); };
     const stop = () => { clearInterval(timer); timer = null; };
-    show();
-    if ('IntersectionObserver' in window) new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? start() : stop()), { threshold: 0.3 }).observe(ph);
-    else start();
-    document.addEventListener('visibilitychange', () => { document.hidden ? stop() : null; });
+    Promise.all([load(`assets/img/scr2-${key}.webp`), load('assets/img/phone-frame-sm.webp'), ...Array.from({ length: n }, (_, k) => load(`assets/img/car/${key}-${k + 1}.webp`))]).then(imgs => {
+      base = imgs[0]; frame = imgs[1]; slides = imgs.slice(2); ready = !!(base && frame && slides[0]); draw();
+      if ('IntersectionObserver' in window) new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? start() : stop()), { threshold: 0.3 }).observe(ph);
+      else start();
+    });
+    if ('ResizeObserver' in window) new ResizeObserver(() => draw()).observe(ph);
+    document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
   });
 
   /* ---------- Reel in the phone: play only while its page is on screen ---------- */
