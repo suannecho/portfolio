@@ -172,6 +172,15 @@
     hero.addEventListener('pointerleave', () => { heroInner.style.transform = ''; heroGlow.style.translate = ''; });
   }
 
+  /* ---------- Contents page: the hovered case's phone floats in at the right ---------- */
+  const tocPeek = $('#tocPeek');
+  if (tocPeek && window.matchMedia('(hover: hover)').matches) {
+    $$('.tc').forEach(a => {
+      a.addEventListener('mouseenter', () => { const s = a.dataset.img; if (!s) { tocPeek.classList.remove('is-on'); return; } if (tocPeek.getAttribute('src') !== s) tocPeek.src = s; tocPeek.classList.add('is-on'); });
+      a.addEventListener('mouseleave', () => tocPeek.classList.remove('is-on'));
+    });
+  }
+
   /* ---------- Lightbox ---------- */
   const lb = $('#lightbox');
   const lbImg = $('#lightboxImg');
@@ -237,8 +246,13 @@
 
   /* ---------- Magazine carousels: base screen + slides (clipped to the post block) + frame, drawn in one canvas ---------- */
   $$('.phone--car').forEach(ph => {
-    const cv = $('.car__cv', ph), ctx = cv.getContext('2d'), dots = $$('.car__dots i', ph), n = +ph.dataset.n, key = ph.dataset.key;
+    const cv = $('.car__cv', ph), ctx = cv.getContext('2d'), dots = $$('.car__dots i', ph), key = ph.dataset.key;
+    let n = +ph.dataset.n;
+    const FULL = ph.dataset.full === '1';                          // slides are whole-screen screenshots: no base image, dots drawn here
     const BLOCK = { x: 24, y: 244, w: 533, h: 666 };              // post photo block in the 584x1200 frame
+    const SCREEN = { x: 26, y: 23, w: 532, h: 1154, r: 76 };      // screen cutout of phone-frame-sm (measured from its alpha)
+    const IG_DOTS = { top: 0.822, bottom: 0.86, mid: 0.8415 };     // instagram's own dots, as a fraction of the screenshot height
+    const IG_POST = { top: 389 / 2000, bottom: 1538 / 2000 };       // the post's photo block: the only part that slides
     const load = src => new Promise(res => { const im = new Image(); im.onload = () => res(im); im.onerror = () => res(null); im.src = src; });
     let base = null, frame = null, slides = [], i = 0, prog = 0, animFrom = 0, animStart = 0, timer = null, ready = false;
     const dpr = Math.min(window.devicePixelRatio || 1, 3);
@@ -246,10 +260,43 @@
       const w = ph.clientWidth, h = ph.clientHeight; if (!w) return;
       if (cv.width !== Math.round(w * dpr)) { cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); }
     }
+    function roundRect(x, y, w, h, r) {
+      ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+    }
+    function drawFull(sx, sy) {
+      const bx = SCREEN.x * sx, by = SCREEN.y * sy, bw = SCREEN.w * sx, bh = SCREEN.h * sy;
+      ctx.save(); roundRect(bx, by, bw, bh, SCREEN.r * sx); ctx.clip();
+      // cover-fit each 920x2000 screenshot to the screen cutout, top-aligned; a 584x1200 slide is already in frame space
+      const fit = im => { const s = Math.max(bw / im.width, bh / im.height); return { w: im.width * s, h: im.height * s }; };
+      const cur = slides[i], nxt = slides[(i + 1) % n];
+      const put = (im, dx) => {
+        if (!im) return;
+        if (im.width === 584 && im.height === 1200) { ctx.drawImage(im, dx - bx, 0, cv.width, cv.height); return; }
+        const f = fit(im); ctx.drawImage(im, dx + (bw - f.w) / 2, by, f.w, f.h);
+      };
+      // the app chrome (status bar, header, actions, caption) stays put: the first screenshot is the ground
+      put(slides[0], bx);
+      // only the photo block slides, like a real carousel
+      const shotH = bw * (2000 / 920);
+      const py0 = by + shotH * IG_POST.top, py1 = by + shotH * IG_POST.bottom;
+      ctx.save(); ctx.beginPath(); ctx.rect(bx, py0, bw, py1 - py0); ctx.clip();
+      if (prog > 0 && nxt) { put(cur, bx - bw * prog); put(nxt, bx + bw * (1 - prog)); } else put(cur, bx);
+      ctx.restore();
+      // a white band over instagram's dots, then our own
+      const y0 = by + shotH * IG_DOTS.top, y1 = by + shotH * IG_DOTS.bottom, ym = by + shotH * IG_DOTS.mid;
+      ctx.fillStyle = '#fff'; ctx.fillRect(bx, y0, bw, y1 - y0);
+      const rad = 3.4 * sx, gap = 13 * sx, x0 = bx + bw / 2 - (n - 1) * gap / 2;
+      for (let k = 0; k < n; k++) {
+        const on = k === i; ctx.beginPath(); ctx.arc(x0 + k * gap, ym, on ? rad * 1.3 : rad, 0, Math.PI * 2);
+        ctx.fillStyle = on ? '#1F5BFF' : '#D5D9E3'; ctx.fill();
+      }
+      ctx.restore();
+    }
     function draw() {
       if (!ready) return; size();
       const sx = cv.width / 584, sy = cv.height / 1200;
       ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height);
+      if (FULL) { drawFull(sx, sy); ctx.drawImage(frame, 0, 0, cv.width, cv.height); return; }
       ctx.drawImage(base, 0, 0, cv.width, cv.height);
       ctx.save(); ctx.beginPath(); ctx.rect(Math.round(BLOCK.x * sx), Math.round(BLOCK.y * sy), Math.round(BLOCK.w * sx), Math.round(BLOCK.h * sy)); ctx.clip();
       const bw = BLOCK.w * sx, bx = BLOCK.x * sx, by = BLOCK.y * sy, bh = BLOCK.h * sy;
@@ -267,8 +314,10 @@
     const next = () => { if (prog === 0) { animStart = performance.now(); prog = 0.0001; requestAnimationFrame(step); } };
     const start = () => { if (timer || reduceMotion) return; timer = setInterval(next, 2800); };
     const stop = () => { clearInterval(timer); timer = null; };
-    Promise.all([load(`assets/img/scr2-${key}.webp`), load('assets/img/phone-frame-sm.webp'), ...Array.from({ length: n }, (_, k) => load(`assets/img/car/${key}-${k + 1}.webp`))]).then(imgs => {
-      base = imgs[0]; frame = imgs[1]; slides = imgs.slice(2); ready = !!(base && frame && slides[0]); draw();
+    Promise.all([FULL ? Promise.resolve(null) : load(`assets/img/scr2-${key}.webp`), load('assets/img/phone-frame-sm.webp'), ...Array.from({ length: n }, (_, k) => load(`assets/img/car/${key}-${k + 1}.webp`))]).then(imgs => {
+      base = imgs[0]; frame = imgs[1]; slides = imgs.slice(2);
+      if (FULL) { slides = slides.filter(Boolean); n = slides.length; }   // a slide still missing is skipped, not shown blank
+      ready = !!((FULL || base) && frame && slides[0]); draw();
       if ('IntersectionObserver' in window) new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? start() : stop()), { threshold: 0.3 }).observe(ph);
       else start();
     });
