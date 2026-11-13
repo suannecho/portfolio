@@ -239,7 +239,7 @@
   $$('.phone--car').forEach(ph => {
     const track = $('.car__track', ph), dots = $$('.car__dots i', ph), n = +ph.dataset.n;
     let i = 0, timer = null;
-    const show = () => { track.style.transform = `translateX(${-i * 100}%)`; dots.forEach((d, k) => d.classList.toggle('is-on', k === Math.min(i, dots.length - 1))); };
+    const show = () => { track.style.transform = `translateX(${-i * 100}%)`; dots.forEach((d, k) => d.classList.toggle('is-on', k === i)); };
     const start = () => { if (timer || reduceMotion) return; timer = setInterval(() => { i = (i + 1) % n; show(); }, 2800); };
     const stop = () => { clearInterval(timer); timer = null; };
     show();
