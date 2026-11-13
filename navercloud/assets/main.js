@@ -284,7 +284,7 @@
       ctx.restore();
       // a white band over instagram's dots, then our own
       const y0 = by + shotH * IG_DOTS.top, y1 = by + shotH * IG_DOTS.bottom, ym = by + shotH * IG_DOTS.mid;
-      ctx.fillStyle = '#fff'; ctx.fillRect(bx, y0, bw, y1 - y0);
+      ctx.fillStyle = '#fff'; ctx.fillRect(bx + bw * 0.25, y0, bw * 0.5, y1 - y0);   // centred: instagram's dots sit mid-screen, and the band never touches the bezel
       const rad = 3.4 * sx, gap = 13 * sx, x0 = bx + bw / 2 - (n - 1) * gap / 2;
       for (let k = 0; k < n; k++) {
         const on = k === i; ctx.beginPath(); ctx.arc(x0 + k * gap, ym, on ? rad * 1.3 : rad, 0, Math.PI * 2);
@@ -298,11 +298,13 @@
       ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height);
       if (FULL) { drawFull(sx, sy); ctx.drawImage(frame, 0, 0, cv.width, cv.height); return; }
       ctx.drawImage(base, 0, 0, cv.width, cv.height);
-      ctx.save(); ctx.beginPath(); ctx.rect(Math.round(BLOCK.x * sx), Math.round(BLOCK.y * sy), Math.round(BLOCK.w * sx), Math.round(BLOCK.h * sy)); ctx.clip();
-      const bw = BLOCK.w * sx, bx = BLOCK.x * sx, by = BLOCK.y * sy, bh = BLOCK.h * sy;
+      // whole-pixel clip, and the slides drawn to exactly those bounds (plus a pixel of overdraw), so no hairline of the base shows under a moving slide
+      const bx = Math.floor(BLOCK.x * sx), by = Math.floor(BLOCK.y * sy);
+      const bw = Math.ceil((BLOCK.x + BLOCK.w) * sx) - bx, bh = Math.ceil((BLOCK.y + BLOCK.h) * sy) - by;
+      ctx.save(); ctx.beginPath(); ctx.rect(bx, by, bw, bh); ctx.clip();
       const cur = slides[i], nxt = slides[(i + 1) % n];
-      if (prog > 0 && nxt) { ctx.drawImage(cur, bx - bw * prog, by, bw, bh); ctx.drawImage(nxt, bx + bw * (1 - prog), by, bw, bh); }
-      else if (cur) ctx.drawImage(cur, bx, by, bw, bh);
+      if (prog > 0 && nxt) { ctx.drawImage(cur, bx - bw * prog, by - 1, bw, bh + 2); ctx.drawImage(nxt, bx + bw * (1 - prog), by - 1, bw, bh + 2); }
+      else if (cur) ctx.drawImage(cur, bx, by - 1, bw, bh + 2);
       ctx.restore();
       ctx.drawImage(frame, 0, 0, cv.width, cv.height);
       dots.forEach((d, k) => d.classList.toggle('is-on', k === i));
