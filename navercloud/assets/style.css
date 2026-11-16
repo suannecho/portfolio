@@ -807,3 +807,8 @@ ul.step__body { grid-template-columns: minmax(0, max-content); justify-content: 
 @media (max-width: 1100px) {
   .toc__num { transform: scale(0.72); transform-origin: left center; }
 }
+
+/* ---------- Thanks page: tools ---------- */
+.contact__group { font-size: 13px; font-weight: 800; letter-spacing: 0.08em; color: var(--text-mute); min-width: 96px; }
+.tool { font-size: 15px; font-weight: 700; color: var(--text); background: #fff; border: 1.5px solid var(--mint-soft); border-radius: 999px; padding: 8px 16px; white-space: nowrap; }
+@media (max-width: 860px) { .contact__group { min-width: 100%; } .tool { font-size: 14px; padding: 7px 13px; } }
