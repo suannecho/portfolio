@@ -19,6 +19,7 @@
     hero.classList.add('is-in');
     // stagger hero words
     $$('.hero__title .word').forEach((w, i) => { w.style.animationDelay = (0.15 + i * 0.09) + 's'; });
+    hero.dispatchEvent(new CustomEvent('hero:in'));                          // the hero upload starts from this
   }
   function scheduleFinish() {
     const wait = Math.max(0, MIN_LOADER - (performance.now() - loadedAt));
@@ -409,6 +410,119 @@
     };
     if (location.search.indexOf('debug=2') > -1) { setTimeout(upd, 4000); let st; window.addEventListener('scroll', () => { clearTimeout(st); st = setTimeout(upd, 800); }, { passive: true }); } else { upd(); setInterval(upd, 500); }
   }
+
+  /* ---------- Hero upload: the zip chip flies into the cloud, which fills 0→100%, then "업로드 완료" ---------- */
+  (function () {
+    const upl = $('.upl'); if (!upl) return;
+    const zone = $('#uplZone'), file = $('#uplFile'), hint = $('#uplHint'), ghost = $('#uplGhost'), done = $('#uplDone');
+    const wave = $('#uplWave'), wave2 = $('#uplWave2'), pctEls = $$('.upl__pct', upl), stepEls = $$('.upl__step', upl);
+    const FLY = 420, FILL = 1400, START_AFTER = 900;                                  // ms; hero in → done ≈ 0.9 + 0.42 + 1.4 = 2.7s
+    let level = 0, phase = 0, state = 'idle', idleTimer = null, ghostAnim = null;
+
+    function drawWave(animate) {
+      if (animate) phase += 0.06;
+      const top = 270 - (level / 100) * 230;                                          // the cloud spans ~40..270 of the viewBox
+      const amp = animate && level > 0 && level < 100 ? 6 : 0;
+      let d = `M0 ${top}`;
+      for (let x = 0; x <= 420; x += 10) d += ` L${x} ${top + Math.sin(x / 38 + phase) * amp}`;
+      d += ' L420 300 L0 300 Z';
+      wave.setAttribute('d', d); wave2.setAttribute('d', d);
+    }
+    function setLevel(v) { level = v; pctEls.forEach(t => { t.textContent = v + '%'; }); }
+    function setStep(s) { stepEls.forEach(t => { t.textContent = s; }); }
+
+    /* drag the chip (pointer: mouse, touch and pen alike) */
+    let sx = 0, sy = 0, dx = 0, dy = 0, dragging = false;
+    function zoneHit(x, y) { const r = zone.getBoundingClientRect(); return x > r.left + r.width * 0.12 && x < r.right - r.width * 0.08 && y > r.top + r.height * 0.15 && y < r.bottom; }
+    file.addEventListener('pointerdown', e => {
+      if (state !== 'idle') return;
+      dragging = true; stopGhost(); file.setPointerCapture(e.pointerId); sx = e.clientX; sy = e.clientY;
+      file.classList.add('is-drag'); hint.classList.add('is-hidden');
+    });
+    file.addEventListener('pointermove', e => {
+      if (!dragging) return; dx = e.clientX - sx; dy = e.clientY - sy;
+      file.style.transform = `translate(${dx}px,${dy}px) rotate(${Math.max(-8, Math.min(8, dx / 40))}deg)`;
+      zone.classList.toggle('is-over', zoneHit(e.clientX, e.clientY));
+    });
+    const release = e => {
+      if (!dragging) return; dragging = false; file.classList.remove('is-drag');
+      const moved = Math.abs(dx) + Math.abs(dy) > 6;
+      if (e.type === 'pointerup' && (zoneHit(e.clientX, e.clientY) || !moved)) dropIn();   // dropped on the cloud, or just clicked
+      else { file.style.transform = ''; zone.classList.remove('is-over'); hint.classList.remove('is-hidden'); armIdle(); }
+      dx = dy = 0;
+    };
+    file.addEventListener('pointerup', release);
+    file.addEventListener('pointercancel', release);
+    file.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); dropIn(); } });
+
+    function dropIn() {
+      if (state !== 'idle') return;
+      state = 'busy'; stopGhost(); hint.classList.add('is-hidden'); zone.classList.remove('is-over');
+      const fr = file.getBoundingClientRect(), zr = zone.getBoundingClientRect();
+      const tx = (zr.left + zr.width * 0.53) - (fr.left + fr.width / 2), ty = (zr.top + zr.height * 0.55) - (fr.top + fr.height / 2);
+      const cur = new DOMMatrix(getComputedStyle(file).transform);
+      file.style.transform = `translate(${cur.m41 + tx}px,${cur.m42 + ty}px) scale(.15)`;
+      file.classList.add('is-gone');
+      setTimeout(upload, FLY);
+    }
+    function upload() {
+      zone.classList.add('is-busy'); setStep('경험 5개 업로드 중');
+      const t0 = performance.now();
+      (function tick(now) {
+        const p = Math.min(1, (now - t0) / FILL), e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;   // easeInOut
+        setLevel(Math.round(e * 100)); drawWave(true);
+        if (p < 1) requestAnimationFrame(tick); else finish(true);
+      })(t0);
+    }
+    function finish(burstToo) {
+      state = 'done'; setLevel(100); drawWave(false);
+      zone.classList.remove('is-busy'); zone.classList.add('is-done'); setStep('조수안 업로드 완료');
+      done.classList.add('is-on');
+      if (burstToo) burst();
+    }
+    function burst() {
+      const zr = zone.getBoundingClientRect(), hr = upl.getBoundingClientRect();
+      const x = zr.left - hr.left + zr.width * 0.53, y = zr.top - hr.top + zr.height * 0.4;
+      for (let i = 0; i < 14; i++) {
+        const m = document.createElement('div'); m.className = 'upl__mini' + (i % 3 ? '' : ' is-tint');
+        m.innerHTML = '<svg viewBox="0 0 30 20"><path d="M7 18a6 6 0 0 1 1-12 8 8 0 0 1 15 1 5.5 5.5 0 0 1 0 11z"/></svg>';
+        m.style.left = x + 'px'; m.style.top = y + 'px'; upl.appendChild(m);
+        const a = Math.random() * Math.PI * 2, r = 120 + Math.random() * 120, s = 0.6 + Math.random() * 0.9;
+        m.animate([{ transform: 'translate(-50%,-50%) scale(.2)', opacity: 1 }, { transform: `translate(calc(-50% + ${Math.cos(a) * r}px),calc(-50% + ${Math.sin(a) * r - 40}px)) scale(${s})`, opacity: 0 }], { duration: 1300 + Math.random() * 500, easing: 'cubic-bezier(.2,.8,.3,1)', fill: 'forwards' });
+        setTimeout(() => m.remove(), 2000);
+      }
+    }
+    /* "직접 올려 보기": back to the start, with the chip to drag yourself */
+    $('#uplReset').addEventListener('click', () => {
+      state = 'idle'; setLevel(0); drawWave(false); setStep('');
+      zone.classList.remove('is-busy', 'is-done', 'is-over'); done.classList.remove('is-on');
+      file.classList.remove('is-gone'); file.style.transform = ''; hint.classList.remove('is-hidden');
+      armIdle();
+    });
+
+    /* idle demo: a hand drags the chip to the cloud, until the visitor does it */
+    function armIdle() { clearTimeout(idleTimer); idleTimer = setTimeout(playGhost, 1200); }
+    function stopGhost() { clearTimeout(idleTimer); if (ghostAnim) { ghostAnim.cancel(); ghostAnim = null; } ghost.style.opacity = 0; }
+    function playGhost() {
+      if (state !== 'idle') return;
+      const fr = file.getBoundingClientRect(), zr = zone.getBoundingClientRect(), hr = upl.getBoundingClientRect();
+      const x0 = fr.left - hr.left + fr.width * 0.45, y0 = fr.top - hr.top + fr.height * 0.55, x1 = zr.left - hr.left + zr.width * 0.5, y1 = zr.top - hr.top + zr.height * 0.55;
+      ghostAnim = ghost.animate([
+        { transform: `translate(${x0}px,${y0 + 30}px)`, opacity: 0 },
+        { transform: `translate(${x0}px,${y0}px)`, opacity: 1, offset: 0.2 },
+        { transform: `translate(${x1}px,${y1}px)`, opacity: 1, offset: 0.75 },
+        { transform: `translate(${x1}px,${y1}px)`, opacity: 0 }], { duration: 2200, easing: 'ease-in-out' });
+      ghostAnim.onfinish = () => { ghostAnim = null; if (state === 'idle') idleTimer = setTimeout(playGhost, 2400); };
+    }
+
+    drawWave(false);
+    if (reduceMotion) { file.classList.add('is-gone'); finish(false); }                 // no motion: the finished state from the start
+    else {
+      // once the hero is in and most of the title has risen, the upload plays by itself; it runs once
+      const go = () => setTimeout(() => { if (state === 'idle') dropIn(); }, START_AFTER);
+      if (hero.classList.contains('is-in')) go(); else hero.addEventListener('hero:in', go, { once: true });
+    }
+  })();
 
   /* ---------- Smooth anchor offset for fixed nav ---------- */
   $$('a[href^="#"]').forEach(a => a.addEventListener('click', (e) => {
