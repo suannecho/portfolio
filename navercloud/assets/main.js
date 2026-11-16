@@ -416,8 +416,9 @@
     const upl = $('.upl'); if (!upl) return;
     const zone = $('#uplZone'), file = $('#uplFile'), hint = $('#uplHint'), ghost = $('#uplGhost'), done = $('#uplDone');
     const wave = $('#uplWave'), wave2 = $('#uplWave2'), pctEls = $$('.upl__pct', upl), stepEls = $$('.upl__step', upl);
-    const FLY = 420, FILL = 1400, START_AFTER = 900;                                  // ms; hero in → done ≈ 0.9 + 0.42 + 1.4 = 2.7s
+    const FLY = 500, FILL = 3500, START_AFTER = 1000;                                 // ms; hero in → done ≈ 1.0 + 0.5 + 3.5 = 5s
     let level = 0, phase = 0, state = 'idle', idleTimer = null, ghostAnim = null;
+    const CX = 204 / 420;                                                              // the cloud's visual centre, as a fraction of the zone width (its bbox runs 37..371 of 420)
 
     function drawWave(animate) {
       if (animate) phase += 0.06;
@@ -459,7 +460,7 @@
       if (state !== 'idle') return;
       state = 'busy'; stopGhost(); hint.classList.add('is-hidden'); zone.classList.remove('is-over');
       const fr = file.getBoundingClientRect(), zr = zone.getBoundingClientRect();
-      const tx = (zr.left + zr.width * 0.53) - (fr.left + fr.width / 2), ty = (zr.top + zr.height * 0.55) - (fr.top + fr.height / 2);
+      const tx = (zr.left + zr.width * CX) - (fr.left + fr.width / 2), ty = (zr.top + zr.height * 0.55) - (fr.top + fr.height / 2);
       const cur = new DOMMatrix(getComputedStyle(file).transform);
       file.style.transform = `translate(${cur.m41 + tx}px,${cur.m42 + ty}px) scale(.15)`;
       file.classList.add('is-gone');
@@ -482,7 +483,7 @@
     }
     function burst() {
       const zr = zone.getBoundingClientRect(), hr = upl.getBoundingClientRect();
-      const x = zr.left - hr.left + zr.width * 0.53, y = zr.top - hr.top + zr.height * 0.4;
+      const x = zr.left - hr.left + zr.width * CX, y = zr.top - hr.top + zr.height * 0.4;
       for (let i = 0; i < 14; i++) {
         const m = document.createElement('div'); m.className = 'upl__mini' + (i % 3 ? '' : ' is-tint');
         m.innerHTML = '<svg viewBox="0 0 30 20"><path d="M7 18a6 6 0 0 1 1-12 8 8 0 0 1 15 1 5.5 5.5 0 0 1 0 11z"/></svg>';
@@ -506,7 +507,7 @@
     function playGhost() {
       if (state !== 'idle') return;
       const fr = file.getBoundingClientRect(), zr = zone.getBoundingClientRect(), hr = upl.getBoundingClientRect();
-      const x0 = fr.left - hr.left + fr.width * 0.45, y0 = fr.top - hr.top + fr.height * 0.55, x1 = zr.left - hr.left + zr.width * 0.5, y1 = zr.top - hr.top + zr.height * 0.55;
+      const x0 = fr.left - hr.left + fr.width * 0.45, y0 = fr.top - hr.top + fr.height * 0.55, x1 = zr.left - hr.left + zr.width * CX, y1 = zr.top - hr.top + zr.height * 0.55;
       ghostAnim = ghost.animate([
         { transform: `translate(${x0}px,${y0 + 30}px)`, opacity: 0 },
         { transform: `translate(${x0}px,${y0}px)`, opacity: 1, offset: 0.2 },
@@ -536,13 +537,13 @@
     }
     function play() {
       if (played) return; played = true;
-      const t0 = performance.now(), dur = 850;
+      const t0 = performance.now(), dur = 2400;                                          // the bar, then the rows: about 5s in all
       (function tick(now) {
         const p = Math.min(1, (now - t0) / dur);
         bar.style.width = (p * 100) + '%';
         if (p < 1) { stat.textContent = '압축 푸는 중 ' + Math.round(p * 100) + '%'; requestAnimationFrame(tick); return; }
         stat.textContent = DONE; zip.classList.add('is-done');
-        rows.forEach((r, i) => setTimeout(() => { $$('.tc', r).forEach((a, j) => { a.style.transitionDelay = (0.12 + j * 0.08) + 's'; }); r.classList.add('is-in'); }, i * 130));
+        rows.forEach((r, i) => setTimeout(() => { $$('.tc', r).forEach((a, j) => { a.style.transitionDelay = (0.3 + j * 0.25) + 's'; }); r.classList.add('is-in'); }, i * 450));
       })(t0);
     }
     if (reduceMotion || !('IntersectionObserver' in window)) { showAll(); return; }

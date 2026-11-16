@@ -721,7 +721,7 @@ ul.step__body { grid-template-columns: minmax(0, max-content); justify-content: 
 .upl__w { fill: #fff; }
 .upl__zone.is-busy .upl__label, .upl__zone.is-busy .upl__sub, .upl__zone.is-done .upl__label, .upl__zone.is-done .upl__sub { opacity: 0; }
 .upl__zone.is-busy .upl__pct, .upl__zone.is-busy .upl__step, .upl__zone.is-done .upl__step { opacity: 1; }
-.upl__check { opacity: 0; transform-origin: 224px 150px; transform: scale(0.4); transition: 0.45s cubic-bezier(0.2, 1.6, 0.4, 1); }
+.upl__check { opacity: 0; transform-origin: 204px 150px; transform: scale(0.4); transition: 0.45s cubic-bezier(0.2, 1.6, 0.4, 1); }
 .upl__check circle { fill: #fff; }
 .upl__check path { fill: none; stroke: var(--mint); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
 .upl__zone.is-done .upl__check { opacity: 1; transform: scale(1); }
@@ -787,7 +787,7 @@ ul.step__body { grid-template-columns: minmax(0, max-content); justify-content: 
 .toc__zip.is-done .toc__zstat { color: var(--mint); }
 .toc__zip.is-done .toc__zico { transform: scale(0.9) rotate(-8deg); }
 /* rows come in one by one once the zip is open */
-.toc__row { opacity: 0; transform: translateY(14px); transition: opacity 0.45s var(--ease), transform 0.45s var(--ease); }
+.toc__row { opacity: 0; transform: translateY(14px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
 .toc__row.is-in { opacity: 1; transform: none; }
 /* the number is a folder: tab, back, a sheet of paper, and a lid that opens */
 .toc__num { display: block; width: 78px; height: 60px; position: relative; perspective: 220px; font-size: 19px; letter-spacing: 0.02em; color: #fff; }
@@ -800,7 +800,7 @@ ul.step__body { grid-template-columns: minmax(0, max-content); justify-content: 
 .toc__row:hover .toc__num .front { transform: rotateX(-48deg); }
 .toc__row:hover .toc__num .paper { transform: translateY(-6px); }
 /* the cases slide in as files, after their row */
-.toc__row .tc { opacity: 0; transform: translateX(-10px); transition: background 0.25s, box-shadow 0.25s, opacity 0.35s var(--ease), transform 0.35s var(--ease); }
+.toc__row .tc { opacity: 0; transform: translateX(-10px); transition: background 0.25s, box-shadow 0.25s, opacity 0.5s var(--ease), transform 0.5s var(--ease); }
 .toc__row.is-in .tc { opacity: 1; transform: none; }
 .toc__row.is-in .tc:hover { transform: translateY(-2px); }
 @media (max-width: 1100px) {
