@@ -534,6 +534,7 @@
     function showAll() {                                                               // the finished state, no motion
       played = true; bar.style.width = '100%'; stat.textContent = DONE; zip.classList.add('is-done');
       rows.forEach(r => { r.classList.add('is-in'); $$('.tc', r).forEach(a => { a.style.transitionDelay = '0s'; }); });
+      about.classList.add('is-unzipped');
     }
     function play() {
       if (played) return; played = true;
@@ -544,6 +545,8 @@
         if (p < 1) { stat.textContent = '압축 푸는 중 ' + Math.round(p * 100) + '%'; requestAnimationFrame(tick); return; }
         stat.textContent = DONE; zip.classList.add('is-done');
         rows.forEach((r, i) => setTimeout(() => { $$('.tc', r).forEach((a, j) => { a.style.transitionDelay = (0.35 + j * 0.3) + 's'; }); r.classList.add('is-in'); }, i * 700));
+        // the case links take the pointer (and show their phone) only once the last one has fully come in
+        setTimeout(() => about.classList.add('is-unzipped'), (rows.length - 1) * 700 + 650 + 500);
       })(t0);
     }
     if (reduceMotion || !('IntersectionObserver' in window)) { showAll(); return; }
