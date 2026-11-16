@@ -457,9 +457,12 @@ button { font-family: inherit; cursor: pointer; }
 .lightbox {
   position: fixed; inset: 0; z-index: 950; background: rgba(15,15,15,0.92); backdrop-filter: blur(6px);
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 60px 20px 40px;
-  opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s;
+  opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s, background 0.4s, backdrop-filter 0.4s;
 }
 .lightbox.is-open { opacity: 1; visibility: visible; }
+/* while the image shrinks back into its thumbnail, the dark ground fades out around it */
+.lightbox.is-closing { background: rgba(15,15,15,0); backdrop-filter: blur(0); }
+.lightbox.is-closing .lightbox__cap, .lightbox.is-closing .lightbox__close { opacity: 0; transition: opacity 0.2s; }
 .lightbox__img { max-width: min(96vw, 1400px); max-height: 82vh; width: auto; height: auto; border-radius: 16px; transform: scale(0.94); transition: transform 0.4s var(--ease); object-fit: contain; }
 .lightbox.is-open .lightbox__img { transform: none; }
 .lightbox__cap { color: var(--text-dim); font-size: 14px; text-align: center; max-width: 800px; }
@@ -694,3 +697,4 @@ ul.step__body { grid-template-columns: minmax(0, max-content); justify-content: 
 
 /* ---------- One page per screen (desktop) ---------- */
 @media (min-width: 1101px) { html { scroll-snap-type: y mandatory; scroll-padding-top: var(--nav-h); touch-action: pan-x pan-y; } .hero, .match, .cover, .overview, .case, .contact { scroll-snap-align: start; scroll-snap-stop: always; } .match, .cover, .overview, .case, .contact { height: calc(100svh - var(--nav-h)); min-height: 0; overflow: clip; align-items: flex-start; } .match > *, .cover > *, .overview > *, .case > *, .contact > * { transform-origin: 50% 0; } }
+

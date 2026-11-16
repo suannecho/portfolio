@@ -133,6 +133,7 @@
         const px = (e.clientX - r.left) / r.width - 0.5;
         const py = (e.clientY - r.top) / r.height - 0.5;
         phones.forEach((p, i) => {
+          if (p.dataset.flying) return;                                     // a phone mid-flight from the contents page keeps its own transform
           const dir = i === 0 ? 1 : -1;
           p.style.transform = `rotateY(${px * 14}deg) rotateX(${-py * 10}deg) translateY(-6px) translateX(${dir * px * 6}px)`;
         });
@@ -181,25 +182,76 @@
     });
   }
 
+  /* ---------- GSAP Flip (shared-element transitions); everything below degrades to the plain behaviour without it ---------- */
+  const FLIP = !reduceMotion && window.gsap && window.Flip ? (gsap.registerPlugin(Flip), Flip) : null;
+
+  /* Contents page → case page: the floating phone flies into its place on the case page */
+  if (FLIP && tocPeek && window.matchMedia('(hover: hover)').matches && window.innerWidth > 1100) {
+    tocPeek.dataset.flipId = 'toc-phone';
+    $$('.tc[data-img]').forEach(a => a.addEventListener('click', (e) => {
+      const sec = document.getElementById(a.getAttribute('href').slice(1));
+      const dest = sec && $$('img.phone', sec).find(im => im.getAttribute('src') === a.dataset.img);
+      if (!dest || !tocPeek.classList.contains('is-on')) return;          // no phone to land on: the normal smooth scroll runs
+      e.preventDefault(); e.stopImmediatePropagation();
+      const r0 = tocPeek.getBoundingClientRect();                          // where the phone floats, on screen
+      tocPeek.classList.remove('is-on');
+      // jump to the page, show it as it stands (no reveal tweens moving the landing spot), then let the phone travel there
+      window.scrollTo({ top: sec.getBoundingClientRect().top + window.scrollY - (nav.offsetHeight - 1), behavior: 'instant' });
+      history.replaceState(null, '', '#' + sec.id);
+      const revs = $$('.reveal', sec);
+      revs.forEach(el => { el.style.transition = 'none'; el.classList.add('is-visible'); });
+      animateText(sec);
+      requestAnimationFrame(() => revs.forEach(el => { el.style.transition = ''; }));
+      // screen-space delta between the two phones; the page column is scaled by fitAll, so translate in its local units
+      const r1 = dest.getBoundingClientRect();
+      const z = r1.width / dest.offsetWidth || 1;
+      const dx = (r0.left + r0.width / 2) - (r1.left + r1.width / 2), dy = (r0.top + r0.height / 2) - (r1.top + r1.height / 2);
+      dest.dataset.flying = '1'; dest.style.transition = 'none';
+      gsap.from(dest, { x: dx / z, y: dy / z, scale: r0.width / r1.width, rotation: -4, transformOrigin: '50% 50%', duration: 0.85, ease: 'power3.inOut',
+        onComplete: () => { delete dest.dataset.flying; gsap.set(dest, { clearProps: 'all' }); } });
+    }));
+  }
+
   /* ---------- Lightbox ---------- */
   const lb = $('#lightbox');
   const lbImg = $('#lightboxImg');
   const lbCap = $('#lightboxCap');
-  function openLb(src, alt) {
+  let lbSource = null;                                                       // the thumbnail the lightbox grew out of
+  if (FLIP) lbImg.style.transition = 'none';                                 // Flip drives the transform; the CSS tween must not fight it
+  function openLb(src, alt, from) {
     lbImg.src = src; lbImg.alt = alt || ''; lbCap.textContent = alt || '';
     lb.classList.add('is-open'); lb.setAttribute('aria-hidden', 'false');
     document.body.classList.add('is-locked');
+    lbSource = from || null;
+    if (!FLIP || !from) return;
+    // the thumbnail grows into the big image: start fitted over the thumbnail, then relax to the centre
+    gsap.killTweensOf(lbImg);
+    const run = () => {
+      if (!lb.classList.contains('is-open')) return;
+      FLIP.fit(lbImg, from, { scale: true });                              // start exactly over the thumbnail
+      gsap.set(lbImg, { autoAlpha: 1 });
+      gsap.to(lbImg, { x: 0, y: 0, scaleX: 1, scaleY: 1, duration: 0.6, ease: 'power3.inOut' });
+    };
+    gsap.set(lbImg, { autoAlpha: 0 });                                      // hidden until it is sized and placed, so nothing flashes at the centre
+    (lbImg.decode ? lbImg.decode() : Promise.resolve()).then(run, run);
   }
-  function closeLb() {
+  function finishClose() {
     lb.classList.remove('is-open'); lb.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('is-locked');
-    setTimeout(() => { if (!lb.classList.contains('is-open')) lbImg.src = ''; }, 300);
+    setTimeout(() => { if (!lb.classList.contains('is-open')) { lbImg.src = ''; if (FLIP) gsap.set(lbImg, { clearProps: 'transform,opacity,visibility' }); } }, 300);
+  }
+  function closeLb() {
+    if (!FLIP || !lbSource || !lbSource.isConnected) return finishClose();
+    // back into the thumbnail it came from
+    gsap.killTweensOf(lbImg);
+    FLIP.fit(lbImg, lbSource, { scale: true, duration: 0.45, ease: 'power3.inOut', onComplete: finishClose });
+    lb.classList.add('is-closing'); setTimeout(() => lb.classList.remove('is-closing'), 500);
   }
   $$('[data-lightbox]').forEach(img => {
-    img.addEventListener('click', () => openLb(img.currentSrc || img.src, img.alt));
+    img.addEventListener('click', () => openLb(img.currentSrc || img.src, img.alt, img));
     img.setAttribute('tabindex', '0');
     img.setAttribute('role', 'button');
-    img.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLb(img.src, img.alt); } });
+    img.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLb(img.src, img.alt, img); } });
   });
   $('#lightboxClose').addEventListener('click', closeLb);
   lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
@@ -251,7 +303,7 @@
     const FULL = ph.dataset.full === '1';                          // slides are whole-screen screenshots: no base image, dots drawn here
     const BLOCK = { x: 24, y: 244, w: 533, h: 666 };              // post photo block in the 584x1200 frame
     const SCREEN = { x: 26, y: 23, w: 532, h: 1154, r: 76 };      // screen cutout of phone-frame-sm (measured from its alpha)
-    const IG_DOTS = { top: 0.822, bottom: 0.86, mid: 0.8415 };     // instagram's own dots, as a fraction of the screenshot height
+    const IG_DOTS = { top: 0.828, bottom: 0.853, mid: 0.8415 };    // instagram's own dots, as a fraction of the screenshot height; the band stops short of the action icons below
     const IG_POST = { top: 389 / 2000, bottom: 1538 / 2000 };       // the post's photo block: the only part that slides
     const load = src => new Promise(res => { const im = new Image(); im.onload = () => res(im); im.onerror = () => res(null); im.src = src; });
     let base = null, frame = null, slides = [], i = 0, prog = 0, animFrom = 0, animStart = 0, timer = null, ready = false;
