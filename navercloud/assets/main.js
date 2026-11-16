@@ -524,6 +524,35 @@
     }
   })();
 
+  /* ---------- Contents unzip: the zip bar fills, then the four folders open and their cases file in ---------- */
+  (function () {
+    const about = $('#about'), zip = $('#tocZip'); if (!about || !zip) return;
+    const bar = $('#tocZipBar'), stat = $('#tocZipStat'), rows = $$('.toc__row', about);
+    const DONE = '✓ 폴더 4개 · 파일 8개';
+    let played = false;
+    function showAll() {                                                               // the finished state, no motion
+      played = true; bar.style.width = '100%'; stat.textContent = DONE; zip.classList.add('is-done');
+      rows.forEach(r => { r.classList.add('is-in'); $$('.tc', r).forEach(a => { a.style.transitionDelay = '0s'; }); });
+    }
+    function play() {
+      if (played) return; played = true;
+      const t0 = performance.now(), dur = 850;
+      (function tick(now) {
+        const p = Math.min(1, (now - t0) / dur);
+        bar.style.width = (p * 100) + '%';
+        if (p < 1) { stat.textContent = '압축 푸는 중 ' + Math.round(p * 100) + '%'; requestAnimationFrame(tick); return; }
+        stat.textContent = DONE; zip.classList.add('is-done');
+        rows.forEach((r, i) => setTimeout(() => { $$('.tc', r).forEach((a, j) => { a.style.transitionDelay = (0.12 + j * 0.08) + 's'; }); r.classList.add('is-in'); }, i * 130));
+      })(t0);
+    }
+    if (reduceMotion || !('IntersectionObserver' in window)) { showAll(); return; }
+    // once 35% of the contents page is on screen, from a scroll, the cover's button or a nav link alike; it runs once
+    const io = new IntersectionObserver(entries => {
+      if (entries.some(e => e.isIntersecting)) { io.disconnect(); play(); }
+    }, { threshold: 0.35 });
+    io.observe(about);
+  })();
+
   /* ---------- Smooth anchor offset for fixed nav ---------- */
   $$('a[href^="#"]').forEach(a => a.addEventListener('click', (e) => {
     const id = a.getAttribute('href').slice(1);
