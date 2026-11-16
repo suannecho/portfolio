@@ -568,7 +568,7 @@ button { font-family: inherit; cursor: pointer; }
 .laptop__frame { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .laptop__screen { position: absolute; left: 10.1%; top: 3.44%; width: 79.8%; height: 85.57%; background: #0A0A0A; overflow: hidden; container-type: inline-size; }
 .laptop__note { position: absolute; left: 0; right: 0; bottom: -30px; text-align: center; font-size: 14px; font-weight: 600; color: var(--text-dim); }
-.ui { position: absolute; inset: 3.5% 0.25% 0.3% 0.25%; display: grid; grid-template-columns: 5.6cqw 1fr; font-size: 2.1cqw; color: var(--text); line-height: 1.35; background: #F4F7FD; }
+.ui { position: absolute; inset: 3.8% 0.6% 0.8% 0.6%; display: grid; grid-template-columns: 5.6cqw 1fr; font-size: 2.1cqw; color: var(--text); line-height: 1.35; background: #F4F7FD; }
 .ui__side { background: var(--bg-card); display: flex; flex-direction: column; align-items: center; gap: 2.2cqw; padding-top: 2.2cqw; }
 .ui__logo { width: 2.6cqw; height: 2.6cqw; border-radius: .8cqw; background: var(--sky); margin-bottom: 1cqw; }
 .ui__nav { width: 2cqw; height: 2cqw; border-radius: .6cqw; background: rgba(255,255,255,.18); }
@@ -692,7 +692,10 @@ ul.step__body { grid-template-columns: minmax(0, max-content); justify-content: 
 .phone--todo:hover { box-shadow: none; }
 .phone--video { position: relative; aspect-ratio: 634 / 1300; border-radius: 26px; cursor: default; }
 .phone--video .phone__back { position: absolute; inset: 0; width: 100%; height: 100%; }
-.phone--video video { position: absolute; left: 4%; top: 2.2%; width: 92%; height: 95.6%; object-fit: cover; border-radius: 13% / 6.2%; background: #000; }
+.phone--video video, .phone--video .phone__poster { position: absolute; left: 4%; top: 2.2%; width: 92%; height: 96.3%; object-fit: cover; border-radius: 13% / 6.2%; background: #000; }
+/* the poster is a plain image, not the video's poster attribute: Safari letterboxes a poster instead of covering, which showed as thick black bands; it fades once the reel is playing */
+.phone--video .phone__poster { z-index: 1; transition: opacity 0.4s; }
+.phone--video.is-playing .phone__poster { opacity: 0; }
 .phone--video .phone__frame { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 
 /* ---------- One page per screen (desktop) ---------- */

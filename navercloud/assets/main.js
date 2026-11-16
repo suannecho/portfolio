@@ -383,6 +383,7 @@
   /* ---------- Reel in the phone: play only while its page is on screen ---------- */
   $$('.phone--video video').forEach(v => {
     v.muted = true;
+    v.addEventListener('playing', () => v.parentElement.classList.add('is-playing'), { once: true });   // the still poster gives way to the reel
     const tryPlay = () => { const p = v.play(); if (p && p.catch) p.catch(() => {}); };
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(entries => entries.forEach(en => { en.isIntersecting ? tryPlay() : v.pause(); }), { threshold: 0.35 }).observe(v);
