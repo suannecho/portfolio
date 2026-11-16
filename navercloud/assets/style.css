@@ -740,6 +740,7 @@ ul.step__body { grid-template-columns: minmax(0, max-content); justify-content: 
 .upl__ico b { position: absolute; left: 0; right: 0; bottom: 7px; text-align: center; color: #fff; font-size: 10px; font-weight: 800; letter-spacing: 0.04em; }
 .upl__nm { font-weight: 800; font-size: 16px; white-space: nowrap; line-height: 1.3; }
 .upl__sz { font-size: 12.5px; color: var(--text-mute); font-weight: 600; margin-top: 2px; line-height: 1.3; }
+.upl__file.is-flying { transition: transform 1.8s cubic-bezier(0.45, 0, 0.15, 1), opacity 0.5s ease 1.35s; }   /* the flight into the cloud: slow, and the chip fades only as it arrives */
 .upl__file.is-gone { opacity: 0; pointer-events: none; }
 /* hint */
 .upl__hint { position: absolute; z-index: 3; font-size: 15px; font-weight: 700; color: var(--mint); display: flex; align-items: center; gap: 8px; left: calc(100% - 6vw - min(30vw, 400px) - 262px); top: calc(50% + 196px); transition: opacity 0.3s; }

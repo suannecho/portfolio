@@ -416,7 +416,7 @@
     const upl = $('.upl'); if (!upl) return;
     const zone = $('#uplZone'), file = $('#uplFile'), hint = $('#uplHint'), ghost = $('#uplGhost'), done = $('#uplDone');
     const wave = $('#uplWave'), wave2 = $('#uplWave2'), pctEls = $$('.upl__pct', upl), stepEls = $$('.upl__step', upl);
-    const FLY = 500, FILL = 3500, START_AFTER = 1000;                                 // ms; hero in → done ≈ 1.0 + 0.5 + 3.5 = 5s
+    const FLY = 1800, FILL = 1400, START_AFTER = 1600;                                // ms; hero in → done ≈ 1.6 + 1.8 + 1.4 = 4.8s; the flight is the slow part, not the fill
     let level = 0, phase = 0, state = 'idle', idleTimer = null, ghostAnim = null;
     const CX = 204 / 420;                                                              // the cloud's visual centre, as a fraction of the zone width (its bbox runs 37..371 of 420)
 
@@ -463,7 +463,7 @@
       const tx = (zr.left + zr.width * CX) - (fr.left + fr.width / 2), ty = (zr.top + zr.height * 0.55) - (fr.top + fr.height / 2);
       const cur = new DOMMatrix(getComputedStyle(file).transform);
       file.style.transform = `translate(${cur.m41 + tx}px,${cur.m42 + ty}px) scale(.15)`;
-      file.classList.add('is-gone');
+      file.classList.add('is-flying', 'is-gone');
       setTimeout(upload, FLY);
     }
     function upload() {
@@ -497,7 +497,7 @@
     $('#uplReset').addEventListener('click', () => {
       state = 'idle'; setLevel(0); drawWave(false); setStep('');
       zone.classList.remove('is-busy', 'is-done', 'is-over'); done.classList.remove('is-on');
-      file.classList.remove('is-gone'); file.style.transform = ''; hint.classList.remove('is-hidden');
+      file.classList.remove('is-gone', 'is-flying'); file.style.transform = ''; hint.classList.remove('is-hidden');
       armIdle();
     });
 
@@ -537,13 +537,13 @@
     }
     function play() {
       if (played) return; played = true;
-      const t0 = performance.now(), dur = 2400;                                          // the bar, then the rows: about 5s in all
+      const t0 = performance.now(), dur = 1000;                                          // a quick bar, then the folders open one by one: about 4.5s in all
       (function tick(now) {
         const p = Math.min(1, (now - t0) / dur);
         bar.style.width = (p * 100) + '%';
         if (p < 1) { stat.textContent = '압축 푸는 중 ' + Math.round(p * 100) + '%'; requestAnimationFrame(tick); return; }
         stat.textContent = DONE; zip.classList.add('is-done');
-        rows.forEach((r, i) => setTimeout(() => { $$('.tc', r).forEach((a, j) => { a.style.transitionDelay = (0.3 + j * 0.25) + 's'; }); r.classList.add('is-in'); }, i * 450));
+        rows.forEach((r, i) => setTimeout(() => { $$('.tc', r).forEach((a, j) => { a.style.transitionDelay = (0.35 + j * 0.3) + 's'; }); r.classList.add('is-in'); }, i * 700));
       })(t0);
     }
     if (reduceMotion || !('IntersectionObserver' in window)) { showAll(); return; }
