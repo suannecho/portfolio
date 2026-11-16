@@ -418,11 +418,11 @@
     const wave = $('#uplWave'), wave2 = $('#uplWave2'), pctEls = $$('.upl__pct', upl), stepEls = $$('.upl__step', upl);
     const FLY = 1800, FILL = 1400, START_AFTER = 1600;                                // ms; hero in → done ≈ 1.6 + 1.8 + 1.4 = 4.8s; the flight is the slow part, not the fill
     let level = 0, phase = 0, state = 'idle', idleTimer = null, ghostAnim = null;
-    const CX = 204 / 420;                                                              // the cloud's visual centre, as a fraction of the zone width (its bbox runs 37..371 of 420)
+    const CX = 0.5;                                                                    // the cloud is symmetric about the middle of the zone
 
     function drawWave(animate) {
       if (animate) phase += 0.06;
-      const top = 270 - (level / 100) * 230;                                          // the cloud spans ~40..270 of the viewBox
+      const top = 236 - (level / 100) * 168;                                          // the cloud spans 70..232 of the viewBox: 0% is just under it, 100% just over it
       const amp = animate && level > 0 && level < 100 ? 6 : 0;
       let d = `M0 ${top}`;
       for (let x = 0; x <= 420; x += 10) d += ` L${x} ${top + Math.sin(x / 38 + phase) * amp}`;

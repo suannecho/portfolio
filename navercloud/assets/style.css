@@ -721,7 +721,7 @@ ul.step__body { grid-template-columns: minmax(0, max-content); justify-content: 
 .upl__w { fill: #fff; }
 .upl__zone.is-busy .upl__label, .upl__zone.is-busy .upl__sub, .upl__zone.is-done .upl__label, .upl__zone.is-done .upl__sub { opacity: 0; }
 .upl__zone.is-busy .upl__pct, .upl__zone.is-busy .upl__step, .upl__zone.is-done .upl__step { opacity: 1; }
-.upl__check { opacity: 0; transform-origin: 204px 150px; transform: scale(0.4); transition: 0.45s cubic-bezier(0.2, 1.6, 0.4, 1); }
+.upl__check { opacity: 0; transform-origin: 210px 150px; transform: scale(0.4); transition: 0.45s cubic-bezier(0.2, 1.6, 0.4, 1); }
 .upl__check circle { fill: #fff; }
 .upl__check path { fill: none; stroke: var(--mint); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
 .upl__zone.is-done .upl__check { opacity: 1; transform: scale(1); }
