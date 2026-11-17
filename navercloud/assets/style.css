@@ -402,25 +402,33 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* Results */
-.results { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 4vw, 80px); padding-top: 46px; }
-.results--single { grid-template-columns: minmax(0, 420px); justify-content: center; }
+.results { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 2vw, 28px); }
+.results--single { grid-template-columns: minmax(0, 440px); justify-content: center; }
 .is-visible .result { animation: riseIn 0.8s var(--ease) backwards; }
 .is-visible .result:nth-child(2) { animation-delay: 0.15s; }
+/* a pill: the icon sits inside on the left, the number leads, a short label under it */
 .result {
-  position: relative; background: #fff; color: var(--text); border-radius: 999px; box-shadow: 0 10px 30px rgba(11,27,77,.08);
-  padding: 50px 26px 30px; text-align: center; font-size: clamp(15px, 1.35vw, 22px); line-height: 1.45;
+  position: relative; display: flex; align-items: center; gap: clamp(12px, 1.2vw, 18px);
+  background: #fff; color: var(--text); border-radius: 999px; box-shadow: 0 10px 30px rgba(11,27,77,.08);
+  padding: clamp(12px, 1.1vw, 16px) clamp(22px, 2.2vw, 34px) clamp(12px, 1.1vw, 16px) clamp(12px, 1.1vw, 16px);
+  font-size: clamp(13px, 1.05vw, 16.5px); line-height: 1.35; text-align: left;
   transition: transform 0.5s var(--ease), box-shadow 0.5s;
 }
-.result:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(31,91,255,0.18); }
-.result b { color: var(--mint); font-weight: 800; }
-.result small { display: block; font-size: 0.82em; color: var(--text-dim); font-weight: 500; }
+.result:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(31,91,255,0.18); }
 .result__icon {
-  position: absolute; left: 50%; top: 0; transform: translate(-50%, -50%);
-  width: clamp(72px, 6vw, 100px); height: clamp(72px, 6vw, 100px); border-radius: 50%;
-  background: var(--mint-soft); padding: 12px; object-fit: contain; box-shadow: 0 6px 16px rgba(11,27,77,.12);
+  flex: none; width: clamp(58px, 5vw, 76px); height: clamp(58px, 5vw, 76px); border-radius: 50%;
+  background: var(--mint-soft); padding: 9px; object-fit: contain;
 }
-.result__icon { transform: translate(-50%, -64%); }
-#case-7 .result__icon, #case-8 .result__icon {   /* the two F&F cases (marathon, dashboard) keep their larger result icons */ width: clamp(92px, 7.6vw, 128px); height: clamp(92px, 7.6vw, 128px); padding: 14px; }
+.result__t { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.result__n { font-size: 2em; font-weight: 900; color: var(--mint); letter-spacing: -0.035em; line-height: 1.05; white-space: nowrap; }
+.result__n--txt { font-size: 1.3em; letter-spacing: -0.03em; line-height: 1.2; white-space: normal; }
+.result__l { font-weight: 700; color: var(--text); word-break: keep-all; }
+.result__s { font-size: 0.84em; font-weight: 600; color: var(--text-mute); word-break: keep-all; }
+/* two numbers in one pill (marathon) sit side by side with a hairline between */
+.result__pair { display: flex; align-items: center; gap: clamp(12px, 1.2vw, 18px); min-width: 0; }
+.result__pair .result__t + .result__t { padding-left: clamp(12px, 1.2vw, 18px); border-left: 1.5px solid var(--line); }
+.result__pair .result__n { font-size: 1.6em; }
+.result__pair .result__l { font-size: 0.92em; white-space: nowrap; }
 
 /* Insight */
 .insight { background: var(--bg-card); color: #fff; border-radius: 14px; padding: 26px 30px; margin-top: 8px; }
@@ -525,9 +533,9 @@ button { font-family: inherit; cursor: pointer; }
   .vs { grid-template-columns: 1fr; }
   .vs__col--deep { border-left: 0; border-top: 2px solid var(--green); }
   .vs__badge { top: 50%; left: 50%; transform: translate(-50%, -50%); }
-  .results { grid-template-columns: 1fr; gap: 56px; }
+  .results { grid-template-columns: 1fr; gap: 12px; }
   .results--single { grid-template-columns: 1fr; }
-  .result { padding: 46px 22px 26px; border-radius: 40px; }
+  .result { font-size: 15px; }
   .phones { max-width: 100%; }
   .totop { right: 14px; bottom: 14px; }
 }
