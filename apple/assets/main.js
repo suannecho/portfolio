@@ -59,7 +59,7 @@
   $$('[data-nav]').forEach(a => { navMap[a.dataset.nav] = a; });
   const dotMap = {};
   $$('[data-dot]').forEach(a => { dotMap[a.dataset.dot] = a; });
-  const sections = ['about', 'project-1', 'project-2', 'project-3', 'project-4', 'project-5', 'contact'].map(id => $('#' + id)).filter(Boolean);
+  const sections = ['about', 'project-1', 'project-2', 'project-3', 'project-4', 'contact'].map(id => $('#' + id)).filter(Boolean);
   function updateActive() {
     const y = window.scrollY + window.innerHeight * 0.35;
     let current = null;
@@ -528,7 +528,7 @@
   (function () {
     const about = $('#about'), zip = $('#tocZip'); if (!about || !zip) return;
     const bar = $('#tocZipBar'), stat = $('#tocZipStat'), rows = $$('.toc__row', about);
-    const DONE = '✓ 폴더 4개 · 파일 9개';
+    const DONE = '✓ 폴더 4개 · 파일 8개';
     let played = false;
     function showAll() {                                                               // the finished state, no motion
       played = true; bar.style.width = '100%'; stat.textContent = DONE; zip.classList.add('is-done');
