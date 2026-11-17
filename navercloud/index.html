@@ -10,7 +10,7 @@
   <meta property="og:type" content="website">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230B1B4D'/><text x='50' y='68' font-size='52' font-weight='700' text-anchor='middle' fill='%237FD6FF' font-family='sans-serif'>S</text></svg>">
   <script>if("scrollRestoration" in history){history.scrollRestoration="manual";}</script>
-  <link rel="stylesheet" href="assets/style.css?v=202611170200">
+  <link rel="stylesheet" href="assets/style.css?v=202611170300">
 </head>
 <body>
 
@@ -336,7 +336,7 @@
       <article class="case section" id="case-4">
         <span class="case__cat"><b>데이터 분석</b><i>CASE 4</i></span>
         <div class="case__left">
-          <h3 class="case__title reveal fx-text">버려지던 데이터로,<br>내일 생산량을 예측하다</h3>
+          <h3 class="case__title reveal fx-text">버려지던 데이터,<br>AI로 내일 생산량을 예측하다</h3>
           <p class="case__desc reveal">할인 등록 뒤 버려지던 판매 데이터에 날씨 · 학사 일정을 더해,<br>AI로 파트너 베이커리의 내일 생산량을 예측한 프로젝트</p>
           <div class="laptop-slot reveal"><div class="laptop" aria-label="수요 예측 시트 화면 예시">
             <div class="laptop__screen">
@@ -370,18 +370,19 @@
           </div>
           <div class="reveal">
             <span class="kv__k fx-text">전략</span>
-            <div class="steps steps--3">
-              <div class="step">
-                <div class="step__head">Step 1. 기록 살리기</div>
-                <div class="step__body"><p class="step__t">남은 빵 기록</p><p class="step__s">할인 등록 뒤 버려지던 데이터를 예측의 재료로</p></div>
+            <div class="bf">
+              <div class="bf__row bf__row--old">
+                <span class="bf__tag">기존</span>
+                <span class="bf__box">남은 빵</span><i class="bf__arr"></i>
+                <span class="bf__box">할인 상품 등록</span><i class="bf__arr"></i>
+                <span class="bf__box bf__box--gone"><s>기록은 버려짐</s></span>
               </div>
-              <div class="step">
-                <div class="step__head">Step 2. AI 수요 예측</div>
-                <div class="step__body"><p class="step__t">내일 수요 계산</p><p class="step__s">최근 4주 판매 + 요일 · 날씨 · 학사 일정</p></div>
-              </div>
-              <div class="step">
-                <div class="step__head">Step 3. 생산 결정</div>
-                <div class="step__body"><p class="step__t">사장님께 권장 생산량</p><p class="step__s">품목별로 매일 전달, 생산량은 사장님이 결정</p></div>
+              <div class="bf__mid"><span>↓ 버려지던 기록을 예측의 재료로</span></div>
+              <div class="bf__row bf__row--new">
+                <span class="bf__tag bf__tag--on">변경</span>
+                <span class="bf__box">남은 빵 기록</span><i class="bf__arr"></i>
+                <span class="bf__box">AI 수요 예측</span><i class="bf__arr"></i>
+                <span class="bf__box bf__box--deep">사장님의 생산 결정</span>
               </div>
             </div>
           </div>
@@ -738,7 +739,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/Flip.min.js"></script>
-  <script src="assets/main.js?v=202611170200"></script>
+  <script src="assets/main.js?v=202611170300"></script>
   <script data-goatcounter="https://suanne.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
