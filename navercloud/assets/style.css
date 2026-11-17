@@ -939,3 +939,26 @@ ul.step__body { grid-template-columns: minmax(0, max-content); justify-content: 
   .st__chev, .st__chev:first-child, .st__chev:last-child { margin-left: 0; padding: 12px 14px; clip-path: none; border-radius: 12px; }
   .st__note { text-align: center; }
 }
+
+/* Case 7: the three zones as pins on a runner's route, drawn over a faint map grid */
+.st__map { position: relative; height: clamp(108px, 8.8vw, 130px); border: 1.5px solid rgba(31,91,255,.25); border-radius: 14px; overflow: hidden; background-color: #F3F7FF; background-image: linear-gradient(rgba(31,91,255,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(31,91,255,.07) 1px, transparent 1px); background-size: 26px 26px; }
+.st__map-svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.st__street { fill: none; stroke: rgba(31,91,255,.12); stroke-width: 8; }
+.st__road { fill: none; stroke: #CBDBFF; stroke-width: 14; stroke-linecap: round; }
+.st__route { fill: none; stroke: var(--mint); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 1 7; }
+.st__map-note { position: absolute; left: 12px; top: 10px; background: #fff; border: 1.5px solid rgba(31,91,255,.3); border-radius: 999px; padding: 4px 11px; font-size: 12px; font-weight: 800; color: var(--mint); }
+.st__map-n { position: absolute; right: 12px; top: 10px; width: 26px; height: 26px; border-radius: 50%; background: #fff; border: 1.5px solid rgba(11,27,77,.14); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: var(--text); }
+.st__pin { position: absolute; display: flex; flex-direction: column; align-items: center; transform: translateX(-50%); }
+.st__pin i { position: relative; width: 20px; height: 20px; margin-top: -24px; margin-bottom: 4px; background: var(--mint); border-radius: 50% 50% 50% 0; transform: rotate(-45deg); box-shadow: 0 4px 10px rgba(31,91,255,.35); }
+.st__pin i::after { content: ""; position: absolute; left: 6px; top: 6px; width: 8px; height: 8px; border-radius: 50%; background: #fff; }
+.st__pin b { background: var(--mint); color: #fff; border-radius: 10px; padding: 7px 13px; font-size: clamp(13px, 1.05vw, 16px); font-weight: 800; white-space: nowrap; box-shadow: 0 6px 16px rgba(31,91,255,.28); }
+.st__detail { display: grid; grid-template-columns: auto 1fr; align-items: stretch; background: #fff; border: 1.5px solid var(--bg-card); border-radius: 14px; overflow: hidden; }
+.st__detail > b { display: flex; align-items: center; padding: 12px 20px; background: var(--bg-card); color: #fff; font-weight: 800; font-size: clamp(14px, 1.15vw, 17px); }
+.st__detail > span { display: flex; align-items: center; justify-content: center; padding: 12px 16px; font-size: clamp(13px, 1.05vw, 16px); color: var(--text-dim); }
+.st__detail em { font-style: normal; font-weight: 800; color: var(--text); margin-right: 2px; }
+@media (max-width: 860px) {
+  .st__map { height: 150px; }
+  .st__map-note { font-size: 11px; max-width: 60%; }
+  .st__detail { grid-template-columns: 1fr; }
+  .st__detail > b { justify-content: center; }
+}
