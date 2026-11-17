@@ -530,7 +530,7 @@
   (function () {
     const about = $('#about'), zip = $('#tocZip'); if (!about || !zip) return;
     const bar = $('#tocZipBar'), stat = $('#tocZipStat'), rows = $$('.toc__row', about);
-    const DONE = '✓ 폴더 4개 · 파일 8개';
+    const DONE = '✓ 폴더 4개 · 파일 9개';
     let played = false;
     function showAll() {                                                               // the finished state, no motion
       played = true; bar.style.width = '100%'; stat.textContent = DONE; zip.classList.add('is-done');
