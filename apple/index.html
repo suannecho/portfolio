@@ -1,181 +1,383 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>조수안 | 2022 - 2026 Portfolio</title>
-  <meta name="description" content="보이는 문제가 아닌, 진짜 원인을 짚는 조수안입니다. Marketing Strategy 포트폴리오 (2022 - 2026)">
-  <meta property="og:title" content="조수안 | 2022 - 2026 Portfolio">
-  <meta property="og:description" content="보이는 문제가 아닌, 진짜 원인을 짚는 조수안입니다.">
-  <meta property="og:type" content="website">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230B1B4D'/><text x='50' y='68' font-size='52' font-weight='700' text-anchor='middle' fill='%237FD6FF' font-family='sans-serif'>S</text></svg>">
-  <script>if("scrollRestoration" in history){history.scrollRestoration="manual";}</script>
-  <link rel="stylesheet" href="assets/style.css?v=202611180400">
-</head>
-<body>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>조수안 포트폴리오 · Apple Sales Internship</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+/*
+  VOICE   playful but calm: the reader just scrolls, each scene plays by itself
+  IDEA    meeting her like a new Apple device: hello → spec sheet (what the posting asks, which case shows it) → cases open as apps → one more thing
+  PICTURE glass panels over a soft wallpaper; cases open as app windows; two storyboards that play like shorts
+  COLOUR  her blue / navy / sky palette on a light wallpaper; one black band for the finale
+  LAYOUT  one long scroll; scenes start when they come into view; ten app windows in reading order
+*/
+:root { --nav-h: 46px; --a-navy: #0B1B4D; --a-blue: #1F5BFF; --a-sky: #7FD6FF; --a-dim: #4A5578; --a-mute: #7A84A0; --a-ease: cubic-bezier(.22,1,.36,1); --a-spring: cubic-bezier(.34,1.32,.5,1); --a-grad: linear-gradient(100deg, #1F5BFF 10%, #4D8BFF 55%, #7FD6FF 100%); }
+html { scroll-behavior: smooth; scroll-padding-top: 46px; scroll-snap-type: none !important; }
+body.ap { color: var(--a-navy); overflow-x: clip; }
+:where(body.ap button) { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; padding: 0; }
+:where(body.ap a) { color: inherit; text-decoration: none; }
+body.ap i, body.ap em { font-style: normal; }
+body.ap :focus { outline: none; } body.ap :focus-visible { outline: 3px solid rgba(31,91,255,.45); outline-offset: 3px; border-radius: 8px; }
+.wall { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.wall i { position: absolute; border-radius: 50%; filter: blur(60px); opacity: .55; animation: drift 18s ease-in-out infinite alternate; }
+.wall .b1 { width: 46vw; height: 46vw; left: -12vw; top: 18vh; background: #FFF0A6; }
+.wall .b2 { width: 40vw; height: 40vw; right: -8vw; top: -14vh; background: #9FDDFF; animation-delay: -6s; }
+.wall .b3 { width: 38vw; height: 38vw; right: 4vw; bottom: -20vh; background: #6FA4FF; opacity: .45; animation-delay: -11s; }
+@keyframes drift { to { transform: translate(4vw, -3vh) scale(1.08); } }
+.wrap { width: min(1180px, 100% - 2 * max(4vw, 18px)); margin-inline: auto; }
+.rv { opacity: 0; transform: translateY(26px); transition: opacity .9s var(--a-ease), transform .9s var(--a-ease); }
+.rv.is-in { opacity: 1; transform: none; }
 
-  <!-- 인트로 로더 -->
-  <div class="loader" id="loader" aria-hidden="true">
-    <div class="loader__inner">
-      <p class="loader__title">
-        <span class="loader__word loader__word--accent"><i>조</i><i>수</i><i>안</i><i>의</i></span>
-        <span class="loader__word"><i>포</i><i>트</i><i>폴</i><i>리</i><i>오</i></span>
-      </p>
-      <p class="loader__sub">2022 - 2026 PORTFOLIO</p>
-      <div class="loader__bar"><i></i></div>
+/* ---------- status bar: clock · island · battery (= cases read) ---------- */
+.sb { position: fixed; left: 0; right: 0; top: 0; z-index: 900; height: 46px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 0 clamp(16px, 3vw, 34px); font-weight: 700; font-size: 15px; background: linear-gradient(rgba(240,246,255,.82), rgba(240,246,255,.55)); backdrop-filter: blur(16px) saturate(1.6); -webkit-backdrop-filter: blur(16px) saturate(1.6); transition: background .5s, color .5s; }
+body.is-dark .sb { background: linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,.5)); color: #fff; }
+.sb__time { justify-self: start; font-variant-numeric: tabular-nums; }
+.sb__sys { justify-self: end; display: flex; align-items: center; gap: 8px; }
+.sb__sys svg { width: 18px; height: 18px; fill: currentColor; }
+.sb__skip { font-size: 12.5px; font-weight: 800; color: var(--a-blue); margin-right: 6px; transition: opacity .4s; }
+body.past-setup .sb__skip { opacity: 0; pointer-events: none; }
+.batt { display: inline-flex; align-items: center; gap: 7px; }
+.batt b { font-size: 12px; font-weight: 800; opacity: .8; font-variant-numeric: tabular-nums; }
+.batt__b { position: relative; width: 27px; height: 13px; border: 1.5px solid currentColor; border-radius: 4px; opacity: .9; }
+.batt__b::after { content: ""; position: absolute; right: -4px; top: 3px; width: 2px; height: 4px; border-radius: 0 2px 2px 0; background: currentColor; }
+.batt__b i { position: absolute; left: 1.5px; top: 1.5px; bottom: 1.5px; width: 0; border-radius: 2px; background: currentColor; transition: width .8s var(--a-ease), background .4s; }
+body.is-full .batt__b i { background: #34C759; }
+.isl { justify-self: center; height: 32px; min-width: 120px; max-width: min(560px, 74vw); padding: 0 18px; border-radius: 999px; background: #000; color: #fff; display: flex; align-items: center; justify-content: center; gap: 10px; overflow: hidden; transition: min-width .55s var(--a-spring), height .55s var(--a-spring); box-shadow: 0 6px 20px rgba(0,0,0,.18); }
+.isl__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--a-blue); box-shadow: 0 0 10px var(--a-blue); flex: none; opacity: 0; transition: opacity .3s; }
+.isl__t { font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: 0; transform: scale(.92); transition: opacity .3s, transform .3s; }
+.isl__t b { color: var(--a-sky); font-weight: 800; }
+.isl.is-open { min-width: 340px; height: 38px; }
+.isl.is-open .isl__t, .isl.is-open .isl__dot { opacity: 1; transform: none; }
+body.is-dark .isl { box-shadow: 0 0 0 1px rgba(255,255,255,.14); }
+
+/* ---------- 01 hello ---------- */
+.hello { position: relative; min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 20px 120px; }
+.hello__brand { position: absolute; left: 0; right: 0; top: 70px; font-size: 12px; font-weight: 800; letter-spacing: .16em; color: var(--a-mute); }
+.hello__stage { display: grid; place-items: center; height: clamp(110px, 15vw, 210px); }
+.hello__w { grid-area: 1 / 1; font-size: clamp(64px, 10vw, 156px); font-weight: 800; letter-spacing: -0.045em; line-height: 1.1; padding: 0 .06em; background: linear-gradient(100deg, var(--a-navy) 10%, var(--a-blue) 55%, var(--a-sky) 95%); -webkit-background-clip: text; background-clip: text; color: transparent; opacity: 0; transform: translateY(18px) scale(.98); filter: blur(10px); transition: opacity .9s var(--a-ease), transform .9s var(--a-ease), filter .9s var(--a-ease); }
+.hello__w.on { opacity: 1; transform: none; filter: none; }
+.hello__sub { margin-top: 18px; font-size: clamp(15px, 1.3vw, 19px); font-weight: 600; color: var(--a-dim); }
+.hello__sub b { color: var(--a-navy); font-weight: 800; }
+.hello__hint { position: absolute; left: 50%; bottom: clamp(36px, 7vh, 70px); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; font-size: 14px; font-weight: 800; color: var(--a-dim); }
+.hello__hint i { width: 26px; height: 42px; border-radius: 999px; border: 2px solid rgba(11,27,77,.3); position: relative; }
+.hello__hint i::after { content: ""; position: absolute; left: 50%; top: 8px; width: 4px; height: 8px; margin-left: -2px; border-radius: 4px; background: var(--a-navy); animation: wheel 1.6s ease-in-out infinite; }
+@keyframes wheel { 60% { transform: translateY(12px); opacity: 0; } 61% { transform: none; opacity: 0; } 100% { opacity: 1; } }
+
+/* ---------- spec sheet: what the posting asks for, and the cases that show it ---------- */
+.spec { padding: clamp(110px, 16vh, 170px) 0 clamp(10px, 3vh, 30px); }
+.spec__head { text-align: center; }
+.pill { display: inline-block; font-size: 13px; font-weight: 800; color: var(--a-blue); letter-spacing: .02em; padding: 7px 15px; border-radius: 999px; background: rgba(255,255,255,.6); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 6px 18px rgba(11,27,77,.06), inset 0 1px 0 #fff; }
+.spec__h { margin-top: 18px; font-size: clamp(40px, 5.6vw, 84px); font-weight: 800; letter-spacing: -0.05em; line-height: 1.1; }
+.spec__h em { background: var(--a-grad); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: .04em; }
+.spec__s { margin-top: 18px; font-size: clamp(16px, 1.4vw, 20px); font-weight: 700; color: var(--a-dim); line-height: 1.5; letter-spacing: -0.02em; }
+.spec__box { margin-top: clamp(40px, 6vh, 64px); background: rgba(255,255,255,.68); backdrop-filter: blur(30px) saturate(1.6); -webkit-backdrop-filter: blur(30px) saturate(1.6); border: 1px solid rgba(255,255,255,.85); border-radius: 34px; padding: 6px clamp(18px, 3.4vw, 48px); box-shadow: 0 40px 100px rgba(11,27,77,.12), inset 0 1px 0 #fff; }
+.sp { position: relative; display: grid; grid-template-columns: minmax(0, 330px) minmax(0, 1fr); gap: clamp(20px, 4vw, 56px); align-items: center; padding: 28px 0; opacity: 0; transform: translateY(16px); transition: opacity .7s var(--a-ease), transform .7s var(--a-ease); }
+.sp.is-on { opacity: 1; transform: none; }
+.sp + .sp::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: rgba(11,27,77,.12); }
+.sp__k { display: grid; grid-template-columns: 54px minmax(0, 1fr); column-gap: 18px; align-items: center; }
+.sp__ico { position: relative; grid-row: span 2; width: 54px; height: 54px; border-radius: 15px; background: linear-gradient(160deg, #5A93FF, #1F5BFF); display: grid; place-items: center; box-shadow: 0 10px 22px rgba(31,91,255,.26), inset 0 1px 0 rgba(255,255,255,.45); }
+.sp__ico svg { width: 29px; height: 29px; fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.sp__ok { position: absolute; right: -6px; bottom: -6px; width: 22px; height: 22px; border-radius: 50%; background: #34C759; box-shadow: 0 0 0 3px #fff; transform: scale(0); transition: transform .5s .35s var(--a-spring); }
+.sp__ok::after { content: ""; position: absolute; left: 8px; top: 4.5px; width: 4.5px; height: 9px; border: solid #fff; border-width: 0 2.4px 2.4px 0; transform: rotate(45deg); }
+.sp.is-on .sp__ok { transform: none; }
+.sp__k h3 { font-size: clamp(24px, 2.2vw, 30px); font-weight: 800; letter-spacing: -0.04em; line-height: 1.2; }
+.sp__k p { margin-top: 5px; font-size: 15px; font-weight: 600; color: var(--a-dim); line-height: 1.5; letter-spacing: -0.01em; }
+.sp__cs { display: grid; gap: 2px; }
+.spc { display: grid; grid-template-columns: 38px auto minmax(0, 1fr) auto 18px; align-items: center; gap: 14px; padding: 9px 14px; border-radius: 16px; transition: background .25s, box-shadow .25s; }
+.spc:hover { background: #fff; box-shadow: 0 6px 18px rgba(11,27,77,.08); }
+.spc .ic { width: 38px; border-radius: 10px; box-shadow: none; }
+.spc .ic img { filter: none; }
+.spc__n { min-width: 70px; text-align: center; font-size: 11.5px; font-weight: 800; color: var(--a-blue); border: 1.5px solid rgba(31,91,255,.32); border-radius: 999px; padding: 3px 9px; letter-spacing: .04em; white-space: nowrap; }
+.spc__t { font-size: 16.5px; font-weight: 800; letter-spacing: -0.025em; line-height: 1.35; }
+.spc__p { font-size: 13px; font-weight: 700; color: var(--a-mute); white-space: nowrap; }
+.spc__go { width: 18px; height: 18px; fill: none; stroke: #A9B1C7; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; transition: transform .25s, stroke .25s; }
+.spc:hover .spc__go { transform: translateX(3px); stroke: var(--a-blue); }
+
+/* ---------- chapter titles ---------- */
+.chap { padding: clamp(130px, 20vh, 210px) 0 clamp(50px, 8vh, 80px); text-align: center; }
+.chap__eye { display: inline-block; font-size: 13px; font-weight: 800; color: var(--a-blue); letter-spacing: .02em; padding: 7px 15px; border-radius: 999px; background: rgba(255,255,255,.6); backdrop-filter: blur(14px); box-shadow: 0 6px 18px rgba(11,27,77,.06), inset 0 1px 0 #fff; }
+.chap__h { margin-top: 18px; font-size: clamp(52px, 7.4vw, 108px); font-weight: 800; letter-spacing: -0.055em; line-height: 1.05; }
+.chap__h em { background: var(--a-grad); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: .04em; }
+.chap__s { margin: 20px auto 0; font-size: clamp(17px, 1.6vw, 22px); font-weight: 700; color: var(--a-dim); line-height: 1.5; letter-spacing: -0.02em; }
+
+/* ---------- cases open as app windows ---------- */
+.ic { position: relative; width: 60px; aspect-ratio: 1; border-radius: 24%; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 12px 26px rgba(11,27,77,.16), inset 0 1px 0 rgba(255,255,255,.6); }
+.ic img { width: 72%; height: 72%; object-fit: contain; filter: drop-shadow(0 6px 8px rgba(0,0,0,.18)); }
+.win { padding: 14px 0 30px; }
+.win__frame { border-radius: 34px; overflow: hidden; background: #fff; box-shadow: 0 40px 90px rgba(11,27,77,.16); transform: scale(.9) translateY(40px); opacity: 0; transform-origin: 50% 0; transition: transform .9s var(--a-ease), opacity .7s var(--a-ease), border-radius .9s; }
+.win.is-open .win__frame { transform: none; opacity: 1; border-radius: 30px; }
+.win__bar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; padding: 12px 18px; border-bottom: 1px solid rgba(11,27,77,.07); background: rgba(255,255,255,.9); }
+.win__dots { display: flex; gap: 7px; }
+.win__dots i { width: 12px; height: 12px; border-radius: 50%; background: #FF5F57; } .win__dots i:nth-child(2) { background: #FEBC2E; } .win__dots i:nth-child(3) { background: #28C840; }
+.win__lbl { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 800; }
+.win__lbl .ic { width: 28px; border-radius: 8px; box-shadow: none; }
+.win__lbl .ic img { filter: none; }
+.win__lbl small { font-weight: 700; color: var(--a-mute); }
+.win__n { justify-self: end; font-size: 13px; font-weight: 800; color: var(--a-mute); font-variant-numeric: tabular-nums; }
+.win .case { background: linear-gradient(90deg, #F4F8FF 0 39%, #fff 39%); min-height: 0 !important; height: auto !important; overflow: visible !important; align-items: center !important; padding-block: clamp(70px, 9vh, 96px) clamp(48px, 7vh, 72px) !important; }
+.win .case > * { transform: none !important; }
+.win .phone { cursor: default; }
+@media (max-width: 1100px) { .win .case { background: #fff; } }
+.mgl { display: inline-flex; align-items: center; gap: 6px; margin-top: 26px; align-self: flex-start; min-height: 46px; padding: 0 20px; border-radius: 999px; background: var(--a-navy); color: #fff; font-size: 15px; font-weight: 800; }
+.mg { display: flex; flex-direction: column; align-items: center; gap: 26px; }
+.mg__ph { display: flex; justify-content: center; align-items: flex-end; gap: clamp(14px, 2vw, 28px); }
+.mg__ph .phone { width: clamp(160px, 16vw, 240px); height: auto; }
+.mg__ph .phone:last-child { transform: translateY(-24px) !important; }
+.mg__st { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.mg__st span { display: inline-flex; align-items: baseline; gap: 8px; padding: 10px 18px; border-radius: 999px; background: #F4F8FF; font-size: 14px; font-weight: 700; color: var(--a-dim); }
+.mg__st b { font-size: 20px; font-weight: 800; color: var(--a-blue); letter-spacing: -0.03em; }
+
+/* ---------- one more thing: one storyboard per device ---------- */
+.omt { margin-top: clamp(80px, 12vh, 130px); background: #000; color: #fff; padding-bottom: clamp(110px, 16vh, 170px); }
+.omt__line { height: 80vh; display: grid; place-items: center; font-size: clamp(46px, 6.6vw, 96px); font-weight: 700; letter-spacing: -0.045em; }
+.omt__line span { opacity: 0; transform: scale(.96); filter: blur(8px); transition: opacity 1.4s var(--a-ease), transform 1.4s var(--a-ease), filter 1.4s var(--a-ease); }
+.omt__line.is-in span { opacity: 1; transform: none; filter: none; }
+.omt__head { text-align: center; }
+.omt__eye { display: inline-block; font-size: 13px; font-weight: 800; color: var(--a-sky); padding: 6px 14px; border-radius: 999px; background: rgba(127,214,255,.12); }
+.omt__t { margin-top: 18px; font-size: clamp(38px, 5vw, 70px); font-weight: 800; letter-spacing: -0.045em; line-height: 1.12; background: linear-gradient(100deg, #fff 30%, var(--a-sky) 70%, #8FB6FF); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.omt__s { margin-top: 16px; font-size: clamp(15px, 1.3vw, 19px); color: rgba(255,255,255,.72); line-height: 1.6; }
+.eps { margin: clamp(56px, 9vh, 90px) auto 0; max-width: 980px; display: grid; gap: clamp(80px, 12vh, 120px); }
+.ep { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: clamp(32px, 6vw, 80px); align-items: center; }
+.ep--r { grid-template-columns: minmax(0, 1fr) 300px; }
+.ep--r .ct { order: 2; }
+.ep__tag { display: inline-block; font-size: 12.5px; font-weight: 800; letter-spacing: .04em; color: var(--a-sky); padding: 5px 12px; border-radius: 999px; background: rgba(127,214,255,.12); }
+.ep__h { margin-top: 14px; font-size: clamp(30px, 3.2vw, 44px); font-weight: 800; letter-spacing: -0.045em; line-height: 1.18; }
+.ep__why { margin-top: 12px; font-size: 16px; font-weight: 600; color: rgba(255,255,255,.68); line-height: 1.65; }
+.ep__ls { list-style: none; padding: 0; margin-top: 24px; display: grid; gap: 6px; }
+.ep__ls li { display: grid; grid-template-columns: 54px minmax(0, 1fr); column-gap: 12px; padding: 13px 16px; border-radius: 16px; background: rgba(255,255,255,.04); opacity: .5; animation: hl1 15s infinite; }
+.ep__ls li:nth-child(2) { animation-name: hl2; } .ep__ls li:nth-child(3) { animation-name: hl3; }
+@keyframes hl1 { 0%, 31% { opacity: 1; background: rgba(255,255,255,.12); box-shadow: inset 3px 0 0 var(--a-sky); } 34%, 97% { opacity: .5; background: rgba(255,255,255,.04); box-shadow: none; } 100% { opacity: 1; background: rgba(255,255,255,.12); box-shadow: inset 3px 0 0 var(--a-sky); } }
+@keyframes hl2 { 0%, 31% { opacity: .5; background: rgba(255,255,255,.04); box-shadow: none; } 34%, 64% { opacity: 1; background: rgba(255,255,255,.12); box-shadow: inset 3px 0 0 var(--a-sky); } 67%, 100% { opacity: .5; background: rgba(255,255,255,.04); box-shadow: none; } }
+@keyframes hl3 { 0%, 64% { opacity: .5; background: rgba(255,255,255,.04); box-shadow: none; } 67%, 97% { opacity: 1; background: rgba(255,255,255,.12); box-shadow: inset 3px 0 0 var(--a-sky); } 100% { opacity: .5; background: rgba(255,255,255,.04); box-shadow: none; } }
+.ep__time { padding-top: 2px; font-size: 12px; font-weight: 800; color: rgba(255,255,255,.55); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ep__ls b { display: block; font-size: 16px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.42; }
+.ep__ls small { display: block; margin-top: 3px; font-size: 13px; font-weight: 700; color: var(--a-sky); }
+.ep__fn { margin-top: 14px; font-size: 12.5px; font-weight: 600; color: rgba(255,255,255,.45); }
+
+/* the 9:16 storyboard card */
+.ct { position: relative; width: 300px; aspect-ratio: 9 / 16; border-radius: 28px; overflow: hidden; background: radial-gradient(120% 70% at 50% 30%, #1B2C63, #070B1C 70%); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1), 0 40px 80px rgba(31,91,255,.14); }
+.ct--mac { background: radial-gradient(120% 70% at 50% 30%, #2A2350, #0A0916 70%); }
+.ct__bars { position: absolute; z-index: 3; left: 14px; right: 14px; top: 12px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+.ct__bars i { height: 3px; border-radius: 99px; background: rgba(255,255,255,.25); overflow: hidden; }
+.ct__bars i::after { content: ""; display: block; height: 100%; width: 100%; background: #fff; transform: scaleX(0); transform-origin: 0 50%; animation: bar 15s linear infinite; }
+.ct__bars i:nth-child(2)::after { animation-name: bar2; } .ct__bars i:nth-child(3)::after { animation-name: bar3; }
+@keyframes bar { 0% { transform: scaleX(0); } 33.3% { transform: scaleX(1); } 100% { transform: scaleX(1); } }
+@keyframes bar2 { 0%, 33.3% { transform: scaleX(0); } 66.6% { transform: scaleX(1); } 100% { transform: scaleX(1); } }
+@keyframes bar3 { 0%, 66.6% { transform: scaleX(0); } 99.9% { transform: scaleX(1); } 100% { transform: scaleX(1); } }
+.ct__ep { position: absolute; z-index: 3; left: 16px; top: 26px; font-size: 11.5px; font-weight: 800; letter-spacing: .04em; color: rgba(255,255,255,.8); }
+.sc { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 70px 16px 0; opacity: 0; animation: sc 15s infinite; }
+.sc--2 { animation-name: sc2; } .sc--3 { animation-name: sc3; }
+@keyframes sc { 0%, 31% { opacity: 1; } 33.3%, 98% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes sc2 { 0%, 32% { opacity: 0; } 35%, 64% { opacity: 1; } 66.6%, 100% { opacity: 0; } }
+@keyframes sc3 { 0%, 65.5% { opacity: 0; } 68.5%, 97.5% { opacity: 1; } 100% { opacity: 0; } }
+.sc__cap { position: absolute; left: 14px; right: 14px; bottom: 92px; text-align: center; font-size: 15px; font-weight: 800; line-height: 1.45; letter-spacing: -0.02em; }
+.sc__cap span { background: rgba(0,0,0,.55); padding: 3px 8px; border-radius: 6px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.ct__foot { position: absolute; z-index: 3; left: 0; right: 0; bottom: 0; padding: 14px 18px 18px; background: linear-gradient(transparent, rgba(0,0,0,.75) 45%); }
+.ct__foot b { display: block; font-size: 16px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.3; }
+.ct__foot small { display: block; margin-top: 4px; font-size: 11.5px; font-weight: 700; color: rgba(255,255,255,.6); }
+.stage { position: relative; width: 100%; display: flex; justify-content: center; }
+
+/* iPad */
+.pad { position: relative; width: 74%; aspect-ratio: 3 / 4; border-radius: 22px; background: #F7F6F1; border: 7px solid #12151F; box-shadow: 0 0 0 1.5px #3A4260, 0 30px 60px rgba(0,0,0,.55); overflow: hidden; color: #1A2033; text-align: left; }
+.pad--grid { background-color: #F7F6F1; background-image: linear-gradient(#E6E4DA 1px, transparent 1px), linear-gradient(90deg, #E6E4DA 1px, transparent 1px); background-size: 15px 15px; }
+.nt__bar { display: flex; justify-content: space-between; align-items: center; height: 28px; padding: 0 10px; font-size: 9.5px; font-weight: 800; color: #D39400; }
+.rec { display: inline-flex; align-items: center; gap: 5px; padding: 3px 8px; border-radius: 999px; background: #fff; color: #1A2033; box-shadow: 0 2px 6px rgba(0,0,0,.1); font-size: 9px; font-variant-numeric: tabular-nums; }
+.rec > i { width: 6px; height: 6px; border-radius: 50%; background: #FF3B30; animation: blink 1.2s infinite; }
+@keyframes blink { 50% { opacity: .25; } }
+.wave { display: inline-flex; align-items: center; gap: 1.5px; height: 10px; }
+.wave i { width: 2px; height: 100%; border-radius: 2px; background: #FF3B30; transform: scaleY(.3); animation: wv .9s ease-in-out infinite; }
+.wave i:nth-child(2) { animation-delay: -.25s; } .wave i:nth-child(3) { animation-delay: -.5s; } .wave i:nth-child(4) { animation-delay: -.7s; } .wave i:nth-child(5) { animation-delay: -.15s; }
+@keyframes wv { 50% { transform: scaleY(1); } }
+.nt { padding: 4px 12px; display: grid; gap: 8px; }
+.hw { display: inline-block; font-weight: 700; font-style: italic; letter-spacing: -0.01em; transform: rotate(-2deg); transform-origin: 0 50%; }
+.nt__h { font-size: 18px; color: #1A2033; }
+.scrib { display: block; width: 100%; height: auto; }
+.scrib path { fill: none; stroke: #2B3A8C; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 240; stroke-dashoffset: 240; animation: draw1 15s infinite; }
+.scrib path:nth-child(2) { animation-name: draw2; } .scrib path:nth-child(3) { animation-name: draw3; }
+@keyframes draw1 { 0%, 3% { stroke-dashoffset: 240; } 11%, 100% { stroke-dashoffset: 0; } }
+@keyframes draw2 { 0%, 10% { stroke-dashoffset: 240; } 18%, 100% { stroke-dashoffset: 0; } }
+@keyframes draw3 { 0%, 17% { stroke-dashoffset: 240; } 25%, 100% { stroke-dashoffset: 0; } }
+.bub { padding: 8px 10px 9px; border-radius: 12px; background: #fff; box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+.bub small { display: block; font-size: 8px; font-weight: 800; color: #8A90A2; letter-spacing: .04em; }
+.bub p { margin-top: 3px; font-size: 10.5px; font-weight: 700; line-height: 1.45; color: #1A2033; }
+.bub i { display: block; height: 5px; border-radius: 5px; background: #E1E4EC; margin-top: 5px; transform: scaleX(0); transform-origin: 0 50%; animation: tl1 15s infinite; }
+.bub i + i { width: 64%; animation-name: tl2; }
+@keyframes tl1 { 0%, 9% { transform: scaleX(0); } 17%, 100% { transform: scaleX(1); } }
+@keyframes tl2 { 0%, 16% { transform: scaleX(0); } 24%, 100% { transform: scaleX(1); } }
+.pen { position: absolute; width: 10px; height: 150px; z-index: 2; filter: drop-shadow(-6px 10px 8px rgba(0,0,0,.45)); }
+.pen--a { right: 13%; top: 46%; transform: rotate(32deg); animation: scribble 1.1s ease-in-out infinite alternate; }
+.pen--b { right: 14%; top: 18%; transform: rotate(28deg); }
+@keyframes scribble { to { transform: rotate(32deg) translate(-5px, 3px); } }
+.mn { padding: 22px 14px; }
+.mn__l { font-size: 11.5px; color: #6A7088; }
+.mn__q { margin-top: 10px; font-size: 19px; line-height: 1.55; color: #1A2033; font-weight: 700; }
+.mn__eq { animation: eq 15s infinite; }
+.mn__a { display: inline-block; color: #E39B00; font-size: 28px; font-weight: 800; animation: ans 15s infinite; }
+@keyframes eq { 0%, 41% { opacity: 0; } 43%, 100% { opacity: 1; } }
+@keyframes ans { 0%, 46% { opacity: 0; transform: translateY(6px) scale(.7) rotate(-2deg); } 51%, 100% { opacity: 1; transform: rotate(-2deg); } }
+.mn__tip { margin-top: 14px; display: inline-flex; align-items: center; gap: 5px; font-size: 9.5px; font-weight: 800; color: #8A6A10; background: #FFF4CC; padding: 4px 8px; border-radius: 999px; }
+.aud { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; gap: 8px; align-items: center; padding: 7px 9px; border-radius: 12px; background: #fff; box-shadow: 0 3px 10px rgba(0,0,0,.07); }
+.aud__p { position: relative; width: 22px; height: 22px; border-radius: 50%; background: #FF3B30; }
+.aud__p::after { content: ""; position: absolute; left: 8.5px; top: 6.5px; border: 4.5px solid transparent; border-left: 6.5px solid #fff; border-right: 0; }
+.aud b { display: block; font-size: 10px; font-weight: 800; }
+.aud small { font-size: 8.5px; font-weight: 700; color: #8A90A2; }
+.aud .wave i { background: #C3C7D3; animation: none; }
+.aud .wave i:nth-child(odd) { transform: scaleY(.9); } .aud .wave i:nth-child(even) { transform: scaleY(.45); }
+.sum { position: relative; padding: 10px 11px 11px; border-radius: 14px; background: #fff; }
+.sum::before { content: ""; position: absolute; inset: -2px; border-radius: 16px; padding: 2px; background: linear-gradient(120deg, #4D8BFF, #A66BFF, #FF7F6B, #FFC24D); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+.sum__h { display: flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 800; color: #5B4BDB; }
+.sum__h svg { width: 11px; height: 11px; fill: #7B5CFF; }
+.sum ul { margin: 6px 0 0; padding-left: 13px; display: grid; gap: 4px; }
+.sum li { font-size: 10px; font-weight: 700; line-height: 1.4; animation: si 15s infinite; }
+.sum li:nth-child(2) { animation-delay: .35s; } .sum li:nth-child(3) { animation-delay: .7s; }
+@keyframes si { 0%, 70% { opacity: 0; transform: translateY(4px); } 74%, 100% { opacity: 1; transform: none; } }
+
+/* MacBook, iPhone */
+.mac { position: relative; width: 92%; }
+.mac__s { position: relative; aspect-ratio: 16 / 10.4; border: 6px solid #12151F; border-bottom-width: 8px; border-radius: 11px 11px 2px 2px; background: #EEF1F7; overflow: hidden; box-shadow: 0 0 0 1.5px #3A4260; color: #1A2033; text-align: left; }
+.mac__s::before { content: ""; position: absolute; z-index: 4; left: 50%; top: 0; width: 24px; height: 5px; margin-left: -12px; border-radius: 0 0 4px 4px; background: #12151F; }
+.mac__b { display: block; height: 7px; margin: 0 -7%; border-radius: 1px 1px 10px 10px; background: linear-gradient(#D9DEE8, #8E96AB); position: relative; }
+.mac__b::after { content: ""; position: absolute; left: 50%; top: 0; width: 18%; height: 3px; margin-left: -9%; border-radius: 0 0 4px 4px; background: rgba(0,0,0,.18); }
+.mw { position: absolute; left: 9%; right: 9%; top: 10px; bottom: 0; background: #fff; border-radius: 6px 6px 0 0; box-shadow: 0 4px 14px rgba(0,0,0,.12); }
+.mw__bar { display: flex; align-items: center; gap: 3px; height: 14px; padding: 0 6px; border-bottom: 1px solid #EDEFF4; font-size: 6.5px; font-weight: 700; color: #8A90A2; }
+.mw__bar i { width: 5px; height: 5px; border-radius: 50%; background: #FF5F57; } .mw__bar i:nth-child(2) { background: #FEBC2E; } .mw__bar i:nth-child(3) { background: #28C840; margin-right: 6px; }
+.mw__doc { padding: 8px 12px; display: grid; gap: 4px; }
+.mw__doc b { font-size: 9px; font-weight: 800; }
+.ln3 { display: block; height: 3.5px; border-radius: 3px; background: #E3E6EE; }
+.ln3.s { width: 60%; }
+.scan { width: 44%; height: 34px; margin-top: 2px; border-radius: 3px; border: 1px solid #D5D9E3; background: #FBFAF5 repeating-linear-gradient(#FBFAF5 0 5px, #DADDE5 5px 6px); background-clip: content-box; padding: 5px; box-shadow: 0 3px 8px rgba(0,0,0,.12); animation: drop 15s infinite; }
+@keyframes drop { 0%, 19% { opacity: 0; transform: translate(60px, 50px) scale(.5) rotate(-6deg); } 25%, 100% { opacity: 1; transform: none; } }
+.menu { position: absolute; z-index: 3; right: 16%; top: 36px; width: 78px; padding: 4px; border-radius: 6px; background: rgba(250,250,252,.97); box-shadow: 0 6px 18px rgba(0,0,0,.2); display: grid; gap: 1px; font-size: 7px; font-weight: 700; animation: menu 15s infinite; }
+.menu small { font-size: 6px; font-weight: 800; color: #8A90A2; padding: 2px 4px; }
+.menu span { padding: 3px 4px; border-radius: 3px; }
+.menu .on { background: #2F6BFF; color: #fff; }
+@keyframes menu { 0%, 12% { opacity: 1; } 15%, 100% { opacity: 0; } }
+.iph { position: absolute; z-index: 3; right: 3%; bottom: -46%; width: 25%; aspect-ratio: 9 / 19.5; border-radius: 13px; border: 3.5px solid #12151F; box-shadow: 0 0 0 1.2px #3A4260, 0 14px 30px rgba(0,0,0,.6); background: #1A1F2C; overflow: hidden; }
+.iph::before { content: ""; position: absolute; z-index: 2; left: 50%; top: 4px; width: 30%; height: 6px; margin-left: -15%; border-radius: 6px; background: #000; }
+.vf__pg { position: absolute; left: 18%; right: 18%; top: 24%; height: 40%; background: #F4F2EA repeating-linear-gradient(#F4F2EA 0 4px, #D9D6CB 4px 5px); background-clip: content-box; padding: 4px; transform: rotate(-6deg); }
+.vf__fr { position: absolute; left: 13%; right: 13%; top: 21%; height: 46%; border: 1.5px solid #FFD60A; border-radius: 3px; background: rgba(255,214,10,.14); }
+.vf__sh { position: absolute; left: 50%; bottom: 8%; width: 16px; height: 16px; margin-left: -8px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 2px #1A1F2C, 0 0 0 3.5px #fff; }
+.iph--cam::after { content: ""; position: absolute; inset: 0; background: #fff; opacity: 0; animation: flash 15s infinite; }
+@keyframes flash { 0%, 15.5% { opacity: 0; } 16.5% { opacity: .85; } 19%, 100% { opacity: 0; } }
+.desk { position: absolute; inset: 0; background: linear-gradient(140deg, #3C7BFF, #8C6BFF 55%, #FF9AAE); }
+.desk::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 9px; background: rgba(255,255,255,.35); }
+.desk .mw { left: 6%; right: auto; width: 50%; top: 18px; bottom: 14px; border-radius: 6px; }
+.mir { position: absolute; z-index: 2; right: 12%; top: 16px; width: 23%; aspect-ratio: 9 / 19.5; border-radius: 10px; background: linear-gradient(170deg, #1B2C63, #0B1230); border: 2px solid #2A3042; box-shadow: 0 10px 24px rgba(0,0,0,.4); padding: 14px 5px 5px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; align-content: start; }
+.mir i { aspect-ratio: 1; border-radius: 4px; }
+.mir__n { position: absolute; left: 3px; right: 3px; top: 3px; height: 9px; border-radius: 3px; background: rgba(255,255,255,.92); animation: ntf 15s infinite; }
+@keyframes ntf { 0%, 42% { opacity: 0; transform: translateY(-6px); } 45%, 100% { opacity: 1; transform: none; } }
+.cur { position: absolute; z-index: 3; width: 13px; height: 13px; left: 40%; top: 70%; animation: cur 15s infinite; }
+@keyframes cur { 0%, 36% { left: 40%; top: 70%; } 44%, 100% { left: 76%; top: 34%; } }
+.bag { position: absolute; z-index: 3; right: 4%; bottom: -52%; width: 84px; filter: drop-shadow(0 12px 18px rgba(0,0,0,.5)); }
+.duo { position: relative; width: 100%; display: flex; align-items: flex-end; justify-content: center; gap: 8px; margin-top: 74px; }
+.duo .mac { width: 62%; }
+.duo .mac__s { border-width: 5px 5px 7px; }
+.desk--plain { background: linear-gradient(160deg, #DCE6FF, #F2F5FB); }
+.desk--plain::before { background: rgba(255,255,255,.7); }
+.desk--plain .mw { width: 58%; }
+.padl { position: relative; width: 34%; aspect-ratio: 4 / 3; border-radius: 10px; border: 4.5px solid #12151F; box-shadow: 0 0 0 1.2px #3A4260, 0 16px 30px rgba(0,0,0,.5); background: linear-gradient(160deg, #DCE6FF, #F2F5FB); }
+.fly { position: absolute; z-index: 4; width: 23%; aspect-ratio: 4 / 3.2; border-radius: 4px; background: #fff; box-shadow: 0 8px 16px rgba(0,0,0,.35); overflow: hidden; animation: fly 15s infinite; }
+.fly b { display: block; padding: 2px 4px; font-size: 6.5px; font-weight: 800; color: #fff; background: #1F5BFF; }
+.fly i { display: block; height: 3px; margin: 4px 5px 0; border-radius: 3px; background: #DDE2EC; }
+.fly i + i { width: 55%; }
+@keyframes fly { 0%, 73% { left: 30%; top: 14%; } 84%, 100% { left: 70.5%; top: 47%; } }
+.omt__note { margin-top: clamp(56px, 8vh, 80px); text-align: center; font-size: 13px; color: rgba(255,255,255,.5); }
+.omt__q { margin-top: 18px; text-align: center; font-size: clamp(19px, 1.8vw, 26px); font-weight: 700; line-height: 1.6; letter-spacing: -0.02em; }
+.omt__q u { text-decoration: none; background: linear-gradient(transparent 62%, rgba(31,91,255,.6) 62%); }
+/* nothing moves until the storyboards are on screen, so both start at their first scene */
+.omt:not(.is-play) .eps *, .omt:not(.is-play) .eps *::before, .omt:not(.is-play) .eps *::after { animation-play-state: paused !important; }
+
+@media (max-width: 1100px) and (min-width: 861px) { .spc__p { display: none; } .spc { grid-template-columns: 38px auto minmax(0, 1fr) 18px; } }
+@media (max-width: 860px) {
+  .sp { grid-template-columns: 1fr; gap: 14px; padding: 26px 0; }
+  .ep, .ep--r { grid-template-columns: 1fr; justify-items: center; gap: 30px; }
+  .ep--r .ct { order: 0; }
+  .ep__txt { width: 100%; max-width: 560px; }
+}
+@media (max-width: 640px) {
+  .sb { font-size: 14px; padding: 0 14px; }
+  .sb__skip, .batt b { display: none; }
+  .isl.is-open { min-width: 0; width: min(56vw, 230px); padding: 0 14px; }
+  .isl__t { font-size: 12px; }
+  .hello__brand { top: 64px; }
+  .spec__box { border-radius: 26px; padding: 4px 14px; }
+  .sp__k { grid-template-columns: 46px minmax(0, 1fr); column-gap: 14px; }
+  .sp__ico { width: 46px; height: 46px; border-radius: 13px; }
+  .sp__ico svg { width: 25px; height: 25px; }
+  .spc { grid-template-columns: 34px minmax(0, 1fr) 16px; grid-template-areas: "i n g" "i t g"; column-gap: 12px; row-gap: 3px; padding: 10px 6px; }
+  .spc .ic { grid-area: i; width: 34px; }
+  .spc__n { grid-area: n; justify-self: start; font-size: 10.5px; padding: 2px 8px; }
+  .spc__t { grid-area: t; font-size: 15.5px; }
+  .spc__p { display: none; }
+  .spc__go { grid-area: g; }
+  .win__frame { border-radius: 24px; }
+  .win__bar { grid-template-columns: auto 1fr auto; }
+  .win__dots { display: none; }
+  .win__lbl small { display: none; }
+  .ct { width: min(300px, 84vw); }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .wall i { animation: none; } .rv, .win__frame, .sp { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body class="ap">
+
+<div class="wall" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div>
+
+<header class="sb">
+  <span class="sb__time" id="tm">9:41</span>
+  <div class="isl" id="isl" role="status" aria-live="polite"><i class="isl__dot"></i><span class="isl__t" id="islT"></span></div>
+  <div class="sb__sys">
+    <a class="sb__skip" href="#ch1">케이스 바로 보기</a>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="15" width="3.6" height="5" rx="1"/><rect x="7.4" y="11.5" width="3.6" height="8.5" rx="1"/><rect x="12.8" y="8" width="3.6" height="12" rx="1"/><rect x="18.2" y="4.5" width="3.6" height="15.5" rx="1"/></svg>
+    <span class="batt" title="읽은 케이스 수"><b id="battT">열람 0/10</b><i class="batt__b"><i id="battF"></i></i></span>
+  </div>
+</header>
+
+<main>
+<!-- 01 · hello -->
+<section class="hello" id="top" aria-label="인사">
+  <p class="hello__brand">조수안 포트폴리오 · APPLE SALES INTERNSHIP</p>
+  <div class="hello__stage" aria-live="polite">
+    <span class="hello__w on">안녕하세요</span>
+    <span class="hello__w">Hello</span>
+    <span class="hello__w" lang="zh">你好</span>
+    <span class="hello__w" lang="ja">こんにちは</span>
+  </div>
+  <p class="hello__sub"><b>한국 · 미국 · 중국 · 일본</b>, 제가 살고 일해 본 시장의 말로 인사드려요</p>
+  <p class="hello__hint" aria-hidden="true"><i></i>아래로 내려 주세요</p>
+</section>
+
+<!-- 02 · spec sheet: the posting's asks, each linked to the cases that show it -->
+<section class="spec" id="spec" aria-label="역량별 케이스">
+  <div class="wrap">
+    <div class="spec__head">
+      <span class="pill rv">기술 사양</span>
+      <h2 class="spec__h rv">애플 공고가 찾는 역량,<br><em>모두 탑재.</em></h2>
+      <p class="spec__s rv">역량마다 그걸 보여 주는 케이스를 연결했어요. 누르면 바로 이동해요.</p>
+    </div>
+    <div class="spec__box" id="specBox">
+<div class="sp"><div class="sp__k"><span class="sp__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3.2"/></svg><i class="sp__ok" aria-hidden="true"></i></span><h3>고객 이해</h3><p>고객이 왜 사고, 왜 망설이는지 읽어요</p></div><div class="sp__cs"><a class="spc" href="#case-2"><span class="ic" style="background:linear-gradient(160deg,#FFFFFF,#D6E4FF)"><img src="assets/img/icon-gift.webp" alt=""></span><span class="spc__n">CASE 1</span><span class="spc__t">오프라인 행사, 전환율 73%를 만들다</span><span class="spc__p">브레드랍</span><svg class="spc__go" viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5L13 10l-5.5 5.5"/></svg></a><a class="spc" href="#case-3"><span class="ic" style="background:linear-gradient(160deg,#FFFFFF,#D6E4FF)"><img src="assets/img/icon-calendar.webp" alt=""></span><span class="spc__n">CASE 2</span><span class="spc__t">운영 위기, 카피라이팅으로 매출 13% 올리다</span><span class="spc__p">브레드랍</span><svg class="spc__go" viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5L13 10l-5.5 5.5"/></svg></a><a class="spc" href="#case-7"><span class="ic" style="background:linear-gradient(160deg,#2A4189,#0B1B4D)"><img src="assets/img/icon-fire.webp" alt=""></span><span class="spc__n">CASE 3</span><span class="spc__t">2만 명 마라톤, 러너의 일상에 맞춰 설계하다</span><span class="spc__p">F&F</span><svg class="spc__go" viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5L13 10l-5.5 5.5"/></svg></a></div></div>
+<div class="sp"><div class="sp__k"><span class="sp__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="4"/><path d="M10.2 9.2v5.6l4.6-2.8z" fill="#fff"/></svg><i class="sp__ok" aria-hidden="true"></i></span><h3>콘텐츠 제작</h3><p>보고 따라 하게 되는 콘텐츠를 만들어요</p></div><div class="sp__cs"><a class="spc" href="#case-ai"><span class="ic" style="background:linear-gradient(160deg,#6B9BFF,#1F5BFF)"><img src="assets/img/icon-camera.webp" alt=""></span><span class="spc__n">CASE 4</span><span class="spc__t">AI 실사화 챌린지, 구경을 참여로 바꾸다</span><span class="spc__p">네이버제트</span><svg class="spc__go" viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5L13 10l-5.5 5.5"/></svg></a><a class="spc" href="#case-9"><span class="ic" style="background:linear-gradient(160deg,#CDEFFF,#7FD6FF)"><img src="assets/img/icon-mic.webp" alt=""></span><span class="spc__n">CASE 6</span><span class="spc__t">일단 매거진, 콘텐츠 채널을 직접 운영하다</span><span class="spc__p">일단 매거진</span><svg class="spc__go" viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5L13 10l-5.5 5.5"/></svg></a></div></div>
+<div class="sp"><div class="sp__k"><span class="sp__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="1.8" fill="#fff"/><path d="M15.6 8.4a5 5 0 0 1 0 7.2M8.4 15.6a5 5 0 0 1 0-7.2M18.6 5.4a9.3 9.3 0 0 1 0 13.2M5.4 18.6a9.3 9.3 0 0 1 0-13.2"/></svg><i class="sp__ok" aria-hidden="true"></i></span><h3>콘텐츠 확산</h3><p>만든 콘텐츠가 더 많은 사람에게 닿게 해요</p></div><div class="sp__cs"><a class="spc" href="#case-6"><span class="ic" style="background:linear-gradient(160deg,#6B9BFF,#1F5BFF)"><img src="assets/img/icon-cursor.webp" alt=""></span><span class="spc__n">CASE 5</span><span class="spc__t">SNS Story 기능 재정의, 링크 클릭 200배를 만들다</span><span class="spc__p">네이버제트</span><svg class="spc__go" viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5L13 10l-5.5 5.5"/></svg></a><a class="spc" href="#case-ai"><span class="ic" style="background:linear-gradient(160deg,#6B9BFF,#1F5BFF)"><img src="assets/img/icon-camera.webp" alt=""></span><span class="spc__n">CASE 4</span><span class="spc__t">AI 실사화 챌린지, 구경을 참여로 바꾸다</span><span class="spc__p">네이버제트</span><svg class="spc__go" viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5L13 10l-5.5 5.5"/></svg></a></div></div>
+<div class="sp"><div class="sp__k"><span class="sp__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 20h17"/><path d="M6.5 16.5v-4M11 16.5V8M15.5 16.5v-6M20 16.5V5"/></svg><i class="sp__ok" aria-hidden="true"></i></span><h3>데이터 분석</h3><p>관찰과 숫자로 다음 할 일을 정해요</p></div><div class="sp__cs"><a class="spc" href="#case-8"><span class="ic" style="background:linear-gradient(160deg,#2A4189,#0B1B4D)"><img src="assets/img/icon-calc.webp" alt=""></span><span class="spc__n">CASE 7</span><span class="spc__t">AI로 만든 대시보드, 감을 데이터로 바꾸다</span><span class="spc__p">F&F</span><svg class="spc__go" viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5L13 10l-5.5 5.5"/></svg></a><a class="spc" href="#case-4"><span class="ic" style="background:linear-gradient(160deg,#FFFFFF,#D6E4FF)"><img src="assets/img/icon-pie.webp" alt=""></span><span class="spc__n">CASE 8</span><span class="spc__t">버려지던 데이터, AI로 내일 생산량을 예측하다</span><span class="spc__p">브레드랍</span><svg class="spc__go" viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5L13 10l-5.5 5.5"/></svg></a></div></div>
+<div class="sp"><div class="sp__k"><span class="sp__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8.2" r="3.2"/><path d="M3.2 19.2c.8-3.4 3.1-5.2 5.8-5.2s5 1.8 5.8 5.2"/><circle cx="17" cy="9.2" r="2.5"/><path d="M16.4 14.3c2.3.2 3.8 1.7 4.4 4.3"/></svg><i class="sp__ok" aria-hidden="true"></i></span><h3>협업 · 설득</h3><p>여러 팀, 파트너와 함께 움직여요</p></div><div class="sp__cs"><a class="spc" href="#case-7"><span class="ic" style="background:linear-gradient(160deg,#2A4189,#0B1B4D)"><img src="assets/img/icon-fire.webp" alt=""></span><span class="spc__n">CASE 3</span><span class="spc__t">2만 명 마라톤, 러너의 일상에 맞춰 설계하다</span><span class="spc__p">F&F</span><svg class="spc__go" viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5L13 10l-5.5 5.5"/></svg></a><a class="spc" href="#case-1"><span class="ic" style="background:linear-gradient(160deg,#FFFFFF,#D6E4FF)"><img src="assets/img/icon-handshake.webp" alt=""></span><span class="spc__n">CASE 9</span><span class="spc__t">7개 파트너사, 현장에서 설득하다</span><span class="spc__p">브레드랍</span><svg class="spc__go" viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5L13 10l-5.5 5.5"/></svg></a><a class="spc" href="#case-5"><span class="ic" style="background:linear-gradient(160deg,#FFFFFF,#E8ECF4)"><img src="assets/img/icon-cn.webp" alt=""></span><span class="spc__n">CASE 10</span><span class="spc__t">5곳 편집샵, 손익구조로 설득하다</span><span class="spc__p">조셉앤스테이시</span><svg class="spc__go" viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 4.5L13 10l-5.5 5.5"/></svg></a></div></div>
     </div>
   </div>
-  <nav class="dots" id="dots" aria-label="섹션 이동">
-    <a href="#top" data-dot="hero" title="Intro"></a>
-    <a href="#about" data-dot="about" title="역량 매칭"></a>
-    <a href="#project-1" data-dot="project-1" title="Project 01"></a>
-    <a href="#project-2" data-dot="project-2" title="Project 02"></a>
-    <a href="#project-3" data-dot="project-3" title="Project 03"></a>
-    <a href="#project-4" data-dot="project-4" title="Project 04"></a>
-    <a href="#contact" data-dot="contact" title="Thanks"></a>
-  </nav>
+</section>
 
-  <!-- 스크롤 진행 바 -->
-  <div class="progress" id="progress" aria-hidden="true"></div>
-
-  <!-- 네비게이션 -->
-  <header class="nav" id="nav">
-    <a class="nav__logo" href="#top">조수안 <span>/ Suanne Cho</span></a>
-    <nav class="nav__links" id="navLinks">
-      <a href="#about" data-nav="about">역량 매칭</a>
-      <a href="#project-1" data-nav="project-1">01 Breadrop</a>
-      <a href="#project-2" data-nav="project-2">02 Naver Z</a>
-      <a href="#project-3" data-nav="project-3">03 F&amp;F</a>
-      <a href="#project-4" data-nav="project-4">04 1dan.mag</a>
-    </nav>
-    <button class="nav__burger" id="burger" aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span><span></span></button>
-  </header>
-
-  <main id="top">
-
-    <!-- ===================== HERO (p.1) ===================== -->
-    <section class="hero" id="hero">
-      <div class="hero__glow" aria-hidden="true"></div>
-      <div class="hero__inner">
-        <p class="hero__sub"><span class="hero__sub-text">PORTFOLIO 2022 — 2026</span></p>
-        <h1 class="hero__title">
-          <span class="line line--role"><span class="word">Apple</span> <span class="word">Sales</span> <span class="word">Internship</span></span>
-          <span class="line"><span class="word">지원자</span> <span class="word accent">조수안</span></span>
-        </h1>
-      </div>
-      <div class="upl" role="group" aria-label="표지 업로드 인터랙션">
-        <div class="upl__zone" id="uplZone" role="img" aria-label="업로드 영역 구름">
-          <svg viewBox="50 54 340 202" aria-hidden="true">
-            <defs>
-              <path id="uplCloud" d="M112 240 A30 30 0 0 1 110.4 180.0 A6 6 0 0 0 116.0 173.9 A56 56 0 0 1 190.8 119.3 A6 6 0 0 0 197.7 117.1 A74 74 0 0 1 331.3 170.3 A6 6 0 0 0 334.9 176.6 A33 33 0 0 1 322.0 240.0 Z"/>
-              <path id="uplRingPath" d="M112.0 246.0 A36 36 0 0 1 98.6 176.6 A20 20 0 0 0 110.9 161.4 A62 62 0 0 1 182.2 110.8 A20 20 0 0 0 200.0 104.9 A80 80 0 0 1 338.0 160.2 A20 20 0 0 0 345.8 176.1 A39 39 0 0 1 322.0 246.0 Z"/>
-              <clipPath id="uplClip"><use href="#uplCloud"/></clipPath>
-              <clipPath id="uplWaveClip"><path id="uplWave2" d=""/></clipPath>
-            </defs>
-            <path class="upl__marks" d="M60 74V64H70M368 64H378V74M378 246V256H368M70 256H60V246"/>
-            <text class="upl__tag" x="60" y="60">DROP ZONE</text>
-            <text class="upl__corner upl__pct" x="378" y="264" text-anchor="end">0%</text>
-            <use href="#uplCloud" class="upl__cloud-bg"/>
-            <g clip-path="url(#uplClip)"><path id="uplWave" class="upl__wave" d=""/></g>
-            <use href="#uplCloud" class="upl__cloud-line"/>
-            <text class="upl__ring"><textPath href="#uplRingPath" id="uplRing">고객 인사이트 · 숏폼·사용법 콘텐츠 · 고객 경험 설계 · 데이터 분석 · </textPath></text>
-            <text class="upl__label" x="218" y="176" text-anchor="middle">여기로 끌어다 놓기</text>
-            <text class="upl__sub" x="218" y="193" text-anchor="middle">DROP TO UPLOAD</text>
-            <g class="upl__name"><text x="218" y="190" text-anchor="middle">조수안</text><text class="upl__name-sub" x="218" y="208" text-anchor="middle">UPLOADED · 100%</text></g>
-          </svg>
-        </div>
-        <div class="upl__file" id="uplFile" role="button" tabindex="0" aria-label="조수안 파일을 클라우드로 업로드">
-          <div class="upl__ico"><b>ZIP</b></div>
-          <div><div class="upl__nm">조수안_마케터.zip</div><div class="upl__sz">경험 4개 · 케이스 8개</div></div>
-        </div>
-        <div class="upl__hint" id="uplHint"><i></i>파일을 구름에 끌어다 놓아 보세요</div>
-        <div class="upl__ghost" id="uplGhost" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V10h.5V3.5a1.5 1.5 0 0 1 3 0V10h.5V5a1.5 1.5 0 0 1 3 0v9.5c0 3.6-2.6 6.5-6.2 6.5h-1.3c-2 0-3.6-.9-4.7-2.5L4.2 14a1.5 1.5 0 0 1 2.4-1.8L9 15z"/></svg></div>
-        <div class="upl__done" id="uplDone" aria-live="polite">
-          <a class="upl__open" href="#about">포트폴리오 보기 ↓</a>
-          <button class="upl__reset" id="uplReset" type="button">↺ 다시 올리기</button>
-        </div>
-        <div class="upl__status" aria-hidden="true"><span class="upl__step">Ready</span><span class="upl__bar"><i id="uplBar"></i></span><span class="upl__pct">0%</span></div>
-      </div>
-      <a class="hero__scroll" href="#about" aria-label="아래로 스크롤">
-        <span class="hero__scroll-label">SCROLL</span>
-        <span class="hero__scroll-line"></span>
-      </a>
-    </section>
-
-    <!-- 마퀴 -->
-
-    <!-- ===================== ABOUT (p.2) ===================== -->
-    <section class="match section" id="about">
-      <div class="match__inner">
-        <div class="toc__head reveal">
-          <h2 class="match__title fx-text">역량별로 보는 케이스</h2>
-        </div>
-        <div class="toc__zip" id="tocZip" aria-live="polite"><span class="toc__zico"><i></i></span><span class="toc__zname">조수안_마케터.zip</span><span class="toc__zbar"><b id="tocZipBar"></b></span><span class="toc__zstat" id="tocZipStat">압축 푸는 중</span></div>
-        <div class="toc__list">
-          <div class="toc__row">
-            <span class="toc__num"><span class="tab"></span><span class="back"></span><span class="paper"></span><span class="front">01</span></span>
-            <span class="toc__name">고객이 고르는<br>기준 읽기</span>
-            <div class="toc__cases">
-              <a class="tc" href="#case-1" data-img="assets/img/p1-b2c-event-L.webp"><i>CASE 1</i><b>대학생 캠페인, 전환율 73%를 만들다</b><em>→</em></a>
-              <a class="tc" href="#case-2" data-img="assets/img/p1-b2c-copy-L.webp"><i>CASE 2</i><b>운영 위기, 카피라이팅으로 매출 13% 올리다</b><em>→</em></a>
-            </div>
-          </div>
-          <div class="toc__row">
-            <span class="toc__num"><span class="tab"></span><span class="back"></span><span class="paper"></span><span class="front">02</span></span>
-            <span class="toc__name">콘텐츠 만들고<br>퍼뜨리기</span>
-            <div class="toc__cases">
-              <a class="tc" href="#case-5" data-img="assets/img/p5-ai-L.webp"><i>CASE 5</i><b>AI 실사화 챌린지, 구경을 참여와 매출로 바꾸다</b><em>→</em></a>
-              <a class="tc" href="#case-6" data-img="assets/img/p3-b2c-L.webp"><i>CASE 6</i><b>SNS Story 기능 재정의, 링크 클릭 200배를 만들다</b><em>→</em></a>
-              <a class="tc" href="#case-9" data-img="assets/img/ig-profile.webp"><i>CASE 9</i><b>일단 매거진 @1dan.mag, 콘텐츠 채널 직접 운영</b><em>→</em></a>
-            </div>
-          </div>
-          <div class="toc__row">
-            <span class="toc__num"><span class="tab"></span><span class="back"></span><span class="paper"></span><span class="front">03</span></span>
-            <span class="toc__name">데이터를<br>실행 제안으로</span>
-            <div class="toc__cases">
-              <a class="tc" href="#case-8"><i>CASE 8</i><b>AI로 만든 대시보드, 감을 데이터로 바꾸다</b><em>→</em></a>
-              <a class="tc" href="#case-3"><i>CASE 3</i><b>버려지던 데이터로, 내일 생산량을 예측하다</b><em>→</em></a>
-            </div>
-          </div>
-          <div class="toc__row">
-            <span class="toc__num"><span class="tab"></span><span class="back"></span><span class="paper"></span><span class="front">04</span></span>
-            <span class="toc__name">고객 경험 설계</span>
-            <div class="toc__cases">
-              <a class="tc" href="#case-7" data-img="assets/img/fnf-ig-post.webp"><i>CASE 7</i><b>2만 명 마라톤, 러너의 일상에 맞춰 설계하다</b><em>→</em></a>
-            </div>
-          </div>
-        </div>
-        <img class="toc__peek" id="tocPeek" src="assets/img/p1-b2c-event-L.webp" alt="" width="640" height="1283" aria-hidden="true">
-      </div>
-    </section>
-
-    <!-- ===================== PROJECTS ===================== -->
-    <div class="projects" id="projects">
-
-      <!-- ---------- PROJECT 1 (p.3) ---------- -->
-      <section class="cover section" id="project-1">
-        <div class="cover__inner">
-          <div class="cover__text reveal">
-            <p class="cover__eyebrow">PROJECT 1.</p>
-            <h2 class="cover__title fx-text">BREADROP<br>소셜벤처 <em>창업</em></h2>
-          </div>
-          <div class="cover__num reveal" aria-hidden="true">01</div>
-          <div class="cover__meta reveal">
-            <p class="cover__date">2024.03 - 2025.03</p>
-            <p class="cover__desc">마감할인 빵 중개 플랫폼<br>창업 및 커머스 운영</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- case 1: 대학생 캠페인 -->
-      <article class="case section" id="case-1">
-        <span class="case__cat"><b>고객이 고르는 기준 읽기</b><i>CASE 1</i></span>
+<section class="chap" id="ch1"><div class="wrap"><p class="chap__eye rv">Chapter 1 · 고객 이해</p><h2 class="chap__h rv">망설임을 <em>읽다.</em></h2><p class="chap__s rv">고객이 왜 안 사는지부터 봤습니다.<br>그리고 사고 싶어지는 순간을 만들었습니다.</p></div></section>
+<section class="win" id="case-2"><div class="wrap"><div class="win__frame">
+<div class="win__bar"><span class="win__dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="win__lbl"><span class="ic" style="background:linear-gradient(160deg,#FFFFFF,#D6E4FF)"><img src="assets/img/icon-gift.webp" alt=""></span>간식 나눔 <small>브레드랍</small></span><span class="win__n">1 / 10</span></div>
+<article class="case section">
+        <span class="case__cat"><b>오프라인 행사</b><i>CASE 1</i></span>
         <div class="case__left">
-          <h3 class="case__title reveal fx-text">대학생 캠페인,<br>전환율 73%를 만들다</h3>
+          <h3 class="case__title reveal fx-text">오프라인 행사,<br>전환율 73%를 만들다</h3>
           <p class="case__desc reveal">타겟 맞춤형 오프라인 행사를 통해 고객 접점을 확보하고,<br>실구매 전환으로 연결한 마케팅 캠페인</p>
           <div class="phones reveal">
-            <img class="phone" src="assets/img/p1-b2c-event-L.webp" alt="에브리타임 게시글 - 203동 지하 2층에서 간식 무료 나눔 중입니다" width="640" height="1283" data-lightbox>
-            <img class="phone" src="assets/img/p1-b2c-event-R.webp" alt="에브리타임 게시글 - 헐 학문관 앞에서 공짜로 빵 준다, 초간단 퀴즈 풀고 빵 시식하자" width="640" height="1283" data-lightbox>
+            <img class="phone" src="assets/img/p1-b2c-event-L.webp" alt="에브리타임 게시글 - 203동 지하 2층에서 간식 무료 나눔 중입니다" width="640" height="1283">
+            <img class="phone" src="assets/img/p1-b2c-event-R.webp" alt="에브리타임 게시글 - 헐 학문관 앞에서 공짜로 빵 준다, 초간단 퀴즈 풀고 빵 시식하자" width="640" height="1283">
           </div>
         </div>
         <div class="case__right">
@@ -186,14 +388,8 @@
           <div class="reveal">
             <span class="kv__k fx-text">전략</span>
             <div class="st">
-              <div class="st__fcard">
-                <div class="st__retarget"><i class="st__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg></i><b>타겟 재설정</b><s>SNS 이벤트 참여자</s><span>→</span><em>기숙사 · 캠퍼스 대학생</em></div>
-                <div class="st__funnel3">
-                  <div class="st__fband st__fband--light"><span class="st__ftag2">인지</span><span class="st__ftext2">기숙사 시험기간 간식 나눔</span><b class="st__fmetric">500세트 전량 소진</b></div>
-                  <div class="st__fband st__fband--mint"><span class="st__ftag2">체험</span><span class="st__ftext2">캠퍼스 퀴즈 · 시식 부스</span><b class="st__fmetric">300명 참여</b></div>
-                  <div class="st__fband st__fband--navy"><span class="st__ftag2">구매</span><span class="st__ftext2">오픈채팅 주문으로 연결</span><b class="st__fmetric">→ 성과로</b></div>
-                </div>
-              </div>
+              <div class="st__banner"><span class="st__tag">타겟 재설정</span><s>SNS 이벤트 참여자</s><span class="sx-to">→</span>기숙사 · 캠퍼스 대학생</div>
+              <div class="st__trio"><div class="st__go"><div class="st__scr st__scr--light" aria-hidden="true"><span class="sx-metric"><i class="sx-ico"><svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="11" rx="2"/><path d="M3 9h18M12 9v11M12 9c-1.5-3-5-4-5-1.5S10 9 12 9zm0 0c1.5-3 5-4 5-1.5S14 9 12 9z"/></svg></i><b>500세트</b><small>전량 소진</small></span></div><p class="st__cap"><b><i>1</i>인지</b><small>기숙사 시험기간 간식 나눔</small></p></div><i class="st__hop"><em>맛보게</em></i><div class="st__go"><div class="st__scr st__scr--mint" aria-hidden="true"><span class="sx-metric"><i class="sx-ico"><svg viewBox="0 0 24 24"><path d="M5 19c1-4 3.5-6 7-6s6 2 7 6z"/><path d="M12 13V9"/><circle cx="12" cy="6.5" r="2.5"/></svg></i><b>300명</b><small>참여</small></span></div><p class="st__cap"><b><i>2</i>체험</b><small>캠퍼스 퀴즈 · 시식 부스</small></p></div><i class="st__hop"><em>주문으로</em></i><div class="st__go"><div class="st__scr st__scr--navy" aria-hidden="true"><span class="sx-chat"><span class="sx-chat-bar"><i></i><i></i><i></i>오픈채팅</span><span class="sx-chat-body"><i></i><i class="s"></i><b><svg viewBox="0 0 24 24"><path d="M4 5h2l2 10h10l2-7H7.5"/><circle cx="10" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/></svg>주문</b></span></span></div><p class="st__cap"><b><i>3</i>구매</b><small>오픈채팅 주문으로 연결</small></p></div></div>
             </div>
           </div>
           <div class="reveal">
@@ -209,16 +405,17 @@
           </blockquote>
         </div>
       </article>
-
-      <!-- case 2: 등교 시간 카피 -->
-      <article class="case section" id="case-2">
-        <span class="case__cat"><b>고객이 고르는 기준 읽기</b><i>CASE 2</i></span>
+</div></div></section>
+<section class="win" id="case-3"><div class="wrap"><div class="win__frame">
+<div class="win__bar"><span class="win__dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="win__lbl"><span class="ic" style="background:linear-gradient(160deg,#FFFFFF,#D6E4FF)"><img src="assets/img/icon-calendar.webp" alt=""></span>아침 카피 <small>브레드랍</small></span><span class="win__n">2 / 10</span></div>
+<article class="case section">
+        <span class="case__cat"><b>콘텐츠 마케팅</b><i>CASE 2</i></span>
         <div class="case__left">
           <h3 class="case__title reveal fx-text">운영 위기, 카피라이팅으로<br>매출 13% 올리다</h3>
           <p class="case__desc reveal">픽업 시간대 변경이라는 제약을 새로운 가치로 재포지셔닝하여,<br>고객 이탈 위기를 매출 증가로 전환한 캠페인</p>
           <div class="phones reveal">
-            <img class="phone" src="assets/img/p1-b2c-copy-L.webp" alt="인스타그램 게시물 - 수업 사이, 간단하지만 든든하게" width="640" height="1283" data-lightbox>
-            <img class="phone" src="assets/img/p1-b2c-copy-R.webp" alt="인스타그램 게시물 - 브레드랍 등교시간 프로모션, 오전 8-10시 묶음 구매시 10% 추가 할인" width="640" height="1283" data-lightbox>
+            <img class="phone" src="assets/img/p1-b2c-copy-L.webp" alt="인스타그램 게시물 - 수업 사이, 간단하지만 든든하게" width="640" height="1283">
+            <img class="phone" src="assets/img/p1-b2c-copy-R.webp" alt="인스타그램 게시물 - 브레드랍 등교시간 프로모션, 오전 8-10시 묶음 구매시 10% 추가 할인" width="640" height="1283">
           </div>
         </div>
         <div class="case__right">
@@ -229,11 +426,7 @@
           <div class="reveal">
             <span class="kv__k fx-text">전략</span>
             <div class="st">
-              <div class="st__row st__row--2 st__row--poster">
-                <div class="st__pricetag"><i></i><small>가격 중심</small><p>할인된 가격을 알리는 안내</p></div>
-                <i class="st__arr"></i>
-                <div class="st__poster"><i class="st__tape st__tape--l"></i><i class="st__tape st__tape--r"></i><span class="st__pill">사용 상황 중심</span><p>“수업 사이,<br>간단하지만 든든하게”</p></div>
-              </div>
+              <div class="st__duo"><div class="st__scr st__scr--muted st__scr--tall" aria-hidden="true"><span class="sx-ptag sx-ptag--lg"><i></i><small>가격 중심</small><b>할인된 가격을<br>알리는 안내</b></span></div><i class="st__hop"><em>장면으로</em></i><div class="st__scr st__scr--navy st__scr--tall"><span class="sx-poster"><i class="sx-tape sx-tape--l"></i><i class="sx-tape sx-tape--r"></i><span class="sx-poster-pill">사용 상황 중심</span><b>“수업 사이,<br>간단하지만 든든하게”</b></span></div></div>
               <div class="st__coupons">
                 <div class="st__coupon st__coupon--mint"><i class="st__stub"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></i><div><small>타이밍 프로모션</small><b>등교 시간 한정 할인</b></div><em class="st__gain">↗ 구매 유인</em></div>
                 <div class="st__coupon st__coupon--navy"><i class="st__stub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></i><div><small>타이밍 프로모션</small><b>묶음 구매 할인</b></div><em class="st__gain st__gain--navy">↗ 객단가 상승</em></div>
@@ -253,221 +446,16 @@
           </blockquote>
         </div>
       </article>
-
-      <!-- case 3: 수요 예측 -->
-      <article class="case section" id="case-3">
-        <span class="case__cat"><b>데이터를 실행 제안으로</b><i>CASE 3</i></span>
-        <div class="case__left">
-          <h3 class="case__title reveal fx-text">버려지던 데이터,<br>AI로 내일 생산량을 예측하다</h3>
-          <p class="case__desc reveal">할인 등록 뒤 버려지던 판매 데이터에 날씨 · 학사 일정을 더해,<br>AI로 파트너 베이커리의 내일 생산량을 예측한 프로젝트</p>
-          <div class="laptop-slot reveal"><div class="laptop" aria-label="수요 예측 시트 화면 예시">
-            <div class="laptop__screen">
-              <div class="xl" aria-hidden="true">
-                <div class="xl__title"><i></i><i></i><i></i><b>브레드랍_수요예측.xlsx</b></div>
-                <div class="xl__fx"><span>H4</span><span>= 실제 판매 − AI 예측</span></div>
-                <div class="xl__grid">
-                  <div class="xl__cols"><span></span><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span></div>
-                  <div class="xl__head"><span>1</span><span>날짜</span><span>요일</span><span>날씨</span><span>학사 일정</span><span>품목</span><span class="xl__ai">AI 예측</span><span>실제 판매</span><span>오차</span></div>
-                  <div class="xl__r"><span>2</span><i></i><i class="s"></i><i class="s"></i><i></i><i></i><i class="ai"></i><i></i><i class="err"></i></div>
-                  <div class="xl__r"><span>3</span><i></i><i class="s"></i><i class="s"></i><i></i><i></i><i class="ai"></i><i></i><i class="err"></i></div>
-                  <div class="xl__r is-sel"><span>4</span><i></i><i class="s"></i><i class="s"></i><i></i><i></i><i class="ai"></i><i></i><i class="err"></i></div>
-                  <div class="xl__r"><span>5</span><i></i><i class="s"></i><i class="s"></i><i></i><i></i><i class="ai"></i><i></i><i class="err"></i></div>
-                  <div class="xl__r"><span>6</span><i></i><i class="s"></i><i class="s"></i><i></i><i></i><i class="ai"></i><i></i><i class="err"></i></div>
-                  <div class="xl__r"><span>7</span><i></i><i class="s"></i><i class="s"></i><i></i><i></i><i class="ai"></i><i></i><i class="err"></i></div>
-                  <div class="xl__r"><span>8</span><i></i><i class="s"></i><i class="s"></i><i></i><i></i><i class="ai"></i><i></i><i class="err"></i></div>
-                  <div class="xl__r"><span>9</span><i></i><i class="s"></i><i class="s"></i><i></i><i></i><i class="ai"></i><i></i><i class="err"></i></div>
-                </div>
-                <div class="xl__tabs"><span class="is-on">일별 예측</span><span>판매 기록</span><span>오차 기록</span></div>
-              </div>
-            </div>
-            <img class="laptop__frame" src="assets/img/laptop-frame.webp" alt="" width="1600" height="969">
-            <div class="xl__card"><i class="xl__badge">AI</i><b>프롬프트 설계</b><p><b>입력</b>최근 4주 판매 + 요일 · 날씨 · 공휴일 · 학사 일정</p><p><b>보정</b>어제 예측과 실제의 오차</p><em>→ 품목별 내일 권장 생산량</em></div>
-            <p class="laptop__note">예시 화면 · 실제 화면과 수치가 아닙니다</p>
-          </div></div>
-        </div>
-        <div class="case__right">
-          <div class="kv reveal">
-            <span class="kv__k fx-text">문제</span>
-            <p class="kv__v">할인 판매로 남은 빵을 처리해도, 애초에 빵이 남는 문제는 그대로였음</p>
-          </div>
-          <div class="reveal">
-            <span class="kv__k fx-text">전략</span>
-            <div class="st">
-              <div class="st__old"><span class="st__tag st__tag--muted">기존</span><span>남은 빵</span><i class="st__arr st__arr--muted"></i><span>할인 상품 등록</span><i class="st__arr st__arr--muted"></i><s>기록은 버려짐</s></div>
-              <div class="st__divider"><span>버려지던 기록을 예측의 재료로</span></div>
-              <div class="st__stages">
-                <div class="st__stage"><svg class="st__bars-svg" viewBox="0 0 80 44" aria-hidden="true"><rect x="2" y="24" width="8" height="20" rx="2"/><rect x="14" y="14" width="8" height="30" rx="2"/><rect x="26" y="20" width="8" height="24" rx="2"/><rect x="38" y="8" width="8" height="36" rx="2"/><rect x="50" y="16" width="8" height="28" rx="2"/><rect x="62" y="4" width="8" height="40" rx="2"/><rect x="74" y="12" width="6" height="32" rx="2"/></svg><b>남은 빵 기록</b></div>
-                <i class="st__dotarr"></i>
-                <div class="st__stage"><span class="st__orb">AI</span><b>AI 수요 예측</b></div>
-                <i class="st__dotarr"></i>
-                <div class="st__stage"><span class="st__tomorrow"><em>내일 생산량</em><i class="st__ghost"></i><i class="st__box"></i></span><b>사장님의 생산 결정</b></div>
-              </div>
-            </div>
-          </div>
-          <div class="reveal">
-            <span class="kv__k fx-text">성과</span>
-            <div class="results">
-              <div class="result"><img class="result__icon" src="assets/img/icon-pie.webp" alt="" width="180" height="180"><p class="result__t"><strong class="result__n">6%</strong><span class="result__l">마감할인 빵 수량 감소</span><span class="result__s">처음 대비</span></p></div>
-              <div class="result"><img class="result__icon" src="assets/img/icon-tools.webp" alt="" width="180" height="180"><p class="result__t"><span class="result__l">사장님들이 예측을</span><strong class="result__n result__n--txt">실제 생산량 결정에 활용</strong></p></div>
-            </div>
-          </div>
-          <blockquote class="insight reveal">
-            <span class="insight__label">Insight</span>
-            <p>“같은 판매 기록도 <u>숫자로만 보면 어제의 결과</u>지만, <u>맥락을 붙이면 내일의 예측</u>이 된다.”</p>
-          </blockquote>
-        </div>
-      </article>
-
-      <!-- ---------- PROJECT 2 ---------- -->
-      <section class="cover section" id="project-2">
-        <div class="cover__inner">
-          <div class="cover__text reveal">
-            <p class="cover__eyebrow">PROJECT 2.</p>
-            <h2 class="cover__title fx-text">NAVER Z<br><em>콘텐츠 마케팅</em> 인턴</h2>
-          </div>
-          <div class="cover__num reveal" aria-hidden="true">02</div>
-          <div class="cover__meta reveal">
-            <p class="cover__date">2025.04 - 2025.10</p>
-            <p class="cover__desc">글로벌 SNS 채널 운영 및<br>프로모션 · 콘텐츠 기획 지원</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- case 5: AI 실사화 챌린지 -->
-      <article class="case section" id="case-5">
-        <span class="case__cat"><b>콘텐츠 만들고 퍼뜨리기</b><i>CASE 5</i></span>
-        <div class="case__left">
-          <h3 class="case__title reveal fx-text">구경을 참여로,<br>참여를 매출로 바꾸다</h3>
-          <p class="case__desc reveal">SNS에서 번지던 AI 실사화 트렌드를 튜토리얼 숏폼 챌린지로 만들어,<br>앱 안의 참여와 아이템 매출로 연결한 캠페인</p>
-          <div class="phones reveal">
-            <img class="phone" src="assets/img/p5-ai-L.webp" alt="제페토 틱톡 튜토리얼 숏폼 - #ZEPETOxChatGPT, Copy the prompt in the comments" width="317" height="650" data-lightbox>
-            <img class="phone" src="assets/img/p5-ai-R.webp" alt="제페토 틱톡 튜토리얼 숏폼 - paste it into GPT with your avatar, 실사화된 아바타 결과" width="317" height="650" data-lightbox>
-          </div>
-        </div>
-        <div class="case__right">
-          <div class="kv reveal">
-            <span class="kv__k fx-text">문제</span>
-            <p class="kv__v">AI 실사화 트렌드가 SNS에서 번져도, 구경에 그치면 앱 참여와 매출로 이어지지 않음</p>
-          </div>
-          <div class="reveal">
-            <span class="kv__k fx-text">전략</span>
-            <div class="st">
-              <div class="st__banner"><span class="st__tag">출발점</span>구경하던 사람이 바로 따라 하게 만드는 사용법 콘텐츠</div>
-              <div class="st__chain">
-                <div class="st__chs">
-                  <div class="st__chv st__chv--tut" aria-hidden="true">
-                    <span class="st__chtag">▶ TUTORIAL</span>
-                    <div class="st__chpair"><i class="st__chava"></i><em>✦</em><i class="st__chpho"></i></div>
-                    <span class="st__chprog"><b></b></span>
-                  </div>
-                  <b class="st__chn"><i>1</i>따라 하게</b><small>튜토리얼 숏폼 · 해시태그</small>
-                </div>
-                <i class="st__charr"><span>참여로</span></i>
-                <div class="st__chs">
-                  <div class="st__chv st__chv--crew" aria-hidden="true">
-                    <div class="st__chfan"><i></i><i></i><i></i></div>
-                    <span class="st__chcoin">✦</span>
-                    <span class="st__chpill"><i></i><i></i><i></i>2,000+ 크루</span>
-                  </div>
-                  <b class="st__chn"><i>2</i>해 볼 이유를</b><small>인앱 재화 보상 · 크루가 먼저 참여</small>
-                </div>
-                <i class="st__charr"><span>매출로</span></i>
-                <div class="st__chs">
-                  <div class="st__chv st__chv--shop" aria-hidden="true">
-                    <div class="st__chwin"><div class="st__chbar"><i></i><i></i><i></i>아바타샵</div><div class="st__chrow"><span>추천</span><em>NEW 챌린지</em></div><div class="st__chitems"><i></i><i></i><i></i></div></div>
-                  </div>
-                  <b class="st__chn"><i>3</i>사고 싶게</b><small>TikTok → 앱 · 아이템 신규 탭</small>
-                </div>
-              </div>
-              <div class="st__spread">
-                <b><small>확산 단계</small>나라별 소재</b>
-                <div class="st__spread-b"><span class="st__spread-was"><s>언어만 바꾼 같은 영상</s><i class="st__arr"></i></span><span class="st__spread-now"><em class="st__chc"><i>JP</i>세일러문<u>참여율 +39%</u></em><em class="st__chc"><i>KR</i>인생네컷<u>참여율 +14%</u></em></span></div>
-              </div>
-            </div>
-          </div>
-          <div class="reveal">
-            <span class="kv__k fx-text">성과</span>
-            <div class="results">
-              <div class="result"><img class="result__icon" src="assets/img/icon-videocam.webp" alt="" width="200" height="200"><p class="result__t"><strong class="result__n">1.6만 건</strong><span class="result__l">직접 따라 한 참여 콘텐츠(UGC)</span><span class="result__s">조회수 6.6배 · TOP5 해시태그 4개</span></p></div>
-              <div class="result"><img class="result__icon" src="assets/img/icon-cash.webp" alt="" width="200" height="200"><p class="result__t"><strong class="result__n">220만 원</strong><span class="result__l">챌린지 아이템 신규 탭 매출</span><span class="result__s">운영 6일 차</span></p></div>
-            </div>
-          </div>
-          <blockquote class="insight reveal">
-            <span class="insight__label">Insight</span>
-            <p>“좋은 사용법 콘텐츠는 <u>보는 사람의 손을 움직이게</u> 하고, 움직인 손이 <u>매출</u>을 만든다.”</p>
-          </blockquote>
-        </div>
-      </article>
-
-      <!-- case 6: Story -->
-      <article class="case section" id="case-6">
-        <span class="case__cat"><b>콘텐츠 만들고 퍼뜨리기</b><i>CASE 6</i></span>
-        <div class="case__left">
-          <h3 class="case__title reveal fx-text">SNS Story 기능 재정의,<br>링크 클릭 200배를 만들다</h3>
-          <p class="case__desc reveal">SNS Story 기능 운영과 CTA 최적화를 통해,<br>노출 채널을 앱 유입 전환 채널로 전환한 데이터 기반 실험</p>
-          <div class="phones reveal">
-            <img class="phone" src="assets/img/p3-b2c-L.webp" alt="제페토 인스타그램 스토리 - Get Your Porsche CTA" width="640" height="1283" data-lightbox>
-            <img class="phone" src="assets/img/p3-b2c-R.webp" alt="제페토 인스타그램 스토리 - FREE Lucky Box CTA, Dirty Work comeback" width="640" height="1283" data-lightbox>
-          </div>
-        </div>
-        <div class="case__right">
-          <div class="kv reveal">
-            <span class="kv__k fx-text">문제</span>
-            <p class="kv__v">SNS 노출 지표는 높았지만, 실제 앱 유입으로 이어지지 않는 노출-전환 단절 발생</p>
-          </div>
-          <div class="reveal">
-            <span class="kv__k fx-text">전략</span>
-            <div class="st">
-              <div class="st__row st__row--plain">
-                <div class="st__kpi"><small>Story 업로드</small><div class="st__bars"><span class="st__bar st__bar--old"></span><em>월 1~2회</em></div><div class="st__bars"><span class="st__bar st__bar--new"></span><em class="st__em">주 4~5회</em></div></div>
-                <div class="st__kpi st__kpi--ctr"><div class="st__ctr" aria-hidden="true"><div class="st__ctr-card"><div class="st__ctr-h"><span>도달</span><span>클릭</span><span class="is-hi">CTR</span></div><div class="st__ctr-r"><i></i><i></i><b style="--w: 34%"></b></div><div class="st__ctr-r"><i></i><i></i><b style="--w: 58%"></b></div><div class="st__ctr-r"><i></i><i></i><b style="--w: 88%"></b></div></div></div><div><b>도달 대비 CTR</b><small>추적 시트 구축</small></div></div>
-                <div class="st__kpi st__kpi--ico"><i class="st__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></i><div><b>공식 라이브</b><small>웹 링크 연결</small></div></div>
-              </div>
-              <div class="st__ab">
-                <div class="st__story st__story--a"><i class="st__sbars"></i><span class="st__sbtn"><i class="st__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></i>일반형 CTA</span></div>
-                <i class="st__vs">vs</i>
-                <div class="st__story st__story--b"><i class="st__sbars"></i><span class="st__sbtn st__sbtn--on"><i class="st__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></i>보상형 CTA</span><em class="st__pick">채택</em></div>
-              </div>
-              <p class="st__note">→ 보상형 CTA 표준화 · 성과 DB 문서화</p>
-            </div>
-          </div>
-          <div class="reveal">
-            <span class="kv__k fx-text">성과</span>
-            <div class="results">
-              <div class="result"><img class="result__icon" src="assets/img/icon-cursor.webp" alt="" width="200" height="200"><p class="result__t"><strong class="result__n">2,000+건</strong><span class="result__l">월평균 링크 클릭 수</span></p></div>
-              <div class="result"><img class="result__icon" src="assets/img/icon-mic.webp" alt="" width="200" height="200"><p class="result__t"><strong class="result__n">30–40%</strong><span class="result__l">공식 라이브 시청자 증가</span></p></div>
-            </div>
-          </div>
-          <blockquote class="insight reveal">
-            <span class="insight__label">Insight</span>
-            <p>“<u>콘텐츠 마케팅</u>의 성과는 노출이 아니라, <u>전환을 추적하고 설계</u>할 때 만들어진다.”</p>
-          </blockquote>
-        </div>
-      </article>
-
-      <!-- ---------- PROJECT 3 ---------- -->
-      <section class="cover section" id="project-3">
-        <div class="cover__inner">
-          <div class="cover__text reveal">
-            <p class="cover__eyebrow">PROJECT 3.</p>
-            <h2 class="cover__title fx-text">F&amp;F<br><em>DX 마케팅</em> 인턴</h2>
-          </div>
-          <div class="cover__num reveal" aria-hidden="true">03</div>
-          <div class="cover__meta reveal">
-            <p class="cover__date">2026.08 - 2026.10</p>
-            <p class="cover__desc">데이터 기반 마케팅 의사결정 체계 구축 및<br>IMC · 브랜드 경험 기획</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- case 7 -->
-      <article class="case section" id="case-7">
-        <span class="case__cat"><b>고객 경험 설계</b><i>CASE 7</i></span>
+</div></div></section>
+<section class="win" id="case-7"><div class="wrap"><div class="win__frame">
+<div class="win__bar"><span class="win__dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="win__lbl"><span class="ic" style="background:linear-gradient(160deg,#2A4189,#0B1B4D)"><img src="assets/img/icon-fire.webp" alt=""></span>마라톤 <small>F&F</small></span><span class="win__n">3 / 10</span></div>
+<article class="case section">
+        <span class="case__cat"><b>오프라인 행사</b><i>CASE 3</i></span>
         <div class="case__left">
           <h3 class="case__title reveal fx-text">2만 명 마라톤,<br>러너의 일상에 맞춰 설계하다</h3>
           <p class="case__desc reveal">참가자가 러닝과 웰니스를 즐기는 방식에서 출발해,<br>동선부터 사은품까지 모든 요소를 설계한 마라톤 스폰서십</p>
           <div class="phones reveal">
-            <img class="phone" src="assets/img/fnf-ig-post.webp" alt="디스커버리 RUN & FIT 인스타그램 콘텐츠" width="640" height="1283" data-lightbox>
+            <img class="phone" src="assets/img/fnf-ig-post.webp" alt="디스커버리 RUN & FIT 인스타그램 콘텐츠" width="640" height="1283">
             <div class="phone phone--video"><img class="phone__back" src="assets/img/phone-back.webp" alt="" width="634" height="1300"><img class="phone__poster" src="assets/video/fnf-run-poster.webp" alt="" width="540" height="960"><video src="assets/video/fnf-run.mp4" muted loop playsinline preload="metadata" aria-label="디스커버리 RUN & FIT 현장 릴스 영상"></video><img class="phone__frame" src="assets/img/phone-frame.webp" alt="" width="634" height="1300"></div>
           </div>
         </div>
@@ -507,10 +495,148 @@
           </blockquote>
         </div>
       </article>
-
-      <!-- case 8: 대시보드 -->
-      <article class="case section" id="case-8">
-        <span class="case__cat"><b>데이터를 실행 제안으로</b><i>CASE 8</i></span>
+</div></div></section>
+<section class="chap" id="ch2"><div class="wrap"><p class="chap__eye rv">Chapter 2 · 콘텐츠</p><h2 class="chap__h rv">장면을 <em>보여 주다.</em></h2><p class="chap__s rv">보는 사람이 따라 하고, 누르고,<br>반응하게 만든 콘텐츠.</p></div></section>
+<section class="win" id="case-ai"><div class="wrap"><div class="win__frame">
+<div class="win__bar"><span class="win__dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="win__lbl"><span class="ic" style="background:linear-gradient(160deg,#6B9BFF,#1F5BFF)"><img src="assets/img/icon-camera.webp" alt=""></span>AI 챌린지 <small>네이버제트</small></span><span class="win__n">4 / 10</span></div>
+<article class="case section">
+        <span class="case__cat"><b>콘텐츠 마케팅</b><i>CASE 4</i></span>
+        <div class="case__left">
+          <h3 class="case__title reveal fx-text">구경을 참여로,<br>참여를 매출로 바꾸다</h3>
+          <p class="case__desc reveal">SNS에서 번지던 AI 실사화 트렌드를 튜토리얼 숏폼 챌린지로 만들어,<br>앱 안의 참여와 아이템 매출로 연결한 캠페인</p>
+          <div class="phones reveal">
+            <img class="phone" src="assets/img/p3-ai-L.webp" alt="AI 실사화 챌린지 튜토리얼 숏폼 - 프롬프트 안내 화면" width="634" height="1283">
+            <img class="phone" src="assets/img/p3-ai-R.webp" alt="AI 실사화 챌린지 튜토리얼 숏폼 - 실사화 결과 화면" width="634" height="1283">
+          </div>
+        </div>
+        <div class="case__right">
+          <div class="kv reveal">
+            <span class="kv__k fx-text">문제</span>
+            <p class="kv__v">AI 실사화 트렌드가 SNS에서 번져도, 구경에 그치면 앱 참여와 매출로 이어지지 않음</p>
+          </div>
+          <div class="reveal">
+            <span class="kv__k fx-text">전략</span>
+            <div class="st">
+              <div class="st__banner"><span class="st__tag">출발점</span>구경하던 사람이 바로 따라 하게 만드는 사용법 콘텐츠</div>
+              <div class="st__trio">
+                <div class="st__go">
+                  <div class="st__scr st__scr--light" aria-hidden="true">
+                    <span class="st__play"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z"/></svg>TUTORIAL</span>
+                    <span class="st__morph">
+                      <i class="st__av"><svg viewBox="0 0 48 58"><circle cx="24" cy="24" r="14"/><path d="M8 58c0-9 7-14 16-14s16 5 16 14z"/><circle class="e" cx="19" cy="25" r="2.2"/><circle class="e" cx="29" cy="25" r="2.2"/></svg></i>
+                      <i class="st__spark"><svg viewBox="0 0 24 24"><path d="M12 1.5c.8 5.6 3.9 8.7 10.5 10.5-6.6 1.8-9.7 4.9-10.5 10.5-.8-5.6-3.9-8.7-10.5-10.5C8.1 10.2 11.2 7.1 12 1.5z"/></svg></i>
+                      <i class="st__real"><svg viewBox="0 0 48 58"><circle cx="24" cy="22" r="8.5"/><path d="M5 58c0-12 8.5-19 19-19s19 7 19 19z"/></svg></i>
+                    </span>
+                    <span class="st__scrub"><i></i></span>
+                  </div>
+                  <p class="st__cap"><b><i>1</i>따라 하게</b><small>튜토리얼 숏폼 · 해시태그</small></p>
+                </div>
+                <i class="st__hop"><em>참여로</em></i>
+                <div class="st__go">
+                  <div class="st__scr st__scr--mint" aria-hidden="true">
+                    <span class="st__fan"><i></i><i></i><i></i></span>
+                    <span class="st__coin"><svg viewBox="0 0 24 24"><path d="M12 5.5c.5 3.4 2.3 5.3 6.5 6.5-4.2 1.2-6 3.1-6.5 6.5-.5-3.4-2.3-5.3-6.5-6.5 4.2-1.2 6-3.1 6.5-6.5z"/></svg></span>
+                    <span class="st__crew"><span class="st__faces"><i></i><i></i><i></i></span><b>2,000+</b> 크루</span>
+                  </div>
+                  <p class="st__cap"><b><i>2</i>해 볼 이유를</b><small>인앱 재화 보상 · 크루가 먼저 참여</small></p>
+                </div>
+                <i class="st__hop"><em>매출로</em></i>
+                <div class="st__go">
+                  <div class="st__scr st__scr--navy" aria-hidden="true">
+                    <span class="st__shop">
+                      <span class="st__shop-bar"><i></i><i></i><i></i><b>아바타샵</b></span>
+                      <span class="st__shop-tabs"><span>추천</span><span class="is-on">NEW 챌린지</span></span>
+                      <span class="st__shop-grid"><i class="is-hi"></i><i class="is-hi"></i><i class="is-hi"></i></span>
+                    </span>
+                  </div>
+                  <p class="st__cap"><b><i>3</i>사고 싶게</b><small>TikTok → 앱 · 아이템 신규 탭</small></p>
+                </div>
+              </div>
+              <div class="st__loc">
+                <b><small>확산 단계</small>나라별 소재</b>
+                <div class="st__loc-row">
+                  <s>언어만 바꾼 같은 영상</s><i class="st__arr"></i>
+                  <span class="st__flag"><i>JP</i>세일러문<em>참여율 +39%</em></span>
+                  <span class="st__flag"><i>KR</i>인생네컷<em>참여율 +14%</em></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="reveal">
+            <span class="kv__k fx-text">성과</span>
+            <div class="results">
+              <div class="result"><img class="result__icon" src="assets/img/icon-camera.webp" alt="" width="200" height="200"><p class="result__t"><strong class="result__n">1.6만 건</strong><span class="result__l">직접 따라 한 참여 콘텐츠(UGC)</span><span class="result__s">조회수 6.6배 · TOP5 해시태그 4개</span></p></div>
+              <div class="result"><img class="result__icon" src="assets/img/icon-coin.webp" alt="" width="200" height="200"><p class="result__t"><strong class="result__n">220만 원</strong><span class="result__l">챌린지 아이템 신규 탭 매출</span><span class="result__s">운영 6일 차</span></p></div>
+            </div>
+          </div>
+          <blockquote class="insight reveal">
+            <span class="insight__label">Insight</span>
+            <p>“좋은 사용법 콘텐츠는 <u>보는 사람의 손을 움직이게</u> 하고, 움직인 손이 <u>매출</u>을 만든다.”</p>
+          </blockquote>
+        </div>
+      </article>
+</div></div></section>
+<section class="win" id="case-6"><div class="wrap"><div class="win__frame">
+<div class="win__bar"><span class="win__dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="win__lbl"><span class="ic" style="background:linear-gradient(160deg,#6B9BFF,#1F5BFF)"><img src="assets/img/icon-cursor.webp" alt=""></span>Story 전환 <small>네이버제트</small></span><span class="win__n">5 / 10</span></div>
+<article class="case section">
+        <span class="case__cat"><b>데이터 분석</b><i>CASE 5</i></span>
+        <div class="case__left">
+          <h3 class="case__title reveal fx-text">SNS Story 기능 재정의,<br>링크 클릭 200배를 만들다</h3>
+          <p class="case__desc reveal">SNS Story 기능 운영과 CTA 최적화를 통해,<br>노출 채널을 앱 유입 전환 채널로 전환한 데이터 기반 실험</p>
+          <div class="phones reveal">
+            <img class="phone" src="assets/img/p3-b2c-L.webp" alt="네이버제트 인스타그램 스토리 - Get Your Porsche CTA" width="640" height="1283">
+            <img class="phone" src="assets/img/p3-b2c-R.webp" alt="네이버제트 인스타그램 스토리 - FREE Lucky Box CTA, Dirty Work comeback" width="640" height="1283">
+          </div>
+        </div>
+        <div class="case__right">
+          <div class="kv reveal">
+            <span class="kv__k fx-text">문제</span>
+            <p class="kv__v">SNS 노출 지표는 높았지만, 실제 앱 유입으로 이어지지 않는 노출-전환 단절 발생</p>
+          </div>
+          <div class="reveal">
+            <span class="kv__k fx-text">전략</span>
+            <div class="st">
+              <div class="st__trio"><div class="st__go"><div class="st__scr st__scr--light" aria-hidden="true"><span class="sx-freq"><span class="sx-freq-t"><s>월 1~2회</s><span class="sx-to">→</span><b>주 4~5회</b></span><span class="sx-calgrid"><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span></div><p class="st__cap"><b><i>1</i>자주 올리고</b><small>Story 업로드 주 4~5회</small></p></div><i class="st__hop"></i><div class="st__go"><div class="st__scr st__scr--mint" aria-hidden="true"><span class="sx-sheet"><span class="sx-sheet-h"><span>도달</span><span>클릭</span><span>CTR</span></span><span class="sx-sheet-r"><i style="width:80%"></i><i style="width:40%"></i><i class="c" style="width:45%"></i></span><span class="sx-sheet-r"><i style="width:70%"></i><i style="width:55%"></i><i class="c" style="width:70%"></i></span><span class="sx-sheet-r"><i style="width:85%"></i><i style="width:75%"></i><i class="c" style="width:92%"></i></span></span></div><p class="st__cap"><b><i>2</i>재고</b><small>도달 대비 CTR 추적 시트</small></p></div><i class="st__hop"></i><div class="st__go"><div class="st__scr st__scr--navy" aria-hidden="true"><span class="sx-story"><i class="st__sbars"></i><span class="sx-cta">일반형 CTA</span><span class="sx-cta sx-cta--on">보상형 CTA<em>채택</em></span></span></div><p class="st__cap"><b><i>3</i>고르고</b><small>CTA 문구 A/B 테스트</small></p></div></div>
+              <div class="st__band"><b><small>운영 방식</small>표준으로</b><div class="st__band-row"><span class="sx-pill">공식 라이브 웹 링크 연결</span><span class="sx-pill sx-pill--on">보상형 CTA 표준화</span><span class="sx-pill">성과 DB 문서화</span></div></div>
+            </div>
+          </div>
+          <div class="reveal">
+            <span class="kv__k fx-text">성과</span>
+            <div class="results">
+              <div class="result"><img class="result__icon" src="assets/img/icon-cursor.webp" alt="" width="200" height="200"><p class="result__t"><strong class="result__n">2,000+건</strong><span class="result__l">월평균 링크 클릭 수</span></p></div>
+              <div class="result"><img class="result__icon" src="assets/img/icon-mic.webp" alt="" width="200" height="200"><p class="result__t"><strong class="result__n">30–40%</strong><span class="result__l">공식 라이브 시청자 증가</span></p></div>
+            </div>
+          </div>
+          <blockquote class="insight reveal">
+            <span class="insight__label">Insight</span>
+            <p>“<u>콘텐츠 마케팅</u>의 성과는 노출이 아니라, <u>전환을 추적하고 설계</u>할 때 만들어진다.”</p>
+          </blockquote>
+        </div>
+      </article>
+</div></div></section>
+<section class="win" id="case-9"><div class="wrap"><div class="win__frame">
+<div class="win__bar"><span class="win__dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="win__lbl"><span class="ic" style="background:linear-gradient(160deg,#CDEFFF,#7FD6FF)"><img src="assets/img/icon-mic.webp" alt=""></span>일단 매거진 <small>일단 매거진</small></span><span class="win__n">6 / 10</span></div>
+<article class="case section">
+  <span class="case__cat"><b>콘텐츠 마케팅</b><i>CASE 6</i></span>
+  <div class="case__left">
+    <h3 class="case__title reveal">일단 매거진,<br>호기심을 가볍게 다루다</h3>
+    <p class="case__desc reveal">F&amp;B, 패션, 뷰티, 라이프스타일, 트렌드 등 호기심에서 출발한 주제를 가벼운 형태로 다루는 개인 매거진. 기획부터 디자인, 제작까지 직접 합니다.</p>
+    <a class="mgl reveal" href="https://www.instagram.com/1dan.mag/" target="_blank" rel="noopener">@1dan.mag 인스타그램에서 보기 <span aria-hidden="true">↗</span></a>
+  </div>
+  <div class="case__right mg">
+    <div class="mg__ph reveal">
+      <img class="phone" src="assets/img/ig-reel.webp" alt="일단 매거진 릴스 - 갖고 다니는 립 제품" width="584" height="1200">
+      <img class="phone" src="assets/img/ig-profile.webp" alt="일단 매거진 인스타그램 프로필 - 게시물 22, 팔로워 701, 최근 30일 조회 58.6만" width="974" height="2000">
+    </div>
+    <div class="mg__st reveal"><span><b>58.6만</b>최근 30일 조회</span><span><b>20.6만</b>바이럴 게시물 조회</span><span><b>701</b>팔로워</span></div>
+  </div>
+</article>
+</div></div></section>
+<section class="chap" id="ch3"><div class="wrap"><p class="chap__eye rv">Chapter 3 · 데이터</p><h2 class="chap__h rv">숫자로 <em>확인하다.</em></h2><p class="chap__s rv">감 대신,<br>다음 행동을 정하게 하는 데이터.</p></div></section>
+<section class="win" id="case-8"><div class="wrap"><div class="win__frame">
+<div class="win__bar"><span class="win__dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="win__lbl"><span class="ic" style="background:linear-gradient(160deg,#2A4189,#0B1B4D)"><img src="assets/img/icon-calc.webp" alt=""></span>대시보드 <small>F&F</small></span><span class="win__n">7 / 10</span></div>
+<article class="case section">
+        <span class="case__cat"><b>데이터 분석</b><i>CASE 7</i></span>
         <div class="case__left">
           <h3 class="case__title reveal fx-text">AI로 만든 대시보드,<br>감을 데이터로 바꾸다</h3>
           <p class="case__desc reveal">사내 지식그래프 · 검색 · 날씨 · SNS 데이터를 한 화면에 모아,<br>마케팅 효과를 시즌 도중에 확인하는 대시보드 구축</p>
@@ -569,13 +695,7 @@
           <div class="reveal">
             <span class="kv__k fx-text">전략</span>
             <div class="st">
-              <div class="st__merge">
-                <ul class="st__src st__src--ico"><li><i class="st__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="7" r="2.5"/><circle cx="18" cy="7" r="2.5"/><circle cx="12" cy="17" r="2.5"/><path d="M8 8.5l2.5 6M16 8.5l-2.5 6M8.5 7h7"/></svg></i>사내 지식그래프</li><li><i class="st__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M15.5 15.5L20 20"/></svg></i>네이버 검색</li><li><i class="st__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a4 4 0 0 1 .5-8 5.5 5.5 0 0 1 10.5 1.5 3.5 3.5 0 0 1 0 6.5z"/></svg></i>날씨</li><li><i class="st__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="16.5" cy="7.5" r="1" fill="currentColor"/></svg></i>인스타그램</li></ul>
-                <i class="st__brace"></i>
-                <div class="st__dash"><div class="st__dash-bar"><i></i><i></i><i></i><b>한 화면</b></div><div class="st__dash-body"><div class="st__dash-tiles"><span></span><span></span><span></span></div><svg class="st__dash-chart" viewBox="0 0 200 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 50 C 30 44, 50 46, 70 38 S 110 20, 130 24 S 170 12, 200 8" fill="none" stroke="#1F5BFF" stroke-width="2.5"/><path d="M0 52 C 30 48, 55 50, 80 44 S 120 36, 140 34 S 175 28, 200 26" fill="none" stroke="#B4BDD6" stroke-width="2" stroke-dasharray="4 4"/></svg><div class="st__dash-chips"><span>↻ 매일 자동 갱신</span><span class="st__chip--navy">✦ AI 에이전트</span></div></div></div>
-                <i class="st__arr"></i>
-                <div class="st__card st__card--navy"><div class="st__h">바로 반영</div><div class="st__b"><p class="st__t">다음 카테고리 조정</p><p class="st__adj"><s>경량</s><span>→</span><em>숏 다운</em></p></div></div>
-              </div>
+              <div class="st__trio"><div class="st__go"><div class="st__scr st__scr--light" aria-hidden="true"><span class="sx-apps"><span><svg viewBox="0 0 24 24"><circle cx="6" cy="7" r="2.5"/><circle cx="18" cy="7" r="2.5"/><circle cx="12" cy="17" r="2.5"/><path d="M8 8.5l2.5 6M16 8.5l-2.5 6M8.5 7h7"/></svg></span><span><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M15.5 15.5L20 20"/></svg></span><span><svg viewBox="0 0 24 24"><path d="M7 18a4 4 0 0 1 .5-8 5.5 5.5 0 0 1 10.5 1.5 3.5 3.5 0 0 1 0 6.5z"/></svg></span><span><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="16.5" cy="7.5" r="1" fill="currentColor"/></svg></span></span></div><p class="st__cap"><b><i>1</i>흩어진 데이터</b><small>지식그래프 · 검색 · 날씨 · SNS</small></p></div><i class="st__hop"><em>한 화면에</em></i><div class="st__go"><div class="st__scr st__scr--mint" aria-hidden="true"><span class="sx-dash"><span class="sx-dash-bar"><i></i><i></i><i></i>한 화면</span><svg viewBox="0 0 200 60" preserveAspectRatio="none"><path d="M0 50 C 30 44, 50 46, 70 38 S 110 20, 130 24 S 170 12, 200 8" fill="none" stroke="#1F5BFF" stroke-width="3"/><path d="M0 52 C 30 48, 55 50, 80 44 S 120 36, 140 34 S 175 28, 200 26" fill="none" stroke="#B4BDD6" stroke-width="2" stroke-dasharray="4 4"/></svg><span class="sx-dash-chips"><span>↻ 매일 자동 갱신</span><span class="n">✦ AI 에이전트</span></span></span></div><p class="st__cap"><b><i>2</i>한 화면</b><small>매일 자동으로 갱신</small></p></div><i class="st__hop"><em>시즌 중에</em></i><div class="st__go"><div class="st__scr st__scr--navy" aria-hidden="true"><span class="sx-adj"><small>다음 카테고리 조정</small><span class="sx-adj-row"><s>경량 다운</s><span class="sx-to">→</span><b>숏 다운</b></span></span></div><p class="st__cap"><b><i>3</i>바로 반영</b><small>찾은 문제를 다음 카테고리에</small></p></div></div>
             </div>
           </div>
           <div class="reveal">
@@ -591,77 +711,257 @@
           </blockquote>
         </div>
       </article>
-
-      <!-- ---------- PROJECT 4 ---------- -->
-      <section class="cover section" id="project-4">
-        <div class="cover__inner">
-          <div class="cover__text reveal">
-            <p class="cover__eyebrow">PROJECT 4.</p>
-            <h2 class="cover__title fx-text">일단 매거진<br><em>@1dan.mag</em> 운영</h2>
-          </div>
-          <div class="cover__num reveal" aria-hidden="true">04</div>
-          <div class="cover__meta reveal">
-            <p class="cover__date">2025 - 현재</p>
-            <p class="cover__desc">인스타그램 매거진 채널<br>기획 · 콘텐츠 제작 · 채널 운영</p>
-          </div>
+</div></div></section>
+<section class="win" id="case-4"><div class="wrap"><div class="win__frame">
+<div class="win__bar"><span class="win__dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="win__lbl"><span class="ic" style="background:linear-gradient(160deg,#FFFFFF,#D6E4FF)"><img src="assets/img/icon-pie.webp" alt=""></span>수요 예측 <small>브레드랍</small></span><span class="win__n">8 / 10</span></div>
+<article class="case section">
+        <span class="case__cat"><b>데이터 분석</b><i>CASE 8</i></span>
+        <div class="case__left">
+          <h3 class="case__title reveal fx-text">버려지던 데이터,<br>AI로 내일 생산량을 예측하다</h3>
+          <p class="case__desc reveal">할인 등록 뒤 버려지던 판매 데이터에 날씨 · 학사 일정을 더해,<br>AI로 파트너 베이커리의 내일 생산량을 예측한 프로젝트</p>
+          <div class="laptop-slot reveal"><div class="laptop" aria-label="수요 예측 시트 화면 예시">
+            <div class="laptop__screen">
+              <div class="xl" aria-hidden="true">
+                <div class="xl__title"><i></i><i></i><i></i><b>브레드랍_수요예측.xlsx</b></div>
+                <div class="xl__fx"><span>H4</span><span>= 실제 판매 − AI 예측</span></div>
+                <div class="xl__grid">
+                  <div class="xl__cols"><span></span><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span></div>
+                  <div class="xl__head"><span>1</span><span>날짜</span><span>요일</span><span>날씨</span><span>학사 일정</span><span>품목</span><span class="xl__ai">AI 예측</span><span>실제 판매</span><span>오차</span></div>
+                  <div class="xl__r"><span>2</span><i></i><i class="s"></i><i class="s"></i><i></i><i></i><i class="ai"></i><i></i><i class="err"></i></div>
+                  <div class="xl__r"><span>3</span><i></i><i class="s"></i><i class="s"></i><i></i><i></i><i class="ai"></i><i></i><i class="err"></i></div>
+                  <div class="xl__r is-sel"><span>4</span><i></i><i class="s"></i><i class="s"></i><i></i><i></i><i class="ai"></i><i></i><i class="err"></i></div>
+                  <div class="xl__r"><span>5</span><i></i><i class="s"></i><i class="s"></i><i></i><i></i><i class="ai"></i><i></i><i class="err"></i></div>
+                  <div class="xl__r"><span>6</span><i></i><i class="s"></i><i class="s"></i><i></i><i></i><i class="ai"></i><i></i><i class="err"></i></div>
+                  <div class="xl__r"><span>7</span><i></i><i class="s"></i><i class="s"></i><i></i><i></i><i class="ai"></i><i></i><i class="err"></i></div>
+                  <div class="xl__r"><span>8</span><i></i><i class="s"></i><i class="s"></i><i></i><i></i><i class="ai"></i><i></i><i class="err"></i></div>
+                  <div class="xl__r"><span>9</span><i></i><i class="s"></i><i class="s"></i><i></i><i></i><i class="ai"></i><i></i><i class="err"></i></div>
+                </div>
+                <div class="xl__tabs"><span class="is-on">일별 예측</span><span>판매 기록</span><span>오차 기록</span></div>
+              </div>
+            </div>
+            <img class="laptop__frame" src="assets/img/laptop-frame.webp" alt="" width="1600" height="969">
+            <div class="xl__card"><i class="xl__badge">AI</i><b>프롬프트 설계</b><p><b>입력</b>최근 4주 판매 + 요일 · 날씨 · 공휴일 · 학사 일정</p><p><b>보정</b>어제 예측과 실제의 오차</p><em>→ 품목별 내일 권장 생산량</em></div>
+            <p class="laptop__note">예시 화면 · 실제 화면과 수치가 아닙니다</p>
+          </div></div>
         </div>
-      </section>
-
-      <!-- case 9: 일단 매거진 -->
-      <article class="case section case--mag" id="case-9">
-        <span class="case__cat"><b>콘텐츠 만들고 퍼뜨리기</b><i>CASE 9</i></span>
-        <div class="mag__main">
-          <h3 class="case__title reveal fx-text">일단 매거진<br><span class="mag__handle">@1dan.mag</span></h3>
-          <p class="case__desc reveal">F&amp;B, 패션, 뷰티, 라이프스타일, 트렌드 등 호기심에서 출발한 주제를 가벼운 형태로 다루는 매거진</p>
-          <a class="mag__link reveal" href="https://www.instagram.com/1dan.mag/" target="_blank" rel="noopener">인스타그램에서 보기 <span aria-hidden="true">↗</span></a>
-          <div class="mag__row phones reveal">
-            <div class="phone phone--car" data-n="7" data-key="chanelf" data-full="1" role="img" aria-label="일단 매거진 게시물 - 샤넬은 예쁜 여자를 좋아한다"><canvas class="car__cv" width="584" height="1200"></canvas></div>
-            <div class="phone phone--car" data-n="9" data-key="playlist" role="img" aria-label="일단 매거진 게시물 - goodvibespeople.mp3 플레이리스트"><canvas class="car__cv" width="584" height="1200"></canvas><div class="car__dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
-            <div class="phone phone--car" data-n="7" data-key="ewha" data-full="1" role="img" aria-label="일단 매거진 게시물 - 이대생이 말아주는 이대 맛집 6곳"><canvas class="car__cv" width="584" height="1200"></canvas></div>
-            <img class="phone" src="assets/img/ig-reel.webp" alt="일단 매거진 릴스 - 갖고 다니는 립 제품" width="584" height="1200" data-lightbox>
+        <div class="case__right">
+          <div class="kv reveal">
+            <span class="kv__k fx-text">문제</span>
+            <p class="kv__v">할인 판매로 남은 빵을 처리해도, 애초에 빵이 남는 문제는 그대로였음</p>
           </div>
-        </div>
-        <div class="mag__side reveal">
-          <img class="phone mag__profile" src="assets/img/ig-profile.webp" alt="일단 매거진 인스타그램 프로필 - 게시물 22, 팔로워 701, 최근 30일 조회 58.6만" width="974" height="2000" data-lightbox>
+          <div class="reveal">
+            <span class="kv__k fx-text">전략</span>
+            <div class="st">
+              <div class="st__trio"><div class="st__go"><div class="st__scr st__scr--light" aria-hidden="true"><span class="sx-chip sx-chip--muted">버려지던 기록</span><svg class="sx-bars" viewBox="0 0 80 44"><rect x="2" y="24" width="8" height="20" rx="2"/><rect x="14" y="14" width="8" height="30" rx="2"/><rect x="26" y="20" width="8" height="24" rx="2"/><rect x="38" y="8" width="8" height="36" rx="2"/><rect x="50" y="16" width="8" height="28" rx="2"/><rect x="62" y="4" width="8" height="40" rx="2"/><rect x="74" y="12" width="6" height="32" rx="2"/></svg></div><p class="st__cap"><b><i>1</i>남은 빵 기록</b><small>버려지던 데이터를 재료로</small></p></div><i class="st__hop"><em>맥락 더해</em></i><div class="st__go"><div class="st__scr st__scr--mint" aria-hidden="true"><span class="sx-orb"><b>AI</b><span style="left:2%;top:6%">요일</span><span style="right:4%;top:10%">날씨</span><span style="left:0;bottom:8%">공휴일</span><span style="right:0;bottom:6%">학사 일정</span></span></div><p class="st__cap"><b><i>2</i>AI 수요 예측</b><small>최근 4주 판매에 맥락을 더해</small></p></div><i class="st__hop"><em>내일로</em></i><div class="st__go"><div class="st__scr st__scr--navy" aria-hidden="true"><span class="sx-cal"><span class="sx-cal-bar">내일</span><span class="sx-cal-body"><i class="st__ghost"></i><i class="st__box"></i><small>권장 생산량</small></span></span></div><p class="st__cap"><b><i>3</i>사장님의 생산 결정</b><small>품목별 내일 권장 생산량</small></p></div></div>
+              <div class="st__band"><b><small>매일 반복</small>오차 보정</b><div class="st__band-row"><span class="sx-pill">어제 예측</span><span class="sx-vs">vs</span><span class="sx-pill">실제 판매</span><i class="st__arr"></i><span class="sx-pill sx-pill--on"><i class="sx-ico-sm"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 13.7-5.7L20 8.5"/><path d="M20 4v4.5h-4.5"/><path d="M20 12a8 8 0 0 1-13.7 5.7L4 15.5"/><path d="M4 20v-4.5h4.5"/></svg></i>다음 예측에 반영</span></div></div>
+            </div>
+          </div>
+          <div class="reveal">
+            <span class="kv__k fx-text">성과</span>
+            <div class="results">
+              <div class="result"><img class="result__icon" src="assets/img/icon-pie.webp" alt="" width="180" height="180"><p class="result__t"><strong class="result__n">6%</strong><span class="result__l">마감할인 빵 수량 감소</span><span class="result__s">처음 대비</span></p></div>
+              <div class="result"><img class="result__icon" src="assets/img/icon-tools.webp" alt="" width="180" height="180"><p class="result__t"><span class="result__l">사장님들이 예측을</span><strong class="result__n result__n--txt">실제 생산량 결정에 활용</strong></p></div>
+            </div>
+          </div>
+          <blockquote class="insight reveal">
+            <span class="insight__label">Insight</span>
+            <p>“같은 판매 기록도 <u>숫자로만 보면 어제의 결과</u>지만, <u>맥락을 붙이면 내일의 예측</u>이 된다.”</p>
+          </blockquote>
         </div>
       </article>
-
-    </div>
-
-    <!-- ===================== CONTACT (p.13) ===================== -->
-    <section class="contact section" id="contact">
-      <div class="contact__inner">
-        <h2 class="contact__title reveal fx-text">감사합니다!</h2>
-        <div class="contact__mail reveal">
-          <p class="contact__label">Contact</p>
-          <a class="contact__link" href="mailto:suanne.cho@gmail.com">suanne.cho@gmail.com</a>
+</div></div></section>
+<section class="chap" id="ch4"><div class="wrap"><p class="chap__eye rv">Chapter 4 · B2B</p><h2 class="chap__h rv">손익으로 <em>설득하다.</em></h2><p class="chap__s rv">상대가 얻는 것부터<br>보여 주는 영업.</p></div></section>
+<section class="win" id="case-1"><div class="wrap"><div class="win__frame">
+<div class="win__bar"><span class="win__dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="win__lbl"><span class="ic" style="background:linear-gradient(160deg,#FFFFFF,#D6E4FF)"><img src="assets/img/icon-handshake.webp" alt=""></span>현장 설득 <small>브레드랍</small></span><span class="win__n">9 / 10</span></div>
+<article class="case section">
+        <span class="case__cat"><b>B2B 영업</b><i>CASE 9</i></span>
+        <div class="case__left">
+          <h3 class="case__title reveal fx-text">7개 파트너사,<br>현장에서 설득하다</h3>
+          <p class="case__desc reveal">현장 기반 페인포인트 분석과 차별화된 가치 제안으로<br>7개 베이커리 파트너사 입점을 설득한 B2B 세일즈</p>
+          <div class="phones reveal">
+            <img class="phone" src="assets/img/p1-b2b-L.webp" alt="브레드랍 서비스 소개 및 이용 매뉴얼 제안서" width="640" height="1283">
+            <img class="phone" src="assets/img/p1-b2b-R.webp" alt="파트너 베이커리 사장님과의 카카오톡 대화 - 3차 시범운영 종료 감사 인사" width="640" height="1283">
+          </div>
         </div>
-        <div class="contact__box reveal">
-          <p class="contact__label">활용 툴</p>
-          <div class="contact__row"><span class="contact__group">디자인 · 영상</span><span class="tool">Figma</span><span class="tool">Photoshop</span><span class="tool">Premiere</span><span class="tool">CapCut</span></div>
-          <div class="contact__row"><span class="contact__group">AI</span><span class="tool">Claude Code</span><span class="tool">Google AI Studio</span><span class="tool">Higgsfield</span><span class="tool">ChatGPT Codex</span></div>
+        <div class="case__right">
+          <div class="kv reveal">
+            <span class="kv__k fx-text">문제</span>
+            <p class="kv__v">경쟁 플랫폼이 이미 존재하는 시장에서, 차별화 없이는 베이커리 입점 설득이 불가능</p>
+          </div>
+          <div class="reveal">
+            <span class="kv__k fx-text">전략</span>
+            <div class="st">
+              <div class="st__trio"><div class="st__go"><div class="st__scr st__scr--muted" aria-hidden="true"><span class="sx-ptag"><i></i><small>처음 내민 카드</small><b>수수료 ↓</b></span><span class="sx-stamp">✕ 차별화 안 됨</span></div><p class="st__cap"><b><i>1</i>처음</b><small>수수료를 낮춰 설득</small></p></div><i class="st__hop"><em>현장으로</em></i><div class="st__go"><div class="st__scr st__scr--light" aria-hidden="true"><span class="sx-pad"><i class="st__rings"></i><b>매일 재고 등록 수고</b><b>폐기 손실</b><b>마케팅 여력 부족</b></span></div><p class="st__cap"><b><i>2</i>하루 근무</b><small>베이커리에서 찾은 진짜 페인포인트</small></p></div><i class="st__hop"><em>제안으로</em></i><div class="st__go"><div class="st__scr st__scr--navy" aria-hidden="true"><span class="sx-list"><small>3-POINT</small><b><i>1</i>낮은 수수료</b><b><i>2</i>재고 등록 간소화</b><b><i>3</i>마케팅 대행</b></span></div><p class="st__cap"><b><i>3</i>가치 제안</b><small>3-Point로 다시 설득</small></p></div></div>
+            </div>
+          </div>
+          <div class="reveal">
+            <span class="kv__k fx-text">성과</span>
+            <div class="results">
+              <div class="result"><img class="result__icon" src="assets/img/icon-handshake.webp" alt="" width="200" height="200"><p class="result__t"><strong class="result__n">7개</strong><span class="result__l">베이커리 파트너십 체결</span></p></div>
+              <div class="result"><img class="result__icon" src="assets/img/icon-shield.webp" alt="" width="200" height="200"><p class="result__t"><strong class="result__n">100%</strong><span class="result__l">재계약률</span><span class="result__s">7개 파트너사 재계약</span></p></div>
+            </div>
+          </div>
+          <blockquote class="insight reveal">
+            <span class="insight__label">Insight</span>
+            <p>“B2B 고객은 가격이 아니라, <u>‘우리 문제를 해결한다’는 확신</u>으로 움직인다.<br>그리고 그 확신은 <u>고객의 현장 이해</u>에서 시작된다.”</p>
+          </blockquote>
+        </div>
+      </article>
+</div></div></section>
+<section class="win" id="case-5"><div class="wrap"><div class="win__frame">
+<div class="win__bar"><span class="win__dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="win__lbl"><span class="ic" style="background:linear-gradient(160deg,#FFFFFF,#E8ECF4)"><img src="assets/img/icon-cn.webp" alt=""></span>손익 설득 <small>조셉앤스테이시</small></span><span class="win__n">10 / 10</span></div>
+<article class="case section">
+        <span class="case__cat"><b>B2B 영업</b><i>CASE 10</i></span>
+        <div class="case__left">
+          <h3 class="case__title reveal fx-text">5곳 편집샵,<br>손익구조로 설득하다</h3>
+          <p class="case__desc reveal">중국 편집샵이 이커머스 시대에도 살아남는 이유를 이해하고,<br>손익 언어로 설득해 대량 구매를 이끌어낸 해외 B2B 세일즈</p>
+          <div class="phones reveal">
+            <img class="phone" src="assets/img/p2-b2b-L.webp" alt="샤오홍슈 게시물 - 상하이 편집샵 방문 후기" width="640" height="1283">
+            <img class="phone" src="assets/img/p2-b2b-R.webp" alt="샤오홍슈 게시물 - Lucky Pleats Knit 신상 입고" width="640" height="1283">
+          </div>
+        </div>
+        <div class="case__right">
+          <div class="kv reveal">
+            <span class="kv__k fx-text">목표</span>
+            <p class="kv__v">타오바오 중심 이커머스가 장악한 중국 시장에서, 도매 거래처가 될 편집샵을 확보</p>
+          </div>
+          <div class="reveal">
+            <span class="kv__k fx-text">전략</span>
+            <div class="st">
+              <div class="st__banner"><span class="st__tag">시장 진단</span>편집샵은 타오바오에 없는 브랜드로 손님을 모은다</div>
+              <div class="st__scale">
+                <svg class="st__scale-svg" viewBox="0 0 600 240" preserveAspectRatio="none" aria-hidden="true"><path class="st__beam" d="M120 48 L480 92"/><path class="st__string" d="M120 48v12M480 92v10"/><path class="st__pillar" d="M300 70v158"/><path class="st__basebar" d="M250 232h100"/></svg><i class="st__knob" style="left: 20%; top: 20%"></i><i class="st__knob" style="left: 80%; top: 38.3%"></i><i class="st__knob st__knob--pivot" style="left: 50%; top: 29.2%"></i>
+                <div class="st__pan st__pan--l"><div class="st__card st__card--muted"><div class="st__h">B2C식 · 제품 자랑</div><div class="st__b"><p><s>“우리 가방은 예쁘다”</s></p></div></div></div>
+                <div class="st__pan st__pan--r"><div class="st__card st__card--navy"><div class="st__h">B2B식 · 바이어의 손익</div><ul class="st__checks"><li><span>한국 · 일본에서 <b>이미 검증된</b> 브랜드</span></li><li><span>타오바오와 <b>가격 경쟁할 필요 없는</b> 상품</span></li><li><span>20대 손님과 <b>높은 객단가</b>를 데려옴</span></li></ul></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="reveal">
+            <span class="kv__k fx-text">성과</span>
+            <div class="results results--single">
+              <div class="result"><img class="result__icon" src="assets/img/icon-cn.webp" alt="" width="200" height="200"><p class="result__t"><strong class="result__n">5곳</strong><span class="result__l">청두·항저우 편집샵 대량 구매 달성</span></p></div>
+            </div>
+          </div>
+          <blockquote class="insight reveal">
+            <span class="insight__label">Insight</span>
+            <p>“<u>설득</u>은 스펙이 아니라, <u>상대의 손익 언어</u>로 다시 말할 때 시작된다.”</p>
+          </blockquote>
+        </div>
+      </article>
+</div></div></section>
+
+<!-- 03 · one more thing: one storyboard per device -->
+<section class="omt" id="omt" aria-label="One more thing">
+  <div class="omt__line" id="omtL"><span>One more thing.</span></div>
+  <div class="wrap">
+    <div class="omt__head">
+      <span class="omt__eye rv">기획 제안 · 애플에서 처음 만들어 보고 싶은 콘텐츠</span>
+      <h2 class="omt__t rv">수업 중엔 iPad,<br>과제할 땐 MacBook.</h2>
+      <p class="omt__s rv">스펙표 대신, 그 기기라서 되는 장면만 골라 15초에 담은<br>신학기 사용법 숏폼 시리즈</p>
+    </div>
+    <div class="eps" id="eps">
+      <div class="ep rv">
+        <article class="ct" aria-label="EP.1 iPad 콘티">
+          <div class="ct__bars" aria-hidden="true"><i></i><i></i><i></i></div>
+          <span class="ct__ep">EP.1 · iPad</span>
+          <div class="sc"><div class="stage"><div class="pad"><div class="nt__bar"><span>‹ 마케팅원론</span><span class="rec"><i></i>12:04<span class="wave"><i></i><i></i><i></i><i></i><i></i></span></span></div><div class="nt"><b class="hw nt__h">4P 믹스</b><svg class="scrib" viewBox="0 0 200 64" aria-hidden="true"><path d="M4 12c14-8 24 6 38-1s22-6 34 0 22 5 36-2"/><path d="M4 34c12-7 20 5 32-1s20-5 30 1 18 4 30-2 20-4 30 1"/><path d="M4 56c16-8 26 5 40-1s20-4 28 1"/></svg><div class="bub"><small>받아쓰기</small><p>“가격은 결국, 고객이 느끼는 가치예요.”</p><i></i><i></i></div></div></div><svg class="pen pen--a" viewBox="0 0 10 150" aria-hidden="true"><rect x="0.5" y="0" width="9" height="128" rx="3" fill="#F5F5F7"/><rect x="0.5" y="6" width="9" height="10" fill="#E4E5EA"/><path d="M0.5 128h9L6 146H4z" fill="#D7D9E0"/><path d="M4 144h2l-1 6z" fill="#2B2F3A"/></svg></div><p class="sc__cap"><span>녹음 버튼 하나면,<br>교수님 말은 iPad가 받아 적어요</span></p></div>
+          <div class="sc sc--2"><div class="stage"><div class="pad pad--grid"><div class="nt__bar"><span>‹ 수학 메모</span><span></span></div><div class="mn"><small class="hw mn__l">손익분기점 (개)</small><p class="hw mn__q">3,000,000 ÷<br>(12,000 − 7,000) <span class="mn__eq">=</span> <b class="mn__a">600</b></p></div></div><svg class="pen pen--b" viewBox="0 0 10 150" aria-hidden="true"><rect x="0.5" y="0" width="9" height="128" rx="3" fill="#F5F5F7"/><rect x="0.5" y="6" width="9" height="10" fill="#E4E5EA"/><path d="M0.5 128h9L6 146H4z" fill="#D7D9E0"/><path d="M4 144h2l-1 6z" fill="#2B2F3A"/></svg></div><p class="sc__cap"><span>경영 수업 손익분기점도,<br>= 만 쓰면 답이 바로</span></p></div>
+          <div class="sc sc--3"><div class="stage"><div class="pad"><div class="nt__bar"><span>‹ 마케팅원론</span><span></span></div><div class="nt"><b class="hw nt__h">4P 믹스</b><div class="aud"><i class="aud__p"></i><span><b>강의 녹음</b><small>45:12</small></span><span class="wave"><i></i><i></i><i></i><i></i><i></i></span></div><div class="sum"><p class="sum__h"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 0l1.4 4.6L12 6l-4.6 1.4L6 12 4.6 7.4 0 6l4.6-1.4z"/></svg>요약</p><ul><li>가격은 원가보다 ‘느끼는 가치’로</li><li>4P는 서로 맞물려 움직인다</li><li>과제 · 사례 하나 찾아오기</li></ul></div></div></div></div><p class="sc__cap"><span>수업이 끝나면,<br>요약부터 보고 복습</span></p></div>
+          <div class="ct__foot"><b>강의 듣는 날,<br>iPad 이렇게 써요</b><small>15초 사용법 숏폼 · 콘티</small></div>
+        </article>
+        <div class="ep__txt">
+          <span class="ep__tag">EP.1 · iPad · 수업 중</span>
+          <h3 class="ep__h">필기는 펜슬로,<br>받아 적기는 iPad가.</h3>
+          <p class="ep__why">손으로 필기하는 동안 녹음, 받아쓰기, 계산이 한 화면에서 같이 돌아가요. 강의실에서 iPad라서 되는 장면만 골랐어요.</p>
+          <ol class="ep__ls">
+            <li><span class="ep__time">0 – 5초</span><div><b>녹음 버튼 하나면, 교수님 말이 글자로</b><small>메모 앱 · 오디오 녹음과 실시간 받아쓰기</small></div></li>
+            <li><span class="ep__time">5 – 10초</span><div><b>수식 끝에 = 만 쓰면, 답이 내 글씨로</b><small>수학 메모 · Apple Pencil</small></div></li>
+            <li><span class="ep__time">10 – 15초</span><div><b>수업이 끝나면, 요약부터 보고 복습</b><small>메모 앱 · Apple Intelligence 요약</small></div></li>
+          </ol>
+          <p class="ep__fn">강의 녹음은 교수님 허락을 받은 뒤에 · 받아쓰기는 한국어도 지원해요</p>
         </div>
       </div>
-    </section>
-
-  </main>
-
-  <footer class="footer">
-    <span>© 2026 Suanne Cho. 2022 - 2026 PORTFOLIO</span>
-  </footer>
-
-  <!-- 라이트박스 -->
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button class="lightbox__close" id="lightboxClose" aria-label="닫기">×</button>
-    <img class="lightbox__img" id="lightboxImg" src="" alt="">
-    <p class="lightbox__cap" id="lightboxCap"></p>
+      <div class="ep ep--r rv">
+        <article class="ct ct--mac" aria-label="EP.2 MacBook 콘티">
+          <div class="ct__bars" aria-hidden="true"><i></i><i></i><i></i></div>
+          <span class="ct__ep">EP.2 · MacBook</span>
+          <div class="sc"><div class="stage" style="margin-top:14px"><div class="mac"><div class="mac__s"><div class="mw"><div class="mw__bar"><i></i><i></i><i></i>마케팅원론 과제</div><div class="mw__doc"><b>3. 사례 분석</b><i class="ln3"></i><i class="ln3"></i><i class="ln3 s"></i><div class="scan"></div></div></div><div class="menu"><small>iPhone에서 삽입</small><span>사진 찍기</span><span class="on">문서 스캔</span></div></div><i class="mac__b"></i><div class="iph iph--cam"><i class="vf__pg"></i><i class="vf__fr"></i><i class="vf__sh"></i></div></div></div><p class="sc__cap"><span>책 한 페이지, 아이폰으로 찍으면<br>맥 과제 문서에 바로</span></p></div>
+          <div class="sc sc--2"><div class="stage" style="margin-top:14px"><div class="mac"><div class="mac__s"><div class="desk"><div class="mw"><div class="mw__bar"><i></i><i></i><i></i>발표 자료</div><div class="mw__doc"><i class="ln3"></i><i class="ln3"></i><i class="ln3 s"></i></div></div><div class="mir"><i class="mir__n"></i><i style="background:#34C759"></i><i style="background:#FF9F0A"></i><i style="background:#0A84FF"></i><i style="background:#FF375F"></i><i style="background:#FFD60A"></i><i style="background:#5E5CE6"></i><i style="background:#64D2FF"></i><i style="background:#30D158"></i><i style="background:#BF5AF2"></i><i style="background:#FF6B3D"></i><i style="background:#8E8E93"></i><i style="background:#2F6BFF"></i></div><svg class="cur" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 1l11 5-4.6 1.4L5.8 12z" fill="#fff" stroke="#000" stroke-width="1"/></svg></div></div><i class="mac__b"></i><svg class="bag" viewBox="0 0 64 60" aria-hidden="true"><path d="M22 22a10 10 0 0 1 20 0" fill="none" stroke="#C9B8A0" stroke-width="3"/><rect x="25" y="6" width="14" height="26" rx="3" fill="#1A1F2C" stroke="#3A4260" stroke-width="1.2"/><path d="M8 24h48l-5 34H13z" fill="#E8DCC8"/><path d="M8 24h48" stroke="#CDBEA5" stroke-width="2"/></svg></div></div><p class="sc__cap"><span>아이폰은 가방 속에 두고,<br>아이폰 앱은 맥 화면에서</span></p></div>
+          <div class="sc sc--3"><div class="duo"><div class="mac"><div class="mac__s"><div class="desk desk--plain"><div class="mw"><div class="mw__bar"><i></i><i></i><i></i>과제</div><div class="mw__doc"><i class="ln3"></i><i class="ln3"></i><i class="ln3 s"></i></div></div></div></div><i class="mac__b"></i></div><div class="padl"></div><div class="fly"><b>참고 자료</b><i></i><i></i><i></i></div></div><p class="sc__cap"><span>아이패드를 옆에 두면,<br>자료 보는 두 번째 화면</span></p></div>
+          <div class="ct__foot"><b>과제하는 날,<br>MacBook 이렇게 써요</b><small>15초 사용법 숏폼 · 콘티</small></div>
+        </article>
+        <div class="ep__txt">
+          <span class="ep__tag">EP.2 · MacBook · 과제할 때</span>
+          <h3 class="ep__h">아이폰, 아이패드와<br>하나처럼 움직이는 MacBook.</h3>
+          <p class="ep__why">사진을 옮기고, 폰을 꺼내고, 화면이 모자라 창을 닫는 시간이 사라져요. 이미 쓰는 애플 기기와 이어진다는 건 MacBook이라서 되는 장점이에요.</p>
+          <ol class="ep__ls">
+            <li><span class="ep__time">0 – 5초</span><div><b>책 한 페이지, 아이폰으로 찍으면 과제 문서에 바로</b><small>연속성 카메라 · iPhone에서 삽입</small></div></li>
+            <li><span class="ep__time">5 – 10초</span><div><b>아이폰은 가방 속에 두고, 앱은 맥 화면에서</b><small>iPhone 미러링</small></div></li>
+            <li><span class="ep__time">10 – 15초</span><div><b>아이패드를 옆에 두면, 자료 보는 두 번째 화면</b><small>Sidecar</small></div></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <p class="omt__note rv">촬영 전 콘티예요 · 장면과 자막이 15초마다 저절로 반복돼요</p>
+    <p class="omt__q rv">고객은 <u>‘이 제품을 쓰는 내 하루’</u>가 그려질 때 고릅니다.<br>그 하루를 먼저 보여 드리는 인턴이 되겠습니다.</p>
   </div>
+</section>
+</main>
 
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+{
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const DATA = {"proj": {"brd": {"name": "브레드랍", "bg": "linear-gradient(160deg,#FFFFFF,#D6E4FF)"}, "jns": {"name": "조셉앤스테이시", "bg": "linear-gradient(160deg,#FFFFFF,#E8ECF4)"}, "nz": {"name": "네이버제트", "bg": "linear-gradient(160deg,#6B9BFF,#1F5BFF)"}, "fnf": {"name": "F&F", "bg": "linear-gradient(160deg,#2A4189,#0B1B4D)"}, "mag": {"name": "일단 매거진", "bg": "linear-gradient(160deg,#CDEFFF,#7FD6FF)"}}, "cases": {"case-2": {"name": "간식 나눔", "p": "brd", "ic": "icon-gift", "m": "구매 전환율 73%"}, "case-3": {"name": "아침 카피", "p": "brd", "ic": "icon-calendar", "m": "매출 +13%"}, "case-7": {"name": "마라톤", "p": "fnf", "ic": "icon-fire", "m": "부스 체험 4,542명"}, "case-ai": {"name": "AI 챌린지", "p": "nz", "ic": "icon-camera", "m": "참여 콘텐츠 1.6만 건"}, "case-6": {"name": "Story 전환", "p": "nz", "ic": "icon-cursor", "m": "월 링크 클릭 2,000건+"}, "case-9": {"name": "일단 매거진", "p": "mag", "ic": "icon-mic", "m": "최근 30일 조회 58.6만"}, "case-8": {"name": "대시보드", "p": "fnf", "ic": "icon-calc", "m": "효과 확인을 시즌 도중으로"}, "case-4": {"name": "수요 예측", "p": "brd", "ic": "icon-pie", "m": "마감할인 빵 6% 감소"}, "case-1": {"name": "현장 설득", "p": "brd", "ic": "icon-handshake", "m": "파트너 7곳 · 재계약률 100%"}, "case-5": {"name": "손익 설득", "p": "jns", "ic": "icon-cn", "m": "중국 편집샵 5곳"}}};
+  const PROJ = DATA.proj, CASES = DATA.cases;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/Flip.min.js"></script>
-  <script src="assets/main.js?v=202611180400"></script>
-  <script data-goatcounter="https://suanne.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  /* clock */
+  const tick = () => { const d = new Date(); $('#tm').textContent = `${d.getHours() % 12 || 12}:${String(d.getMinutes()).padStart(2, '0')}`; };
+  tick(); setInterval(tick, 15000);
+
+  /* island: short, passive messages */
+  let islT;
+  const island = (h, ms = 2600) => { $('#islT').innerHTML = h; $('#isl').classList.add('is-open'); clearTimeout(islT); islT = setTimeout(() => $('#isl').classList.remove('is-open'), ms); };
+
+  /* 01 · four greetings */
+  { const ws = $$('.hello__w'); let i = 0; setInterval(() => { ws[i].classList.remove('on'); i = (i + 1) % ws.length; ws[i].classList.add('on'); }, 1900); }
+
+  /* 02 · spec rows check in one by one, the island counts along */
+  const rows = $$('.sp');
+  const runSpec = () => {
+    const st = reduce ? 0 : 300;
+    rows.forEach((r, i) => setTimeout(() => { r.classList.add('is-on'); island(`공고 요건 확인 중 · <b>${i + 1} / ${rows.length}</b>`, 1600); }, i * st));
+    setTimeout(() => island(`공고 요건 ${rows.length}개 · <b>모두 탑재</b>`, 2800), rows.length * st + 400);
+  };
+  const specIO = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { specIO.disconnect(); runSpec(); } }, { threshold: .12 });
+  specIO.observe($('#specBox'));
+
+  /* reveal + app windows opening */
+  const io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) return; const el = e.target; el.classList.add('is-in', 'is-open', 'is-visible'); $$('.reveal, .phones, .laptop-slot', el).forEach(x => x.classList.add('is-visible')); $$('video', el).forEach(v => { v.muted = true; v.play().catch(() => {}); }); io.unobserve(el); }), { threshold: .04 });
+  $$('.rv, .win, #omtL').forEach(el => io.observe(el));
+
+  /* storyboards start from scene one when they come on screen */
+  const epIO = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { epIO.disconnect(); $('#omt').classList.add('is-play'); } }, { threshold: .15 });
+  epIO.observe($('#eps'));
+
+  /* reading = battery; each window announces itself once */
+  const seen = new Set(), total = Object.keys(CASES).length;
+  const spy = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return; const id = e.target.id, c = CASES[id]; if (!c || seen.has(id)) return;
+    seen.add(id); const k = seen.size;
+    $('#battF').style.width = `calc((100% - 3px) * ${k / total})`; $('#battT').textContent = `열람 ${k}/${total}`;
+    island(`${PROJ[c.p].name} · <b>${c.m}</b>`, 2800);
+    if (k === total) { document.body.classList.add('is-full'); setTimeout(() => island('케이스를 모두 보셨어요 · <b>마지막에 하나 더</b> 준비했어요', 3600), 3000); }
+  }), { rootMargin: '-40% 0px -40% 0px' });
+  $$('.win').forEach(w => spy.observe(w));
+
+  function frame() {
+    const omt = $('#omt').getBoundingClientRect(); document.body.classList.toggle('is-dark', omt.top < 30 && omt.bottom > 30);
+    document.body.classList.toggle('past-setup', $('#ch1').getBoundingClientRect().top < 60);
+  }
+  let raf = 0; addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; frame(); }); }, { passive: true });
+  frame();
+}
+</script>
 </body>
 </html>
