@@ -419,7 +419,7 @@ button { font-family: inherit; cursor: pointer; }
   background: var(--mint-soft); padding: 12px; object-fit: contain; box-shadow: 0 6px 16px rgba(11,27,77,.12);
 }
 .result__icon { transform: translate(-50%, -64%); }
-#case-6 .result__icon, #case-7 .result__icon { width: clamp(92px, 7.6vw, 128px); height: clamp(92px, 7.6vw, 128px); padding: 14px; }
+#case-7 .result__icon, #case-8 .result__icon {   /* the two F&F cases (marathon, dashboard) keep their larger result icons */ width: clamp(92px, 7.6vw, 128px); height: clamp(92px, 7.6vw, 128px); padding: 14px; }
 
 /* Insight */
 .insight { background: var(--bg-card); color: #fff; border-radius: 14px; padding: 26px 30px; margin-top: 8px; }
