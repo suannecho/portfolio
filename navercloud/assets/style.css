@@ -566,9 +566,10 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .laptop__frame { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-.laptop__screen { position: absolute; left: 10.1%; top: 3.44%; width: 79.8%; height: 85.57%; background: #0A0A0A; overflow: hidden; container-type: inline-size; }
+/* the dark screen box reaches well under the bezel on every side (the frame's opening runs 3.5%..89% tall, 10.2%..89.8% wide), so its anti-aliased edge blends with black, never with the page behind */
+.laptop__screen { position: absolute; left: 9.6%; top: 2.5%; width: 80.8%; height: 87.1%; background: #0A0A0A; overflow: hidden; container-type: inline-size; }
 .laptop__note { position: absolute; left: 0; right: 0; bottom: -30px; text-align: center; font-size: 14px; font-weight: 600; color: var(--text-dim); }
-.ui { position: absolute; inset: 3.8% 0.6% 0.8% 0.6%; display: grid; grid-template-columns: 5.6cqw 1fr; font-size: 2.1cqw; color: var(--text); line-height: 1.35; background: #F4F7FD; }
+.ui { position: absolute; inset: 1.4% 0.9% 1.0% 0.9%; display: grid; grid-template-columns: 5.6cqw 1fr; font-size: 2.1cqw; color: var(--text); line-height: 1.35; background: #F4F7FD; }
 .ui__side { background: var(--bg-card); display: flex; flex-direction: column; align-items: center; gap: 2.2cqw; padding-top: 2.2cqw; }
 .ui__logo { width: 2.6cqw; height: 2.6cqw; border-radius: .8cqw; background: var(--sky); margin-bottom: 1cqw; }
 .ui__nav { width: 2cqw; height: 2cqw; border-radius: .6cqw; background: rgba(255,255,255,.18); }
