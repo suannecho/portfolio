@@ -416,21 +416,21 @@
   (function () {
     const upl = $('.upl'); if (!upl) return;
     const zone = $('#uplZone'), file = $('#uplFile'), hint = $('#uplHint'), ghost = $('#uplGhost'), done = $('#uplDone');
-    const wave = $('#uplWave'), wave2 = $('#uplWave2'), pctEls = $$('.upl__pct', upl), stepEls = $$('.upl__step', upl);
+    const wave = $('#uplWave'), wave2 = $('#uplWave2'), pctEls = $$('.upl__pct', upl), stepEls = $$('.upl__step', upl), bar = $('#uplBar');
     const FLY = 1800, FILL = 1400, START_AFTER = 1600;                                // ms; hero in → done ≈ 1.6 + 1.8 + 1.4 = 4.8s; the flight is the slow part, not the fill
     let level = 0, phase = 0, state = 'idle', idleTimer = null, ghostAnim = null;
     const CX = 0.5;                                                                    // the cloud is symmetric about the middle of the zone
 
     function drawWave(animate) {
       if (animate) phase += 0.06;
-      const top = 236 - (level / 100) * 168;                                          // the cloud spans 70..232 of the viewBox: 0% is just under it, 100% just over it
-      const amp = animate && level > 0 && level < 100 ? 6 : 0;
+      const top = 244 - (level / 100) * 162;                                          // the cloud spans 86..240 of the viewBox: 0% is just under it, 100% just over it
+      const amp = animate && level > 0 && level < 100 ? 2 : 0;
       let d = `M0 ${top}`;
       for (let x = 0; x <= 420; x += 10) d += ` L${x} ${top + Math.sin(x / 38 + phase) * amp}`;
       d += ' L420 300 L0 300 Z';
       wave.setAttribute('d', d); wave2.setAttribute('d', d);
     }
-    function setLevel(v) { level = v; pctEls.forEach(t => { t.textContent = v + '%'; }); }
+    function setLevel(v) { level = v; pctEls.forEach(t => { t.textContent = v + '%'; }); if (bar) bar.style.width = v + '%'; }
     function setStep(s) { stepEls.forEach(t => { t.textContent = s; }); }
 
     /* drag the chip (pointer: mouse, touch and pen alike) */
@@ -461,42 +461,29 @@
       if (state !== 'idle') return;
       state = 'busy'; stopGhost(); hint.classList.add('is-hidden'); zone.classList.remove('is-over');
       const fr = file.getBoundingClientRect(), zr = zone.getBoundingClientRect();
-      const tx = (zr.left + zr.width * CX) - (fr.left + fr.width / 2), ty = (zr.top + zr.height * 0.55) - (fr.top + fr.height / 2);
+      const tx = (zr.left + zr.width * CX) - (fr.left + fr.width / 2), ty = (zr.top + zr.height * 0.6) - (fr.top + fr.height / 2);
       const cur = new DOMMatrix(getComputedStyle(file).transform);
       file.style.transform = `translate(${cur.m41 + tx}px,${cur.m42 + ty}px) scale(.15)`;
       file.classList.add('is-flying', 'is-gone');
       setTimeout(upload, FLY);
     }
     function upload() {
-      zone.classList.add('is-busy'); setStep('경험 5개 업로드 중');
+      zone.classList.add('is-busy'); setStep('Uploading');
       const t0 = performance.now();
       (function tick(now) {
         const p = Math.min(1, (now - t0) / FILL), e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;   // easeInOut
         setLevel(Math.round(e * 100)); drawWave(true);
-        if (p < 1) requestAnimationFrame(tick); else finish(true);
+        if (p < 1) requestAnimationFrame(tick); else finish();
       })(t0);
     }
-    function finish(burstToo) {
+    function finish() {
       state = 'done'; setLevel(100); drawWave(false);
-      zone.classList.remove('is-busy'); zone.classList.add('is-done'); setStep('조수안 업로드 완료');
+      zone.classList.remove('is-busy'); zone.classList.add('is-done'); setStep('Uploaded');
       done.classList.add('is-on');
-      if (burstToo) burst();
-    }
-    function burst() {
-      const zr = zone.getBoundingClientRect(), hr = upl.getBoundingClientRect();
-      const x = zr.left - hr.left + zr.width * CX, y = zr.top - hr.top + zr.height * 0.4;
-      for (let i = 0; i < 14; i++) {
-        const m = document.createElement('div'); m.className = 'upl__mini' + (i % 3 ? '' : ' is-tint');
-        m.innerHTML = '<svg viewBox="0 0 30 20"><path d="M7 18a6 6 0 0 1 1-12 8 8 0 0 1 15 1 5.5 5.5 0 0 1 0 11z"/></svg>';
-        m.style.left = x + 'px'; m.style.top = y + 'px'; upl.appendChild(m);
-        const a = Math.random() * Math.PI * 2, r = 120 + Math.random() * 120, s = 0.6 + Math.random() * 0.9;
-        m.animate([{ transform: 'translate(-50%,-50%) scale(.2)', opacity: 1 }, { transform: `translate(calc(-50% + ${Math.cos(a) * r}px),calc(-50% + ${Math.sin(a) * r - 40}px)) scale(${s})`, opacity: 0 }], { duration: 1300 + Math.random() * 500, easing: 'cubic-bezier(.2,.8,.3,1)', fill: 'forwards' });
-        setTimeout(() => m.remove(), 2000);
-      }
     }
     /* "직접 올려 보기": back to the start, with the chip to drag yourself */
     $('#uplReset').addEventListener('click', () => {
-      state = 'idle'; setLevel(0); drawWave(false); setStep('');
+      state = 'idle'; setLevel(0); drawWave(false); setStep('Ready');
       zone.classList.remove('is-busy', 'is-done', 'is-over'); done.classList.remove('is-on');
       file.classList.remove('is-gone', 'is-flying'); file.style.transform = ''; hint.classList.remove('is-hidden');
       armIdle();
@@ -508,7 +495,7 @@
     function playGhost() {
       if (state !== 'idle') return;
       const fr = file.getBoundingClientRect(), zr = zone.getBoundingClientRect(), hr = upl.getBoundingClientRect();
-      const x0 = fr.left - hr.left + fr.width * 0.45, y0 = fr.top - hr.top + fr.height * 0.55, x1 = zr.left - hr.left + zr.width * CX, y1 = zr.top - hr.top + zr.height * 0.55;
+      const x0 = fr.left - hr.left + fr.width * 0.45, y0 = fr.top - hr.top + fr.height * 0.55, x1 = zr.left - hr.left + zr.width * CX, y1 = zr.top - hr.top + zr.height * 0.6;
       ghostAnim = ghost.animate([
         { transform: `translate(${x0}px,${y0 + 30}px)`, opacity: 0 },
         { transform: `translate(${x0}px,${y0}px)`, opacity: 1, offset: 0.2 },
@@ -517,8 +504,19 @@
       ghostAnim.onfinish = () => { ghostAnim = null; if (state === 'idle') idleTimer = setTimeout(playGhost, 2400); };
     }
 
+    /* the four strengths around the cloud: repeat the line as often as it fits once round, then spread it to close the loop exactly */
+    const ringPath = $('#uplRingPath'), ring = $('#uplRing');
+    function fitRing() {
+      if (!ringPath || !ring) return;
+      const txt = ring.parentNode, one = ring.dataset.one || ring.textContent;
+      ring.dataset.one = one; ring.textContent = one; txt.removeAttribute('textLength');
+      const L = ringPath.getTotalLength(), w = ring.getComputedTextLength();
+      ring.textContent = one.repeat(Math.max(1, Math.round(L / w)));
+      txt.setAttribute('lengthAdjust', 'spacing'); txt.setAttribute('textLength', (L - 1).toFixed(1));
+    }
+    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(fitRing);
     drawWave(false);
-    if (reduceMotion) { file.classList.add('is-gone'); finish(false); }                 // no motion: the finished state from the start
+    if (reduceMotion) { file.classList.add('is-gone'); finish(); }                 // no motion: the finished state from the start
     else {
       // once the hero is in and most of the title has risen, the upload plays by itself; it runs once
       const go = () => setTimeout(() => { if (state === 'idle') dropIn(); }, START_AFTER);
