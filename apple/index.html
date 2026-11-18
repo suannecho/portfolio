@@ -14,7 +14,7 @@
   LAYOUT  one long scroll; scenes start when they come into view; ten app windows in reading order
 */
 :root { --nav-h: 46px; --a-navy: #0B1B4D; --a-blue: #1F5BFF; --a-sky: #7FD6FF; --a-dim: #4A5578; --a-mute: #7A84A0; --a-ease: cubic-bezier(.22,1,.36,1); --a-spring: cubic-bezier(.34,1.32,.5,1); --a-grad: linear-gradient(100deg, #1F5BFF 10%, #4D8BFF 55%, #7FD6FF 100%); }
-html { scroll-behavior: smooth; scroll-padding-top: 46px; scroll-snap-type: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 0; scroll-snap-type: none !important; }   /* each screen carries the nav height in its own padding, so anchors land at the very top */
 body.ap { color: var(--a-navy); overflow-x: clip; }
 :where(body.ap button) { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; padding: 0; }
 :where(body.ap a) { color: inherit; text-decoration: none; }
@@ -27,7 +27,7 @@ body.ap :focus { outline: none; } body.ap :focus-visible { outline: 3px solid rg
 .wall .b3 { width: 38vw; height: 38vw; right: 4vw; bottom: -20vh; background: #6FA4FF; opacity: .45; animation-delay: -11s; }
 @keyframes drift { to { transform: translate(4vw, -3vh) scale(1.08); } }
 .wrap { width: min(1320px, 100% - 2 * max(3vw, 18px)); margin-inline: auto; }
-.win .wrap, .spec .wrap { width: min(1600px, 100% - 2 * clamp(14px, 2.2vw, 32px)); }
+.win .wrap, .spec .wrap { width: min(1600px, 100% - 2 * clamp(28px, 3.6vw, 60px)); }
 .rv { opacity: 0; transform: translateY(26px); transition: opacity .9s var(--a-ease), transform .9s var(--a-ease); }
 .rv.is-in { opacity: 1; transform: none; }
 
@@ -100,7 +100,7 @@ body.is-full .batt__b i { background: #34C759; }
 .ic { position: relative; width: 60px; aspect-ratio: 1; border-radius: 24%; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 12px 26px rgba(11,27,77,.16), inset 0 1px 0 rgba(255,255,255,.6); }
 .ic img { width: 72%; height: 72%; object-fit: contain; filter: drop-shadow(0 6px 8px rgba(0,0,0,.18)); }
 .win { min-height: 100svh; box-sizing: border-box; display: flex; align-items: center; padding: calc(var(--nav-h) + 12px) 0 12px; }
-.win .wrap { flex: 1; }
+.win .wrap { flex: 0 0 auto; }
 .fit { transform-origin: 0 0; }
 .win__frame { border-radius: 34px; overflow: hidden; background: #fff; box-shadow: 0 40px 90px rgba(11,27,77,.16); transform: scale(.9) translateY(40px); opacity: 0; transform-origin: 50% 0; transition: transform .9s var(--a-ease), opacity .7s var(--a-ease), border-radius .9s; }
 .win.is-open .win__frame { transform: none; opacity: 1; border-radius: 30px; }
@@ -365,7 +365,6 @@ body.is-full .batt__b i { background: #34C759; }
 <section class="spec" id="spec" aria-label="역량별 케이스">
   <div class="wrap">
     <div class="spec__head">
-      <span class="pill rv">기술 사양</span>
       <h2 class="spec__h rv">애플 공고가 찾는 역량,<br><em>모두 탑재.</em></h2>
     </div>
     <div class="spec__box" id="specBox">
@@ -1052,13 +1051,16 @@ body.is-full .batt__b i { background: #34C759; }
      bottom margin keeps the layout height in step with what is drawn, so the window frame hugs it */
   const NAV = 46;
   function fitOne(el, avail) {
-    el.classList.add('fit'); el.style.transform = ''; el.style.width = ''; el.style.marginBottom = '';
+    el.classList.add('fit'); el.style.transform = ''; el.style.width = ''; el.style.marginBottom = ''; el.style.marginLeft = ''; el.style.marginRight = ''; el.style.flexShrink = '';
     if (innerWidth <= 1100) return;
-    const host = el.parentElement, w = host.clientWidth;
+    const host = el.parentElement, hostW = host.clientWidth, w = el.clientWidth;   // w: the box's own width, gutters included
     let z = Math.min(1, avail / el.offsetHeight);
     if (z >= 1) return;
-    el.style.width = (w / z) + 'px';                       // wider at 1:1 so it reads at the same width once scaled
-    z = Math.min(1, avail / el.offsetHeight); el.style.width = (w / z) + 'px';   // the wider column may have shortened the text
+    // wider at 1:1 so it reads at the same width once scaled; as a flex item it must not shrink back, and it sits where the box sat
+    const place = () => { el.style.flexShrink = '0'; el.style.width = (w / z) + 'px'; el.style.marginLeft = ((hostW - w) / 2) + 'px'; el.style.marginRight = '0'; };
+    place();
+    for (let i = 0; i < 3; i++) { const nz = Math.min(1, avail / el.offsetHeight); if (Math.abs(nz - z) < 0.002) break; z = nz; place(); }   // the wider column reflows the text; settle on a stable z
+    z = Math.min(z, avail / el.offsetHeight);               // never taller than the room, whatever the last reflow did
     const h = el.offsetHeight;
     el.style.transform = `scale(${z.toFixed(4)})`; el.style.marginBottom = (-(h - h * z)).toFixed(1) + 'px';
   }
