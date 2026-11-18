@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>조수안 포트폴리오 · Apple Sales Internship</title>
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css?v=202611191200">
 <style>
 /*
   VOICE   playful but calm: the reader just scrolls, each scene plays by itself
@@ -27,7 +27,7 @@ body.ap :focus { outline: none; } body.ap :focus-visible { outline: 3px solid rg
 .wall .b3 { width: 38vw; height: 38vw; right: 4vw; bottom: -20vh; background: #6FA4FF; opacity: .45; animation-delay: -11s; }
 @keyframes drift { to { transform: translate(4vw, -3vh) scale(1.08); } }
 .wrap { width: min(1320px, 100% - 2 * max(3vw, 18px)); margin-inline: auto; }
-.win .wrap { width: min(1600px, 100% - 2 * clamp(14px, 2.2vw, 32px)); }
+.win .wrap, .spec .wrap { width: min(1600px, 100% - 2 * clamp(14px, 2.2vw, 32px)); }
 .rv { opacity: 0; transform: translateY(26px); transition: opacity .9s var(--a-ease), transform .9s var(--a-ease); }
 .rv.is-in { opacity: 1; transform: none; }
 
@@ -60,13 +60,13 @@ body.is-full .batt__b i { background: #34C759; }
 @keyframes wheel { 60% { transform: translateY(12px); opacity: 0; } 61% { transform: none; opacity: 0; } 100% { opacity: 1; } }
 
 /* ---------- spec sheet: what the posting asks for, and the cases that show it ---------- */
-.spec { padding: clamp(110px, 16vh, 170px) 0 clamp(10px, 3vh, 30px); }
+.spec { min-height: 100svh; box-sizing: border-box; display: flex; align-items: center; padding: calc(var(--nav-h) + 22px) 0 22px; }
 .spec__head { text-align: center; }
 .pill { display: inline-block; font-size: 13px; font-weight: 800; color: var(--a-blue); letter-spacing: .02em; padding: 7px 15px; border-radius: 999px; background: rgba(255,255,255,.6); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 6px 18px rgba(11,27,77,.06), inset 0 1px 0 #fff; }
 .spec__h { margin-top: 18px; font-size: clamp(40px, 5.6vw, 84px); font-weight: 800; letter-spacing: -0.05em; line-height: 1.1; }
 .spec__h em { background: var(--a-grad); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: .04em; }
 .spec__s { margin-top: 18px; font-size: clamp(16px, 1.4vw, 20px); font-weight: 700; color: var(--a-dim); line-height: 1.5; letter-spacing: -0.02em; }
-.spec__box { margin-top: clamp(40px, 6vh, 64px); background: rgba(255,255,255,.68); backdrop-filter: blur(30px) saturate(1.6); -webkit-backdrop-filter: blur(30px) saturate(1.6); border: 1px solid rgba(255,255,255,.85); border-radius: 34px; padding: 6px clamp(18px, 3.4vw, 48px); box-shadow: 0 40px 100px rgba(11,27,77,.12), inset 0 1px 0 #fff; }
+.spec__box { margin-top: clamp(24px, 4vh, 40px); background: rgba(255,255,255,.68); backdrop-filter: blur(30px) saturate(1.6); -webkit-backdrop-filter: blur(30px) saturate(1.6); border: 1px solid rgba(255,255,255,.85); border-radius: 34px; padding: 6px clamp(18px, 3.4vw, 48px); box-shadow: 0 40px 100px rgba(11,27,77,.12), inset 0 1px 0 #fff; }
 .sp { position: relative; display: grid; grid-template-columns: minmax(0, 330px) minmax(0, 1fr); gap: clamp(20px, 4vw, 56px); align-items: center; padding: 28px 0; opacity: 0; transform: translateY(16px); transition: opacity .7s var(--a-ease), transform .7s var(--a-ease); }
 .sp.is-on { opacity: 1; transform: none; }
 .sp + .sp::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: rgba(11,27,77,.12); }
@@ -99,17 +99,20 @@ body.is-full .batt__b i { background: #34C759; }
 /* ---------- cases open as app windows ---------- */
 .ic { position: relative; width: 60px; aspect-ratio: 1; border-radius: 24%; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 12px 26px rgba(11,27,77,.16), inset 0 1px 0 rgba(255,255,255,.6); }
 .ic img { width: 72%; height: 72%; object-fit: contain; filter: drop-shadow(0 6px 8px rgba(0,0,0,.18)); }
-.win { padding: 14px 0 30px; }
+.win { min-height: 100svh; box-sizing: border-box; display: flex; align-items: center; padding: calc(var(--nav-h) + 12px) 0 12px; }
+.win .wrap { flex: 1; }
+.fit { transform-origin: 0 0; }
 .win__frame { border-radius: 34px; overflow: hidden; background: #fff; box-shadow: 0 40px 90px rgba(11,27,77,.16); transform: scale(.9) translateY(40px); opacity: 0; transform-origin: 50% 0; transition: transform .9s var(--a-ease), opacity .7s var(--a-ease), border-radius .9s; }
 .win.is-open .win__frame { transform: none; opacity: 1; border-radius: 30px; }
 .win__bar { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px; padding: 12px 18px; border-bottom: 1px solid rgba(11,27,77,.07); background: rgba(255,255,255,.9); }
 .win__dots { display: flex; gap: 7px; }
 .win__dots i { width: 12px; height: 12px; border-radius: 50%; background: #FF5F57; } .win__dots i:nth-child(2) { background: #FEBC2E; } .win__dots i:nth-child(3) { background: #28C840; }
 .win__n { justify-self: end; font-size: 13px; font-weight: 800; color: var(--a-mute); font-variant-numeric: tabular-nums; }
-.win .case { background: linear-gradient(90deg, #F4F8FF 0 39%, #fff 39%); min-height: 0 !important; height: auto !important; overflow: visible !important; align-items: center !important; padding-inline: clamp(22px, 3.2vw, 46px); padding-block: clamp(70px, 9vh, 96px) clamp(48px, 7vh, 72px) !important; }
+.win .case { background: linear-gradient(90deg, #F4F8FF 0 39%, #fff 39%); min-height: 0 !important; height: auto !important; overflow: visible !important; align-items: center !important; padding-inline: clamp(22px, 3.2vw, 46px); padding-block: clamp(60px, 7vh, 76px) clamp(28px, 4vh, 40px) !important; }
 .win .case > * { transform: none !important; }
 .win .phone { cursor: default; }
-@media (max-width: 1100px) { .win .case { background: #fff; } }
+.win .case--mag { grid-template-columns: minmax(0, 67fr) minmax(0, 33fr); background: linear-gradient(90deg, #F4F8FF 0 67%, #fff 67%); }
+@media (max-width: 1100px) { .win .case, .win .case--mag { background: #fff; } .win .case--mag { grid-template-columns: 1fr; } }
 .mgl { display: inline-flex; align-items: center; gap: 6px; margin-top: 26px; align-self: flex-start; min-height: 46px; padding: 0 20px; border-radius: 999px; background: var(--a-navy); color: #fff; font-size: 15px; font-weight: 800; }
 .mg { display: flex; flex-direction: column; align-items: center; gap: 26px; }
 .mg__ph { display: flex; justify-content: center; align-items: flex-end; gap: clamp(14px, 2vw, 28px); }
@@ -136,8 +139,8 @@ body.is-full .batt__b i { background: #34C759; }
 .ep__h { font-size: clamp(17px, 1.4vw, 21px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.35; }
 
 /* the 9:16 storyboard card · everything inside is sized in cqw so it scales with the card */
-.ct { position: relative; width: clamp(230px, calc(50vh * 9 / 16), 300px); aspect-ratio: 9 / 16; container-type: inline-size; border-radius: 28px; overflow: hidden; isolation: isolate; background: linear-gradient(180deg, #101A3C, #070A18 55%, #04050B); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1), 0 40px 80px rgba(0,0,0,.6); }
-.ct--mac { background: linear-gradient(180deg, #221A48, #0A0818 55%, #04050B); }
+.ct { position: relative; width: clamp(230px, calc(50vh * 9 / 16), 300px); aspect-ratio: 9 / 16; container-type: inline-size; border-radius: 28px; overflow: hidden; isolation: isolate; background: linear-gradient(180deg, #3B6CFF, #1E3FB8 52%, #132A7A); box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.28), 0 40px 80px rgba(0,0,0,.6); }
+.ct--mac { background: linear-gradient(180deg, #8A5CFF, #4B2DB5 52%, #2B1A6E); }
 .ct__bars { position: absolute; z-index: 6; left: 4.6cqw; right: 4.6cqw; top: 4cqw; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4cqw; }
 .ct__bars i { height: 1.1cqw; border-radius: 99px; background: rgba(255,255,255,.25); overflow: hidden; }
 .ct__bars i::after { content: ""; display: block; height: 100%; width: 100%; background: #fff; transform: scaleX(0); transform-origin: 0 50%; animation: bar 15s linear infinite; }
@@ -156,8 +159,8 @@ body.is-full .batt__b i { background: #34C759; }
 @keyframes sc { 0%, 31% { opacity: 1; } 33.3%, 98% { opacity: 0; } 100% { opacity: 1; } }
 @keyframes sc2 { 0%, 32% { opacity: 0; } 35%, 64% { opacity: 1; } 66.6%, 100% { opacity: 0; } }
 @keyframes sc3 { 0%, 65.5% { opacity: 0; } 68.5%, 97.5% { opacity: 1; } 100% { opacity: 0; } }
-.sc::before { content: ""; position: absolute; inset: 0; background: radial-gradient(90% 50% at 50% 26%, rgba(79,120,255,.5), transparent 70%); }
-.ct--mac .sc::before { background: radial-gradient(90% 50% at 50% 30%, rgba(168,96,255,.42), transparent 70%); }
+.sc::before { content: ""; position: absolute; inset: 0; background: radial-gradient(90% 50% at 50% 26%, rgba(170,205,255,.45), transparent 70%); }
+.ct--mac .sc::before { background: radial-gradient(90% 50% at 50% 30%, rgba(220,190,255,.4), transparent 70%); }
 .cap { position: absolute; z-index: 5; left: 5cqw; right: 5cqw; bottom: 32cqw; text-align: center; font-size: 5.5cqw; font-weight: 800; line-height: 1.4; letter-spacing: -0.02em; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.7), 0 4px 18px rgba(0,0,0,.55); animation: capA 15s infinite; }
 .sc--2 .cap { animation-name: capB; } .sc--3 .cap { animation-name: capC; }
 .cap em { font-style: normal; color: var(--a-sky); }
@@ -630,21 +633,23 @@ body.is-full .batt__b i { background: #34C759; }
 </div></div></section>
 <section class="win" id="case-9"><div class="wrap"><div class="win__frame">
 <div class="win__bar"><span class="win__dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="win__n">6 / 10</span></div>
-<article class="case section">
-  <span class="case__cat"><b>콘텐츠 마케팅</b><i>CASE 6</i></span>
-  <div class="case__left">
-    <h3 class="case__title reveal">일단 매거진,<br>호기심을 가볍게 다루다</h3>
-    <p class="case__desc reveal">F&amp;B, 패션, 뷰티, 라이프스타일, 트렌드 등 호기심에서 출발한 주제를 가벼운 형태로 다루는 개인 매거진. 기획부터 디자인, 제작까지 직접 합니다.</p>
-    <a class="mgl reveal" href="https://www.instagram.com/1dan.mag/" target="_blank" rel="noopener">@1dan.mag 인스타그램에서 보기 <span aria-hidden="true">↗</span></a>
-  </div>
-  <div class="case__right mg">
-    <div class="mg__ph reveal">
-      <img class="phone" src="assets/img/ig-reel.webp" alt="일단 매거진 릴스 - 갖고 다니는 립 제품" width="584" height="1200">
-      <img class="phone" src="assets/img/ig-profile.webp" alt="일단 매거진 인스타그램 프로필 - 게시물 22, 팔로워 701, 최근 30일 조회 58.6만" width="974" height="2000">
-    </div>
-    <div class="mg__st reveal"><span><b>58.6만</b>최근 30일 조회</span><span><b>20.6만</b>바이럴 게시물 조회</span><span><b>701</b>팔로워</span></div>
-  </div>
-</article>
+<article class="case section case--mag">
+        <span class="case__cat"><b>콘텐츠 마케팅</b><i>CASE 6</i></span>
+        <div class="mag__main">
+          <h3 class="case__title reveal fx-text">일단 매거진<br><span class="mag__handle">@1dan.mag</span></h3>
+          <p class="case__desc reveal">F&amp;B, 패션, 뷰티, 라이프스타일, 트렌드 등 호기심에서 출발한 주제를 가벼운 형태로 다루는 매거진</p>
+          <a class="mag__link reveal" href="https://www.instagram.com/1dan.mag/" target="_blank" rel="noopener">인스타그램에서 보기 <span aria-hidden="true">↗</span></a>
+          <div class="mag__row phones reveal">
+            <div class="phone phone--car" data-n="7" data-key="chanelf" data-full="1" role="img" aria-label="일단 매거진 게시물 - 샤넬은 예쁜 여자를 좋아한다"><canvas class="car__cv" width="584" height="1200"></canvas></div>
+            <div class="phone phone--car" data-n="9" data-key="playlist" role="img" aria-label="일단 매거진 게시물 - goodvibespeople.mp3 플레이리스트"><canvas class="car__cv" width="584" height="1200"></canvas><div class="car__dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+            <div class="phone phone--car" data-n="7" data-key="ewha" data-full="1" role="img" aria-label="일단 매거진 게시물 - 이대생이 말아주는 이대 맛집 6곳"><canvas class="car__cv" width="584" height="1200"></canvas></div>
+            <img class="phone" src="assets/img/ig-reel.webp" alt="일단 매거진 릴스 - 갖고 다니는 립 제품" width="584" height="1200">
+          </div>
+        </div>
+        <div class="mag__side reveal">
+          <img class="phone mag__profile" src="assets/img/ig-profile.webp" alt="일단 매거진 인스타그램 프로필 - 게시물 22, 팔로워 701, 최근 30일 조회 58.6만" width="974" height="2000">
+        </div>
+      </article>
 </div></div></section>
 <section class="chap" id="ch3"><div class="wrap"><p class="chap__eye rv">Chapter 3 · 데이터</p><h2 class="chap__h rv">숫자로 <em>확인하다.</em></h2><p class="chap__s rv">감 대신,<br>다음 행동을 정하게 하는 데이터.</p></div></section>
 <section class="win" id="case-8"><div class="wrap"><div class="win__frame">
@@ -711,7 +716,7 @@ body.is-full .batt__b i { background: #34C759; }
             <div class="st">
               <div class="st__merge">
                 <ul class="st__src st__src--ico"><li><i class="st__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="7" r="2.5"/><circle cx="18" cy="7" r="2.5"/><circle cx="12" cy="17" r="2.5"/><path d="M8 8.5l2.5 6M16 8.5l-2.5 6M8.5 7h7"/></svg></i>사내 지식그래프</li><li><i class="st__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M15.5 15.5L20 20"/></svg></i>네이버 검색</li><li><i class="st__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a4 4 0 0 1 .5-8 5.5 5.5 0 0 1 10.5 1.5 3.5 3.5 0 0 1 0 6.5z"/></svg></i>날씨</li><li><i class="st__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="16.5" cy="7.5" r="1" fill="currentColor"/></svg></i>인스타그램</li></ul>
-                <i class="st__brace"></i>
+                <svg class="st__into" viewBox="0 0 40 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 12.5 C 24 12.5, 16 50, 40 50"/><path d="M0 37.5 C 24 37.5, 16 50, 40 50"/><path d="M0 62.5 C 24 62.5, 16 50, 40 50"/><path d="M0 87.5 C 24 87.5, 16 50, 40 50"/></svg>
                 <div class="st__dash"><div class="st__dash-bar"><i></i><i></i><i></i><b>한 화면</b></div><div class="st__dash-body"><div class="st__dash-tiles"><span></span><span></span><span></span></div><svg class="st__dash-chart" viewBox="0 0 200 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 50 C 30 44, 50 46, 70 38 S 110 20, 130 24 S 170 12, 200 8" fill="none" stroke="#1F5BFF" stroke-width="2.5"/><path d="M0 52 C 30 48, 55 50, 80 44 S 120 36, 140 34 S 175 28, 200 26" fill="none" stroke="#B4BDD6" stroke-width="2" stroke-dasharray="4 4"/></svg><div class="st__dash-chips"><span>↻ 매일 자동 갱신</span><span class="st__chip--navy">✦ AI 에이전트</span></div></div></div>
                 <i class="st__arr"></i>
                 <div class="st__card st__card--navy"><div class="st__h">바로 반영</div><div class="st__b"><p class="st__t">다음 카테고리 조정</p><p class="st__adj"><s>경량</s><span>→</span><em>숏 다운</em></p></div></div>
@@ -1042,6 +1047,91 @@ body.is-full .batt__b i { background: #34C759; }
   }
   let raf = 0; addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; frame(); }); }, { passive: true });
   frame();
+
+  /* each case window and the spec sheet fit one screen: the body is scaled down (never up), and a negative
+     bottom margin keeps the layout height in step with what is drawn, so the window frame hugs it */
+  const NAV = 46;
+  function fitOne(el, avail) {
+    el.classList.add('fit'); el.style.transform = ''; el.style.width = ''; el.style.marginBottom = '';
+    if (innerWidth <= 1100) return;
+    const host = el.parentElement, w = host.clientWidth;
+    let z = Math.min(1, avail / el.offsetHeight);
+    if (z >= 1) return;
+    el.style.width = (w / z) + 'px';                       // wider at 1:1 so it reads at the same width once scaled
+    z = Math.min(1, avail / el.offsetHeight); el.style.width = (w / z) + 'px';   // the wider column may have shortened the text
+    const h = el.offsetHeight;
+    el.style.transform = `scale(${z.toFixed(4)})`; el.style.marginBottom = (-(h - h * z)).toFixed(1) + 'px';
+  }
+  function fitAll() {
+    $$('.win').forEach(w => { const bar = $('.win__bar', w), cs = $('.case', w); if (!cs) return; fitOne(cs, innerHeight - NAV - 24 - (bar ? bar.offsetHeight : 0) - 2); });
+    const sp = $('.spec'); if (sp) { const cs = getComputedStyle(sp); fitOne($('.wrap', sp), innerHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom) - 2); }
+  }
+  let fitT; const scheduleFit = () => { clearTimeout(fitT); fitT = setTimeout(fitAll, 60); };
+  addEventListener('resize', scheduleFit); addEventListener('load', scheduleFit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleFit);
+  fitAll(); [300, 1200, 3000].forEach(ms => setTimeout(fitAll, ms));
+
+  /* magazine carousels: base screen + slides (clipped to the post block) + frame, drawn in one canvas */
+  $$('.phone--car').forEach(ph => {
+    const cv = $('.car__cv', ph), ctx = cv.getContext('2d'), dots = $$('.car__dots i', ph), key = ph.dataset.key;
+    let n = +ph.dataset.n;
+    const FULL = ph.dataset.full === '1';
+    const BLOCK = { x: 24, y: 244, w: 533, h: 666 };
+    const SCREEN = { x: 26, y: 23, w: 532, h: 1154, r: 76 };
+    const IG_DOTS = { top: 0.828, bottom: 0.853, mid: 0.8415 };
+    const IG_POST = { top: 389 / 2000, bottom: 1538 / 2000 };
+    const load = src => new Promise(res => { const im = new Image(); im.onload = () => res(im); im.onerror = () => res(null); im.src = src; });
+    let base = null, frame = null, slides = [], i = 0, prog = 0, animStart = 0, timer = null, ready = false;
+    const dpr = Math.min(window.devicePixelRatio || 1, 3);
+    function size() { const w = ph.clientWidth, h = ph.clientHeight; if (!w) return; if (cv.width !== Math.round(w * dpr)) { cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); } }
+    function roundRect(x, y, w, h, r) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
+    function drawFull(sx, sy) {
+      const bx = SCREEN.x * sx, by = SCREEN.y * sy, bw = SCREEN.w * sx, bh = SCREEN.h * sy;
+      ctx.save(); roundRect(bx, by, bw, bh, SCREEN.r * sx); ctx.clip();
+      const fit = im => { const s = Math.max(bw / im.width, bh / im.height); return { w: im.width * s, h: im.height * s }; };
+      const cur = slides[i], nxt = slides[(i + 1) % n];
+      const put = (im, dx) => { if (!im) return; if (im.width === 584 && im.height === 1200) { ctx.drawImage(im, dx - bx, 0, cv.width, cv.height); return; } const f = fit(im); ctx.drawImage(im, dx + (bw - f.w) / 2, by, f.w, f.h); };
+      put(slides[0], bx);
+      const shotH = bw * (2000 / 920);
+      const py0 = by + shotH * IG_POST.top, py1 = by + shotH * IG_POST.bottom;
+      ctx.save(); ctx.beginPath(); ctx.rect(bx, py0, bw, py1 - py0); ctx.clip();
+      if (prog > 0 && nxt) { put(cur, bx - bw * prog); put(nxt, bx + bw * (1 - prog)); } else put(cur, bx);
+      ctx.restore();
+      const y0 = by + shotH * IG_DOTS.top, y1 = by + shotH * IG_DOTS.bottom, ym = by + shotH * IG_DOTS.mid;
+      ctx.fillStyle = '#fff'; ctx.fillRect(bx + bw * 0.25, y0, bw * 0.5, y1 - y0);
+      const rad = 3.4 * sx, gap = 13 * sx, x0 = bx + bw / 2 - (n - 1) * gap / 2;
+      for (let k = 0; k < n; k++) { const on = k === i; ctx.beginPath(); ctx.arc(x0 + k * gap, ym, on ? rad * 1.3 : rad, 0, Math.PI * 2); ctx.fillStyle = on ? '#1F5BFF' : '#D5D9E3'; ctx.fill(); }
+      ctx.restore();
+    }
+    function draw() {
+      if (!ready) return; size();
+      const sx = cv.width / 584, sy = cv.height / 1200;
+      ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height);
+      if (FULL) { drawFull(sx, sy); ctx.drawImage(frame, 0, 0, cv.width, cv.height); return; }
+      ctx.drawImage(base, 0, 0, cv.width, cv.height);
+      const bx = Math.floor(BLOCK.x * sx), by = Math.floor(BLOCK.y * sy);
+      const bw = Math.ceil((BLOCK.x + BLOCK.w) * sx) - bx, bh = Math.ceil((BLOCK.y + BLOCK.h) * sy) - by;
+      ctx.save(); ctx.beginPath(); ctx.rect(bx, by, bw, bh); ctx.clip();
+      const cur = slides[i], nxt = slides[(i + 1) % n];
+      if (prog > 0 && nxt) { ctx.drawImage(cur, bx - bw * prog, by - 1, bw, bh + 2); ctx.drawImage(nxt, bx + bw * (1 - prog), by - 1, bw, bh + 2); }
+      else if (cur) ctx.drawImage(cur, bx, by - 1, bw, bh + 2);
+      ctx.restore();
+      ctx.drawImage(frame, 0, 0, cv.width, cv.height);
+      dots.forEach((d, k) => d.classList.toggle('is-on', k === i));
+    }
+    function step(now) { const k = Math.min(1, (now - animStart) / 550); prog = 1 - Math.pow(1 - k, 3); draw(); if (k < 1) requestAnimationFrame(step); else { prog = 0; i = (i + 1) % n; draw(); } }
+    const next = () => { if (prog === 0) { animStart = performance.now(); prog = 0.0001; requestAnimationFrame(step); } };
+    const start = () => { if (timer || reduce) return; timer = setInterval(next, 2800); };
+    const stop = () => { clearInterval(timer); timer = null; };
+    Promise.all([FULL ? Promise.resolve(null) : load(`assets/img/scr2-${key}.webp`), load('assets/img/phone-frame-sm.webp'), ...Array.from({ length: n }, (_, k) => load(`assets/img/car/${key}-${k + 1}.webp`))]).then(imgs => {
+      base = imgs[0]; frame = imgs[1]; slides = imgs.slice(2);
+      if (FULL) { slides = slides.filter(Boolean); n = slides.length; }
+      ready = !!((FULL || base) && frame && slides[0]); draw();
+      new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? start() : stop()), { threshold: 0.3 }).observe(ph);
+    });
+    new ResizeObserver(() => draw()).observe(ph);
+    document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
+  });
 }
 </script>
 </body>
